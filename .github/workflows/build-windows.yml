@@ -24,41 +24,60 @@ jobs:
         with:
           arch: x64
 
-      - name: Update dependencies
+      - name: Download build libraries
         shell: cmd
-        run: call make.bat update
+        run: |
+          echo y | call make.bat update
 
       - name: Build Goo Engine
         shell: cmd
-        run: call make.bat
+        run: |
+          call make.bat
 
-      - name: Find Blender executable
+      - name: Find Goo Engine executable
         shell: powershell
         run: |
-          $exe = Get-ChildItem -Path . -Recurse -Filter blender.exe |
+          $exe = Get-ChildItem -Path $env:GITHUB_WORKSPACE -Recurse -Filter blender.exe -File |
             Select-Object -First 1
 
           if (-not $exe) {
-            Write-Error "Goo Engine executable was not found."
+            Write-Error "Goo Engine executable (blender.exe) was not found."
             exit 1
           }
 
-          Write-Host "Found: $($exe.FullName)"
+          Write-Host "Found executable:"
+          Write-Host $exe.FullName
 
-      - name: Package build
+      - name: Package Goo Engine
         shell: powershell
         run: |
-          $exe = Get-ChildItem -Path . -Recurse -Filter blender.exe |
+          $exe = Get-ChildItem -Path $env:GITHUB_WORKSPACE -Recurse -Filter blender.exe -File |
             Select-Object -First 1
 
           if (-not $exe) {
             Write-Error "blender.exe was not found."
             exit 1
+          }
+
+          $buildFolder = $exe.Directory.FullName
+          $zipPath = Join-Path $env:GITHUB_WORKSPACE "GooEngine-Windows.zip"
+
+          Write-Host "Packaging:"
+          Write-Host $buildFolder
+          Write-Host "Into:"
+          Write-Host $zipPath
 
           Compress-Archive `
-            -Path "$($exe.Directory.FullName)\*" `
-            -DestinationPath "$env:GITHUB_WORKSPACE\GooEngine-Windows.zip" `
+            -Path "$buildFolder\*" `
+            -DestinationPath $zipPath `
             -Force
+
+          if (-not (Test-Path $zipPath)) {
+            Write-Error "The ZIP file was not created."
+            exit 1
+          }
+
+          Write-Host "Package created successfully."
 
       - name: Upload Goo Engine
         uses: actions/upload-artifact@v4
