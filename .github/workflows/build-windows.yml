@@ -8,13 +8,16 @@ build:
 runs-on: windows-2022
 
 steps:
-- name: Checkout Goo Engine
+
+- name: Checkout Goo Engine 4.1
 uses: actions/checkout@v4
 with:
+repository: dillongoostudios/goo-engine
+ref: goo-engine-v4.1-release
 submodules: recursive
 fetch-depth: 0
 
-- name: Set up Python
+- name: Install Python
 uses: actions/setup-python@v5
 with:
 python-version: "3.11"
@@ -23,71 +26,76 @@ python-version: "3.11"
 shell: powershell
 run: |
 choco install sliksvn -y --no-progress
+
+- name: Add SVN to PATH
+shell: powershell
+run: |
 latex
-env:Path += ";C:\Program Files\SlikSvn\bin" [Environment]::SetEnvironmentVariable( "Path", 
+svn = "C:\Program Files\SlikSvn\bin" 
 
-env:Path,
-"Process"
-)
+env:Path += ";svn" >> $`env:GITHUB_PATH
 
-- name: Verify SVN
+- name: Check tools
 shell: cmd
 run: |
+python --version
 svn --version --quiet
+git --version
 
-- name: Set up MSVC
+- name: Setup MSVC
 uses: ilammy/msvc-dev-cmd@v1
 with:
 arch: x64
 
-- name: Download Goo Engine libraries
+- name: Download Goo dependencies
 shell: cmd
 run: |
-set "PATH=C:\Program Files\SlikSvn\bin;%PATH%"
-echo y | call make.bat update
+call make.bat update
 
 - name: Build Goo Engine
 shell: cmd
 run: |
-set "PATH=C:\Program Files\SlikSvn\bin;%PATH%"
 call make.bat
 
-- name: Find Goo Engine
+- name: Locate executable
 shell: powershell
 run: |
-env:GITHUB_WORKSPACE -Recurse
--Filter blender.exe `
--File |
+$exe = Get-ChildItem
+-Path "$env:GITHUB_WORKSPACE\.."
+-Recurse -Filter blender.exe
+-File `
+-ErrorAction SilentlyContinue |
 Select-Object -First 1
 
-if (-not $`exe) {
+if (-not `$exe) {
+Write-Error "Goo Engine executable was not found."
+exit 1
+}
+
+Write-Host ""
+Write-Host "Goo Engine found:"
+Write-Host $`exe.FullName
+Write-Host ""
+
+- name: Package build
+shell: powershell
+run: |
+$exe = Get-ChildItem
+-Path "$env:GITHUB_WORKSPACE\.."
+-Recurse -Filter blender.exe
+-File `
+-ErrorAction SilentlyContinue |
+Select-Object -First 1
+
+if (-not `$exe) {
 Write-Error "blender.exe was not found."
 exit 1
 }
 
-Write-Host "Goo Engine found at:"
-Write-Host `$exe.FullName
+exe.Directory.FullName
 
-- name: Package Goo Engine
-shell: powershell
-run: |
-env:GITHUB_WORKSPACE -Recurse
--Filter blender.exe `
--File |
-Select-Object -First 1
-
-if (-not $`exe) {
-Write-Error "blender.exe was not found."
-exit 1
-}
-
-$folder = $exe.Directory.FullName
-$zip = Join-Path $env:GITHUB_WORKSPACE "GooEngine-Windows.zip"
-
-Compress-Archive -Path "$folder*" -DestinationPath $zip `
+Compress-Archive -Path "$folder*" -DestinationPath "$env:GITHUB_WORKSPACE\GooEngine-Windows.zip" `
 -Force
-
-Write-Host "Created: `$zip"
 
 - name: Upload Goo Engine
 uses: actions/upload-artifact@v4
