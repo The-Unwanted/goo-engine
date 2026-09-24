@@ -3,10 +3,6 @@ name: Build Goo Engine - Windows
 on:
   workflow_dispatch:
 
-concurrency:
-  group: goo-engine-windows-build
-  cancel-in-progress: true
-
 jobs:
   build:
     runs-on: windows-2022
@@ -22,6 +18,28 @@ jobs:
         uses: actions/setup-python@v5
         with:
           python-version: "3.11"
+          architecture: x64
+
+      - name: Verify Python
+        shell: powershell
+        run: |
+          if (-not $env:pythonLocation) {
+            throw "Python was not installed"
+          }
+
+          $python = Join-Path $env:pythonLocation "python.exe"
+
+          if (-not (Test-Path $python)) {
+            throw "Python executable was not found at $python"
+          }
+
+          "$env:pythonLocation" | Out-File `
+            -FilePath $env:GITHUB_PATH `
+            -Encoding utf8 `
+            -Append
+
+          python --version
+          python -c "import sys; print(sys.executable)"
 
       - name: Set up MSVC
         uses: ilammy/msvc-dev-cmd@v1
@@ -35,66 +53,26 @@ jobs:
 
           $svnPath = Join-Path $env:ProgramFiles "Subversion\bin"
 
-          if (-not (Test-Path $svnPath)) {
-            Write-Error "SVN was not installed at $svnPath"
-            exit 1
+          if (Test-Path $svnPath) {
+            "$svnPath" | Out-File `
+              -FilePath $env:GITHUB_PATH `
+              -Encoding utf8 `
+              -Append
+
+            $env:Path = "$svnPath;$env:Path"
           }
 
-          $env:Path = "$svnPath;$env:Path"
-          $svnPath | Out-File `
-            -FilePath $env:GITHUB_PATH `
-            -Encoding utf8 `
-            -Append
-
+          where.exe svn
           svn --version --quiet
 
       - name: Update dependencies
-        shell: powershell
+        shell: cmd
         run: |
-          $libDir = Join-Path $env:GITHUB_WORKSPACE "..\lib\win64_vc15"
-          $libDir = [IO.Path]::GetFullPath($libDir)
+          where python
+          python --version
 
-          $maxAttempts = 6
-          $updateSucceeded = $false
-
-          for ($attempt = 1; $attempt -le $maxAttempts; $attempt++) {
-            Write-Host "Updating external libraries (attempt $attempt/$maxAttempts)"
-            Write-Host "Library directory: $libDir"
-
-            if (Test-Path $libDir) {
-              Write-Host "Cleaning SVN working copy..."
-              svn cleanup $libDir
-
-              if ($LASTEXITCODE -ne 0) {
-                Write-Warning "svn cleanup failed with exit code $LASTEXITCODE"
-              }
-            }
-
-            Write-Host "Running make.bat update..."
-
-            cmd.exe /D /S /C 'echo y| call make.bat update'
-            $exitCode = $LASTEXITCODE
-
-            if ($exitCode -eq 0) {
-              $updateSucceeded = $true
-              Write-Host "External libraries updated successfully."
-              break
-            }
-
-            Write-Warning "Dependency update failed with exit code $exitCode."
-
-            if ($attempt -lt $maxAttempts) {
-              $delay = [Math]::Min(300, [Math]::Pow(2, $attempt) * 10)
-
-              Write-Host "Retrying in $delay seconds..."
-              Start-Sleep -Seconds $delay
-            }
-          }
-
-          if (-not $updateSucceeded) {
-            Write-Error "External library update failed after $maxAttempts attempts."
-            exit 1
-          }
+          echo y| call make.bat update verbose
+          if errorlevel 1 exit /b %errorlevel%
 
       - name: Build Goo Engine
         shell: cmd
@@ -109,13 +87,11 @@ jobs:
             -Path $env:GITHUB_WORKSPACE `
             -Recurse `
             -Filter blender.exe `
-            -File `
-            -ErrorAction SilentlyContinue |
+            -File |
             Select-Object -First 1
 
           if (-not $exe) {
-            Write-Error "Goo Engine executable was not found."
-            exit 1
+            throw "Goo Engine executable was not found."
           }
 
           Write-Host "Found: $($exe.FullName)"
@@ -127,25 +103,17 @@ jobs:
             -Path $env:GITHUB_WORKSPACE `
             -Recurse `
             -Filter blender.exe `
-            -File `
-            -ErrorAction SilentlyContinue |
+            -File |
             Select-Object -First 1
 
           if (-not $exe) {
-            Write-Error "blender.exe was not found."
-            exit 1
+            throw "blender.exe was not found."
           }
-
-          $packagePath = Join-Path `
-            $env:GITHUB_WORKSPACE `
-            "GooEngine-Windows.zip"
 
           Compress-Archive `
             -Path "$($exe.Directory.FullName)\*" `
-            -DestinationPath $packagePath `
+            -DestinationPath "$env:GITHUB_WORKSPACE\GooEngine-Windows.zip" `
             -Force
-
-          Write-Host "Created package: $packagePath"
 
       - name: Upload Goo Engine
         uses: actions/upload-artifact@v4
