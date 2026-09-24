@@ -24,6 +24,32 @@ jobs:
         with:
           arch: x64
 
+     name: Build Goo Engine - Windows
+
+on:
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: windows-2022
+
+    steps:
+      - name: Checkout Goo Engine
+        uses: actions/checkout@v4
+        with:
+          submodules: recursive
+          fetch-depth: 0
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Set up MSVC
+        uses: ilammy/msvc-dev-cmd@v1
+        with:
+          arch: x64
+
       - name: Install SVN
         shell: powershell
         run: choco install -y svn
@@ -35,6 +61,42 @@ jobs:
       - name: Build Goo Engine
         shell: cmd
         run: call make.bat
+
+      - name: Find Blender executable
+        shell: powershell
+        run: |
+          $exe = Get-ChildItem -Path . -Recurse -Filter blender.exe |
+            Select-Object -First 1
+
+          if (-not $exe) {
+            Write-Error "Goo Engine executable was not found."
+            exit 1
+          }
+
+          Write-Host "Found: $($exe.FullName)"
+
+      - name: Package build
+        shell: powershell
+        run: |
+          $exe = Get-ChildItem -Path . -Recurse -Filter blender.exe |
+            Select-Object -First 1
+
+          if (-not $exe) {
+            Write-Error "blender.exe was not found."
+            exit 1
+          }
+
+          Compress-Archive `
+            -Path "$($exe.Directory.FullName)\*" `
+            -DestinationPath "$env:GITHUB_WORKSPACE\GooEngine-Windows.zip" `
+            -Force
+
+      - name: Upload Goo Engine
+        uses: actions/upload-artifact@v4
+        with:
+          name: GooEngine-Windows
+          path: GooEngine-Windows.zip
+          if-no-files-found: error
 
       - name: Find Blender executable
         shell: powershell
