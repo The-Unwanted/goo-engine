@@ -3,6 +3,10 @@ name: Build Goo Engine - Windows
 on:
   workflow_dispatch:
 
+concurrency:
+  group: goo-engine-windows-build
+  cancel-in-progress: true
+
 jobs:
   build:
     runs-on: windows-2022
@@ -30,27 +34,83 @@ jobs:
           choco install -y svn --no-progress
 
           $svnPath = Join-Path $env:ProgramFiles "Subversion\bin"
-          if (Test-Path $svnPath) {
-            $env:Path = "$svnPath;$env:Path"
-            $svnPath | Out-File -FilePath $env:GITHUB_PATH -Encoding utf8 -Append
+
+          if (-not (Test-Path $svnPath)) {
+            Write-Error "SVN was not installed at $svnPath"
+            exit 1
           }
+
+          $env:Path = "$svnPath;$env:Path"
+          $svnPath | Out-File `
+            -FilePath $env:GITHUB_PATH `
+            -Encoding utf8 `
+            -Append
 
           svn --version --quiet
 
       - name: Update dependencies
-        shell: cmd
+        shell: powershell
         run: |
-          echo y| call make.bat update
-          if errorlevel 1 exit /b %errorlevel%
+          $libDir = Join-Path $env:GITHUB_WORKSPACE "..\lib\win64_vc15"
+          $libDir = [IO.Path]::GetFullPath($libDir)
+
+          $maxAttempts = 6
+          $updateSucceeded = $false
+
+          for ($attempt = 1; $attempt -le $maxAttempts; $attempt++) {
+            Write-Host "Updating external libraries (attempt $attempt/$maxAttempts)"
+            Write-Host "Library directory: $libDir"
+
+            if (Test-Path $libDir) {
+              Write-Host "Cleaning SVN working copy..."
+              svn cleanup $libDir
+
+              if ($LASTEXITCODE -ne 0) {
+                Write-Warning "svn cleanup failed with exit code $LASTEXITCODE"
+              }
+            }
+
+            Write-Host "Running make.bat update..."
+
+            cmd.exe /D /S /C 'echo y| call make.bat update'
+            $exitCode = $LASTEXITCODE
+
+            if ($exitCode -eq 0) {
+              $updateSucceeded = $true
+              Write-Host "External libraries updated successfully."
+              break
+            }
+
+            Write-Warning "Dependency update failed with exit code $exitCode."
+
+            if ($attempt -lt $maxAttempts) {
+              $delay = [Math]::Min(300, [Math]::Pow(2, $attempt) * 10)
+
+              Write-Host "Retrying in $delay seconds..."
+              Start-Sleep -Seconds $delay
+            }
+          }
+
+          if (-not $updateSucceeded) {
+            Write-Error "External library update failed after $maxAttempts attempts."
+            exit 1
+          }
 
       - name: Build Goo Engine
         shell: cmd
-        run: call make.bat
+        run: |
+          call make.bat
+          if errorlevel 1 exit /b %errorlevel%
 
       - name: Find Blender executable
         shell: powershell
         run: |
-          $exe = Get-ChildItem -Path . -Recurse -Filter blender.exe |
+          $exe = Get-ChildItem `
+            -Path $env:GITHUB_WORKSPACE `
+            -Recurse `
+            -Filter blender.exe `
+            -File `
+            -ErrorAction SilentlyContinue |
             Select-Object -First 1
 
           if (-not $exe) {
@@ -63,7 +123,12 @@ jobs:
       - name: Package build
         shell: powershell
         run: |
-          $exe = Get-ChildItem -Path . -Recurse -Filter blender.exe |
+          $exe = Get-ChildItem `
+            -Path $env:GITHUB_WORKSPACE `
+            -Recurse `
+            -Filter blender.exe `
+            -File `
+            -ErrorAction SilentlyContinue |
             Select-Object -First 1
 
           if (-not $exe) {
@@ -71,10 +136,16 @@ jobs:
             exit 1
           }
 
+          $packagePath = Join-Path `
+            $env:GITHUB_WORKSPACE `
+            "GooEngine-Windows.zip"
+
           Compress-Archive `
             -Path "$($exe.Directory.FullName)\*" `
-            -DestinationPath "$env:GITHUB_WORKSPACE\GooEngine-Windows.zip" `
+            -DestinationPath $packagePath `
             -Force
+
+          Write-Host "Created package: $packagePath"
 
       - name: Upload Goo Engine
         uses: actions/upload-artifact@v4
