@@ -1,18 +1,51 @@
 name: Build Goo Engine - Windows
 
+# Builds Goo Engine (Blender 4.1 based, Eevee/NPR) as a portable Windows x64
+# package: <dist>/blender.exe + datafiles + python + scripts, zipped.
+#
+# Differences from the stock Blender "make.bat update && make.bat" flow:
+#  * precompiled libraries are fetched directly from Blender's SVN archive
+#    into C:\bglib (keeps the small D: drive of the runner free),
+#  * CMake + Ninja are driven directly (faster than msbuild, single config),
+#  * every long step writes a log, and on failure the log tail is surfaced
+#    as workflow annotations + committed to ci-logs/ so it can be inspected.
+
 on:
   workflow_dispatch:
+    inputs:
+      mode:
+        description: "prepare = libraries + configure only, build = full build + package"
+        required: true
+        default: "build"
+        type: choice
+        options:
+          - build
+          - prepare
+
+permissions:
+  contents: write
+
+concurrency:
+  group: build-windows-${{ github.ref }}
+  cancel-in-progress: false
+
+env:
+  LIB_DIR: C:\bglib\win64_vc15
+  BUILD_DIR: C:\bg\build
+  DIST_DIR: C:\bg\dist
+  LOG_DIR: C:\bg\logs
+  SVN_LIB_URL: https://svn.blender.org/svnroot/bf-blender/tags/blender-4.1-release/lib/win64_vc15
 
 jobs:
   build:
     runs-on: windows-2022
+    timeout-minutes: 355
 
     steps:
       - name: Checkout Goo Engine
         uses: actions/checkout@v4
         with:
-          submodules: recursive
-          fetch-depth: 0
+          fetch-depth: 1
 
       - name: Set up Python
         uses: actions/setup-python@v5
@@ -20,104 +53,239 @@ jobs:
           python-version: "3.11"
           architecture: x64
 
-      - name: Verify Python
-        shell: powershell
-        run: |
-          if (-not $env:pythonLocation) {
-            throw "Python was not installed"
-          }
-
-          $python = Join-Path $env:pythonLocation "python.exe"
-
-          if (-not (Test-Path $python)) {
-            throw "Python executable was not found at $python"
-          }
-
-          "$env:pythonLocation" | Out-File `
-            -FilePath $env:GITHUB_PATH `
-            -Encoding utf8 `
-            -Append
-
-          python --version
-          python -c "import sys; print(sys.executable)"
-
       - name: Set up MSVC
         uses: ilammy/msvc-dev-cmd@v1
         with:
           arch: x64
 
-      - name: Install SVN
-        shell: powershell
+      - name: Install SVN and Ninja
+        shell: pwsh
         run: |
-          choco install -y svn --no-progress
+          choco install -y svn ninja --no-progress | Out-Null
+          $svnBin = Join-Path $env:ProgramFiles "Subversion\bin"
+          if (Test-Path $svnBin) { $svnBin | Out-File -FilePath $env:GITHUB_PATH -Encoding utf8 -Append }
+          if (-not (Get-Command ninja -ErrorAction SilentlyContinue)) {
+            "C:\ProgramData\chocolatey\bin" | Out-File -FilePath $env:GITHUB_PATH -Encoding utf8 -Append
+          }
+          "$env:ProgramFiles\Subversion\bin\svn.exe" --version --quiet
 
-          $svnPath = Join-Path $env:ProgramFiles "Subversion\bin"
+      - name: Environment report
+        shell: pwsh
+        run: |
+          Write-Host "::notice::host=$env:RUNNER_OS cores=$env:NUMBER_OF_PROCESSORS"
+          Get-PSDrive C, D -ErrorAction SilentlyContinue |
+            ForEach-Object { Write-Host ("::notice::drive {0}: {1:N1} GB free" -f $_.Name, ($_.Free / 1GB)) }
+          (Get-CimInstance Win32_ComputerSystem).TotalPhysicalMemory / 1GB |
+            ForEach-Object { Write-Host ("::notice::ram {0:N1} GB" -f $_) }
+          & cl 2>&1 | Select-Object -First 1 | ForEach-Object { Write-Host "::notice::compiler $_" }
+          & cmake --version | Select-Object -First 1 | ForEach-Object { Write-Host "::notice::$_" }
+          & ninja --version | ForEach-Object { Write-Host "::notice::ninja $_" }
+          & svn --version --quiet | ForEach-Object { Write-Host "::notice::svn $_" }
 
-          if (Test-Path $svnPath) {
-            "$svnPath" | Out-File `
-              -FilePath $env:GITHUB_PATH `
-              -Encoding utf8 `
-              -Append
+      - name: Cache precompiled libraries
+        id: libcache
+        uses: actions/cache@v4
+        with:
+          path: C:\bglib\win64_vc15
+          key: goo-libs-win64-vc15-4.1-v1
 
-            $env:Path = "$svnPath;$env:Path"
+      - name: Fetch precompiled libraries (SVN)
+        if: steps.libcache.outputs.cache-hit != 'true'
+        shell: pwsh
+        run: |
+          $ErrorActionPreference = "Continue"
+          New-Item -ItemType Directory -Force -Path (Split-Path $env:LIB_DIR) | Out-Null
+          New-Item -ItemType Directory -Force -Path $env:LOG_DIR | Out-Null
+          $log = Join-Path $env:LOG_DIR "svn-checkout.log"
+
+          for ($attempt = 1; $attempt -le 3; $attempt++) {
+            Write-Host "SVN checkout attempt $attempt"
+            & svn checkout --non-interactive --no-auth-cache $env:SVN_LIB_URL $env:LIB_DIR *> $log
+            if ($LASTEXITCODE -eq 0) { break }
+
+            Write-Host "SVN checkout failed with exit code $LASTEXITCODE"
+            if (Test-Path $env:LIB_DIR) { & svn cleanup $env:LIB_DIR 2>&1 | Out-Null }
+            if ($attempt -eq 3) {
+              Get-Content $log -Tail 40 | ForEach-Object {
+                $line = "$_".TrimEnd()
+                if ($line.Length -gt 900) { $line = $line.Substring(0, 900) }
+                if ($line) { Write-Host "::error::$line" }
+              }
+              exit 1
+            }
+            Start-Sleep -Seconds 15
           }
 
-          where.exe svn
-          svn --version --quiet
+          $size = (Get-ChildItem $env:LIB_DIR -Recurse -File | Measure-Object -Property Length -Sum).Sum / 1GB
+          Write-Host ("::notice::libraries fetched: {0:N2} GB" -f $size)
 
-      - name: Update dependencies
-        shell: cmd
+      - name: Verify libraries
+        shell: pwsh
         run: |
-          where python
-          python --version
+          $probes = @(
+            "python\bin\python.exe",
+            "python\include\Python.h",
+            "ffmpeg\lib\avcodec.lib",
+            "openexr\lib\Iex-3_1.lib",
+            "tbb\lib\tbb.lib"
+          )
+          $missing = @()
+          foreach ($probe in $probes) {
+            if (-not (Test-Path (Join-Path $env:LIB_DIR $probe))) { $missing += $probe }
+          }
+          if ($missing.Count -gt 0) {
+            Write-Host "::error::library directory incomplete, missing: $($missing -join ', ')"
+            Get-ChildItem $env:LIB_DIR -Directory | Select-Object -ExpandProperty Name |
+              ForEach-Object { Write-Host "::notice::lib subdir $_" }
+            exit 1
+          }
+          Write-Host "::notice::library probes OK"
 
-          echo y| call make.bat update verbose
-          if errorlevel 1 exit /b %errorlevel%
-
-      - name: Build Goo Engine
-        shell: cmd
+      - name: Configure (CMake + Ninja)
+        shell: pwsh
         run: |
-          call make.bat
-          if errorlevel 1 exit /b %errorlevel%
+          New-Item -ItemType Directory -Force -Path $env:LOG_DIR | Out-Null
+          $log = Join-Path $env:LOG_DIR "configure.log"
 
-      - name: Find Blender executable
-        shell: powershell
-        run: |
-          $exe = Get-ChildItem `
-            -Path $env:GITHUB_WORKSPACE `
-            -Recurse `
-            -Filter blender.exe `
-            -File |
-            Select-Object -First 1
+          & cmake -S $env:GITHUB_WORKSPACE -B $env:BUILD_DIR -G Ninja `
+            -C "$env:GITHUB_WORKSPACE\build_files\cmake\config\blender_release.cmake" `
+            -DCMAKE_BUILD_TYPE=Release `
+            -DLIBDIR="$env:LIB_DIR" `
+            -DCMAKE_INSTALL_PREFIX="$env:DIST_DIR" `
+            -DWITH_INSTALL_PORTABLE=ON `
+            -DWITH_WINDOWS_PDB=OFF `
+            -DWITH_WINDOWS_STRIPPED_PDB=OFF `
+            -DWITH_GTESTS=OFF `
+            -DWITH_BUILDINFO=OFF 2>&1 | Tee-Object -FilePath $log
 
-          if (-not $exe) {
-            throw "Goo Engine executable was not found."
+          if ($LASTEXITCODE -ne 0) {
+            Get-Content $log -Tail 40 | ForEach-Object {
+              $line = "$_".TrimEnd()
+              if ($line.Length -gt 900) { $line = $line.Substring(0, 900) }
+              if ($line) { Write-Host "::error::$line" }
+            }
+            exit 1
           }
 
-          Write-Host "Found: $($exe.FullName)"
+          Select-String -Path (Join-Path $env:BUILD_DIR "CMakeCache.txt") -Pattern "^(LIBDIR|CMAKE_INSTALL_PREFIX|WITH_CYCLES|WITH_GHOST_XDND)" |
+            ForEach-Object { Write-Host "::notice::$($_.Line)" }
 
-      - name: Package build
-        shell: powershell
+      - name: Build
+        if: inputs.mode == 'build'
+        shell: pwsh
         run: |
-          $exe = Get-ChildItem `
-            -Path $env:GITHUB_WORKSPACE `
-            -Recurse `
-            -Filter blender.exe `
-            -File |
-            Select-Object -First 1
+          $log = Join-Path $env:LOG_DIR "build.log"
+          $sw = [Diagnostics.Stopwatch]::StartNew()
+          & cmake --build $env:BUILD_DIR --target install --parallel 4 2>&1 | Tee-Object -FilePath $log
+          $code = $LASTEXITCODE
+          Write-Host ("::notice::build finished in {0:N1} min (exit {1})" -f $sw.Elapsed.TotalMinutes, $code)
 
-          if (-not $exe) {
-            throw "blender.exe was not found."
+          if ($code -ne 0) {
+            # Surface the useful compiler diagnostics: error lines plus the tail.
+            $errors = Select-String -Path $log -Pattern ": error |: fatal error |FAILED: " -SimpleMatch:$false |
+              Select-Object -First 25
+            foreach ($e in $errors) {
+              $line = $e.Line.TrimEnd()
+              if ($line.Length -gt 900) { $line = $line.Substring(0, 900) }
+              Write-Host "::error::[$($e.LineNumber)] $line"
+            }
+            Get-Content $log -Tail 30 | ForEach-Object {
+              $line = "$_".TrimEnd()
+              if ($line.Length -gt 900) { $line = $line.Substring(0, 900) }
+              if ($line) { Write-Host "::error::$line" }
+            }
+            exit 1
           }
 
-          Compress-Archive `
-            -Path "$($exe.Directory.FullName)\*" `
-            -DestinationPath "$env:GITHUB_WORKSPACE\GooEngine-Windows.zip" `
-            -Force
+      - name: Verify and package
+        if: inputs.mode == 'build'
+        shell: pwsh
+        run: |
+          $exe = Join-Path $env:DIST_DIR "blender.exe"
+          if (-not (Test-Path $exe)) {
+            Write-Host "::error::blender.exe missing in dist dir"
+            Get-ChildItem $env:DIST_DIR -ErrorAction SilentlyContinue | Select-Object -First 30 |
+              ForEach-Object { Write-Host "::notice::dist entry $($_.Name)" }
+            exit 1
+          }
 
-      - name: Upload Goo Engine
+          $hash = (Get-FileHash $exe -Algorithm SHA256).Hash
+          $sizeMb = (Get-Item $exe).Length / 1MB
+          Write-Host ("::notice::blender.exe {0:N1} MB sha256={1}" -f $sizeMb, $hash)
+
+          # Smoke test: portable layout must start and report a version.
+          $version = & $exe --version 2>&1 | Select-Object -First 3
+          $version | ForEach-Object { Write-Host "::notice::version: $_" }
+
+          $distMb = (Get-ChildItem $env:DIST_DIR -Recurse -File | Measure-Object -Property Length -Sum).Sum / 1MB
+          Write-Host ("::notice::dist size {0:N0} MB" -f $distMb)
+
+          $zip = Join-Path $env:GITHUB_WORKSPACE "GooEngine-Windows-x64.zip"
+          if (Test-Path $zip) { Remove-Item $zip -Force }
+          Compress-Archive -Path (Join-Path $env:DIST_DIR "*") -DestinationPath $zip -CompressionLevel Optimal
+          $zipMb = (Get-Item $zip).Length / 1MB
+          Write-Host ("::notice::zip {0:N0} MB" -f $zipMb)
+
+          @(
+            "blender.exe: $([math]::Round($sizeMb,1)) MB",
+            "sha256: $hash",
+            "dist: $([math]::Round($distMb,0)) MB",
+            "zip: $([math]::Round($zipMb,0)) MB",
+            ("version: " + ($version -join ' | ')),
+            "commit: $env:GITHUB_SHA",
+            "run: $env:GITHUB_SERVER_URL/$env:GITHUB_REPOSITORY/actions/runs/$env:GITHUB_RUN_ID"
+          ) | Set-Content (Join-Path $env:GITHUB_WORKSPACE "GooEngine-Windows-x64.txt")
+
+      - name: Upload package
+        if: inputs.mode == 'build'
         uses: actions/upload-artifact@v4
         with:
-          name: GooEngine-Windows
-          path: GooEngine-Windows.zip
+          name: GooEngine-Windows-x64
+          path: |
+            GooEngine-Windows-x64.zip
+            GooEngine-Windows-x64.txt
           if-no-files-found: error
+          retention-days: 30
+
+      - name: Publish release
+        if: inputs.mode == 'build'
+        shell: pwsh
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          $tag = "goo-engine-windows-latest"
+          $notes = Get-Content (Join-Path $env:GITHUB_WORKSPACE "GooEngine-Windows-x64.txt") -Raw
+          $existing = gh release view $tag --json tagName -q .tagName 2>$null
+          if ($LASTEXITCODE -eq 0) {
+            gh release upload $tag "GooEngine-Windows-x64.zip" --clobber
+            if ($LASTEXITCODE -ne 0) { Write-Host "::warning::release asset upload failed" }
+          } else {
+            gh release create $tag "GooEngine-Windows-x64.zip" --title "Goo Engine - Windows x64 build" --notes $notes
+            if ($LASTEXITCODE -ne 0) { Write-Host "::warning::release creation failed" }
+          }
+
+      - name: Upload logs on failure
+        if: failure()
+        shell: pwsh
+        continue-on-error: true
+        run: |
+          New-Item -ItemType Directory -Force -Path (Join-Path $env:GITHUB_WORKSPACE "ci-logs") | Out-Null
+          $out = Join-Path $env:GITHUB_WORKSPACE "ci-logs\build-failure.txt"
+          "Goo Engine Windows build failure" | Set-Content $out
+          "run: $env:GITHUB_SERVER_URL/$env:GITHUB_REPOSITORY/actions/runs/$env:GITHUB_RUN_ID" | Add-Content $out
+          "commit: $env:GITHUB_SHA" | Add-Content $out
+          "" | Add-Content $out
+          Get-ChildItem $env:LOG_DIR -Filter *.log -ErrorAction SilentlyContinue | ForEach-Object {
+            "===== $($_.Name) (tail 200) =====" | Add-Content $out
+            Get-Content $_.FullName -Tail 200 | ForEach-Object {
+              $line = "$_"
+              if ($line.Length -gt 2000) { $line = $line.Substring(0, 2000) }
+              $line | Add-Content $out
+            }
+            "" | Add-Content $out
+          }
+          git config user.name "goo-ci"
+          git config user.email "goo-ci@users.noreply.github.com"
+          git add -f ci-logs/build-failure.txt
+          git commit -m "CI: record Windows build failure log [skip ci]"
+          git push
