@@ -58,29 +58,83 @@ jobs:
         with:
           arch: x64
 
-      - name: Install SVN and Ninja
+      - name: Environment and logging
         shell: pwsh
         run: |
-          choco install -y svn ninja --no-progress | Out-Null
-          $svnBin = Join-Path $env:ProgramFiles "Subversion\bin"
-          if (Test-Path $svnBin) { $svnBin | Out-File -FilePath $env:GITHUB_PATH -Encoding utf8 -Append }
-          if (-not (Get-Command ninja -ErrorAction SilentlyContinue)) {
-            "C:\ProgramData\chocolatey\bin" | Out-File -FilePath $env:GITHUB_PATH -Encoding utf8 -Append
-          }
-          "$env:ProgramFiles\Subversion\bin\svn.exe" --version --quiet
+          New-Item -ItemType Directory -Force -Path $env:LOG_DIR | Out-Null
+          $log = Join-Path $env:LOG_DIR "environment.log"
+          function Say($msg) { $msg | Tee-Object -FilePath $log -Append }
 
-      - name: Environment report
+          Say "powershell: $($PSVersionTable.PSVersion)"
+          Say "workspace: $env:GITHUB_WORKSPACE"
+          Say "cores: $env:NUMBER_OF_PROCESSORS"
+          Say "python: $((Get-Command python).Source)"
+          Say "cmake: $((Get-Command cmake).Source)"
+          Say "ninja: $((Get-Command ninja -ErrorAction SilentlyContinue).Source)"
+          Say "git: $((Get-Command git).Source)"
+          Say "cl: $((Get-Command cl -ErrorAction SilentlyContinue).Source)"
+          Get-PSDrive C, D -ErrorAction SilentlyContinue | ForEach-Object {
+            Say ("drive {0}: {1:N1} GB free of {2:N1} GB" -f $_.Name, ($_.Free / 1GB), (($_.Used + $_.Free) / 1GB))
+          }
+          $ram = (Get-CimInstance Win32_ComputerSystem).TotalPhysicalMemory / 1GB
+          Say ("ram: {0:N1} GB" -f $ram)
+          & cl 2>&1 | Select-Object -First 1 | ForEach-Object { Say "compiler: $_" }
+          & cmake --version | Select-Object -First 1 | ForEach-Object { Say "cmake: $_" }
+          & git --version | ForEach-Object { Say "git: $_" }
+          Say "done"
+
+      - name: Install tools
         shell: pwsh
         run: |
-          Write-Host "::notice::host=$env:RUNNER_OS cores=$env:NUMBER_OF_PROCESSORS"
-          Get-PSDrive C, D -ErrorAction SilentlyContinue |
-            ForEach-Object { Write-Host ("::notice::drive {0}: {1:N1} GB free" -f $_.Name, ($_.Free / 1GB)) }
-          (Get-CimInstance Win32_ComputerSystem).TotalPhysicalMemory / 1GB |
-            ForEach-Object { Write-Host ("::notice::ram {0:N1} GB" -f $_) }
-          & cl 2>&1 | Select-Object -First 1 | ForEach-Object { Write-Host "::notice::compiler $_" }
-          & cmake --version | Select-Object -First 1 | ForEach-Object { Write-Host "::notice::$_" }
-          & ninja --version | ForEach-Object { Write-Host "::notice::ninja $_" }
-          & svn --version --quiet | ForEach-Object { Write-Host "::notice::svn $_" }
+          $log = Join-Path $env:LOG_DIR "install-tools.log"
+          function Emit-Fail($reason) {
+            Write-Host "::error::$reason"
+            Get-Content $log -Tail 25 -ErrorAction SilentlyContinue | ForEach-Object {
+              $line = "$_".TrimEnd()
+              if ($line.Length -gt 900) { $line = $line.Substring(0, 900) }
+              if ($line) { Write-Host "::error::$line" }
+            }
+            exit 1
+          }
+
+          function Add-ToolPath($dir) {
+            if (-not $dir) { return }
+            if (Test-Path $dir) {
+              $env:Path = "$dir;$env:Path"
+              $dir | Out-File -FilePath $env:GITHUB_PATH -Encoding utf8 -Append
+            }
+          }
+
+          # Preinstalled copies first (the windows-2022 image ships both).
+          Add-ToolPath "C:\ProgramData\chocolatey\bin"
+          Add-ToolPath "C:\Program Files\Git\usr\bin"
+
+          if (-not (Get-Command svn -ErrorAction SilentlyContinue)) {
+            Write-Host "::notice::svn not on PATH, installing via chocolatey"
+            choco install -y svn --no-progress *>&1 | Tee-Object -FilePath $log -Append
+            Write-Host "choco svn exit code: $LASTEXITCODE" | Tee-Object -FilePath $log -Append
+            Add-ToolPath "C:\ProgramData\chocolatey\bin"
+            if (-not (Get-Command svn -ErrorAction SilentlyContinue)) {
+              $found = Get-ChildItem "C:\Program Files" -Filter "svn.exe" -Recurse -ErrorAction SilentlyContinue |
+                Select-Object -First 1
+              if ($found) { Add-ToolPath $found.DirectoryName }
+            }
+          }
+
+          if (-not (Get-Command ninja -ErrorAction SilentlyContinue)) {
+            Write-Host "::notice::ninja not on PATH, installing via chocolatey"
+            choco install -y ninja --no-progress *>&1 | Tee-Object -FilePath $log -Append
+            Write-Host "choco ninja exit code: $LASTEXITCODE" | Tee-Object -FilePath $log -Append
+            Add-ToolPath "C:\ProgramData\chocolatey\bin"
+          }
+
+          $svn = Get-Command svn -ErrorAction SilentlyContinue
+          $ninja = Get-Command ninja -ErrorAction SilentlyContinue
+          if (-not $svn) { Emit-Fail "svn is not available after installation attempts" }
+          if (-not $ninja) { Emit-Fail "ninja is not available after installation attempts" }
+          Write-Host "::notice::svn=$($svn.Source) ninja=$($ninja.Source)"
+          & svn --version --quiet | ForEach-Object { Write-Host "::notice::svn version $_" }
+          & ninja --version | ForEach-Object { Write-Host "::notice::ninja version $_" }
 
       - name: Cache precompiled libraries
         id: libcache
@@ -93,18 +147,17 @@ jobs:
         if: steps.libcache.outputs.cache-hit != 'true'
         shell: pwsh
         run: |
-          $ErrorActionPreference = "Continue"
-          New-Item -ItemType Directory -Force -Path (Split-Path $env:LIB_DIR) | Out-Null
-          New-Item -ItemType Directory -Force -Path $env:LOG_DIR | Out-Null
           $log = Join-Path $env:LOG_DIR "svn-checkout.log"
+          New-Item -ItemType Directory -Force -Path (Split-Path $env:LIB_DIR) | Out-Null
 
           for ($attempt = 1; $attempt -le 3; $attempt++) {
-            Write-Host "SVN checkout attempt $attempt"
-            & svn checkout --non-interactive --no-auth-cache $env:SVN_LIB_URL $env:LIB_DIR *> $log
+            Write-Host "::notice::SVN checkout attempt $attempt of 3"
+            & svn checkout --non-interactive --no-auth-cache $env:SVN_LIB_URL $env:LIB_DIR *>&1 |
+              Tee-Object -FilePath $log -Append
             if ($LASTEXITCODE -eq 0) { break }
 
-            Write-Host "SVN checkout failed with exit code $LASTEXITCODE"
-            if (Test-Path $env:LIB_DIR) { & svn cleanup $env:LIB_DIR 2>&1 | Out-Null }
+            Write-Host "::warning::SVN checkout failed with exit code $LASTEXITCODE"
+            if (Test-Path $env:LIB_DIR) { & svn cleanup $env:LIB_DIR *>&1 | Out-Null }
             if ($attempt -eq 3) {
               Get-Content $log -Tail 40 | ForEach-Object {
                 $line = "$_".TrimEnd()
@@ -113,7 +166,7 @@ jobs:
               }
               exit 1
             }
-            Start-Sleep -Seconds 15
+            Start-Sleep -Seconds 20
           }
 
           $size = (Get-ChildItem $env:LIB_DIR -Recurse -File | Measure-Object -Property Length -Sum).Sum / 1GB
@@ -122,6 +175,7 @@ jobs:
       - name: Verify libraries
         shell: pwsh
         run: |
+          $log = Join-Path $env:LOG_DIR "verify-libs.log"
           $probes = @(
             "python\bin\python.exe",
             "python\include\Python.h",
@@ -133,10 +187,14 @@ jobs:
           foreach ($probe in $probes) {
             if (-not (Test-Path (Join-Path $env:LIB_DIR $probe))) { $missing += $probe }
           }
+          Get-ChildItem $env:LIB_DIR -Directory -ErrorAction SilentlyContinue |
+            Select-Object -ExpandProperty Name | Sort-Object |
+            ForEach-Object { Write-Host "::notice::lib subdir $_" } | Out-Null
+          Get-ChildItem $env:LIB_DIR -Directory -ErrorAction SilentlyContinue |
+            Select-Object -ExpandProperty Name | Sort-Object | Set-Content $log
+
           if ($missing.Count -gt 0) {
             Write-Host "::error::library directory incomplete, missing: $($missing -join ', ')"
-            Get-ChildItem $env:LIB_DIR -Directory | Select-Object -ExpandProperty Name |
-              ForEach-Object { Write-Host "::notice::lib subdir $_" }
             exit 1
           }
           Write-Host "::notice::library probes OK"
@@ -144,9 +202,7 @@ jobs:
       - name: Configure (CMake + Ninja)
         shell: pwsh
         run: |
-          New-Item -ItemType Directory -Force -Path $env:LOG_DIR | Out-Null
           $log = Join-Path $env:LOG_DIR "configure.log"
-
           & cmake -S $env:GITHUB_WORKSPACE -B $env:BUILD_DIR -G Ninja `
             -C "$env:GITHUB_WORKSPACE\build_files\cmake\config\blender_release.cmake" `
             -DCMAKE_BUILD_TYPE=Release `
@@ -156,7 +212,7 @@ jobs:
             -DWITH_WINDOWS_PDB=OFF `
             -DWITH_WINDOWS_STRIPPED_PDB=OFF `
             -DWITH_GTESTS=OFF `
-            -DWITH_BUILDINFO=OFF 2>&1 | Tee-Object -FilePath $log
+            -DWITH_BUILDINFO=OFF *>&1 | Tee-Object -FilePath $log
 
           if ($LASTEXITCODE -ne 0) {
             Get-Content $log -Tail 40 | ForEach-Object {
@@ -167,7 +223,8 @@ jobs:
             exit 1
           }
 
-          Select-String -Path (Join-Path $env:BUILD_DIR "CMakeCache.txt") -Pattern "^(LIBDIR|CMAKE_INSTALL_PREFIX|WITH_CYCLES|WITH_GHOST_XDND)" |
+          Select-String -Path (Join-Path $env:BUILD_DIR "CMakeCache.txt") `
+            -Pattern "^(LIBDIR|CMAKE_INSTALL_PREFIX|WITH_CYCLES|WITH_OPENVDB)" |
             ForEach-Object { Write-Host "::notice::$($_.Line)" }
 
       - name: Build
@@ -176,19 +233,17 @@ jobs:
         run: |
           $log = Join-Path $env:LOG_DIR "build.log"
           $sw = [Diagnostics.Stopwatch]::StartNew()
-          & cmake --build $env:BUILD_DIR --target install --parallel 4 2>&1 | Tee-Object -FilePath $log
+          & cmake --build $env:BUILD_DIR --target install --parallel 4 *>&1 | Tee-Object -FilePath $log
           $code = $LASTEXITCODE
           Write-Host ("::notice::build finished in {0:N1} min (exit {1})" -f $sw.Elapsed.TotalMinutes, $code)
 
           if ($code -ne 0) {
-            # Surface the useful compiler diagnostics: error lines plus the tail.
-            $errors = Select-String -Path $log -Pattern ": error |: fatal error |FAILED: " -SimpleMatch:$false |
-              Select-Object -First 25
-            foreach ($e in $errors) {
-              $line = $e.Line.TrimEnd()
-              if ($line.Length -gt 900) { $line = $line.Substring(0, 900) }
-              Write-Host "::error::[$($e.LineNumber)] $line"
-            }
+            Select-String -Path $log -Pattern "error C[0-9]+|fatal error|FAILED: " |
+              Select-Object -First 25 | ForEach-Object {
+                $line = $_.Line.TrimEnd()
+                if ($line.Length -gt 900) { $line = $line.Substring(0, 900) }
+                Write-Host "::error::[$($_.LineNumber)] $line"
+              }
             Get-Content $log -Tail 30 | ForEach-Object {
               $line = "$_".TrimEnd()
               if ($line.Length -gt 900) { $line = $line.Substring(0, 900) }
@@ -201,11 +256,14 @@ jobs:
         if: inputs.mode == 'build'
         shell: pwsh
         run: |
+          $log = Join-Path $env:LOG_DIR "package.log"
           $exe = Join-Path $env:DIST_DIR "blender.exe"
           if (-not (Test-Path $exe)) {
             Write-Host "::error::blender.exe missing in dist dir"
             Get-ChildItem $env:DIST_DIR -ErrorAction SilentlyContinue | Select-Object -First 30 |
               ForEach-Object { Write-Host "::notice::dist entry $($_.Name)" }
+            Get-ChildItem $env:BUILD_DIR -Filter "blender*.exe" -Recurse -ErrorAction SilentlyContinue |
+              ForEach-Object { Write-Host "::notice::built exe candidate $($_.FullName)" }
             exit 1
           }
 
@@ -213,8 +271,7 @@ jobs:
           $sizeMb = (Get-Item $exe).Length / 1MB
           Write-Host ("::notice::blender.exe {0:N1} MB sha256={1}" -f $sizeMb, $hash)
 
-          # Smoke test: portable layout must start and report a version.
-          $version = & $exe --version 2>&1 | Select-Object -First 3
+          $version = & $exe --version *>&1 | Select-Object -First 3
           $version | ForEach-Object { Write-Host "::notice::version: $_" }
 
           $distMb = (Get-ChildItem $env:DIST_DIR -Recurse -File | Measure-Object -Property Length -Sum).Sum / 1MB
@@ -255,12 +312,13 @@ jobs:
         run: |
           $tag = "goo-engine-windows-latest"
           $notes = Get-Content (Join-Path $env:GITHUB_WORKSPACE "GooEngine-Windows-x64.txt") -Raw
-          $existing = gh release view $tag --json tagName -q .tagName 2>$null
+          $null = gh release view $tag --json tagName 2>$null
           if ($LASTEXITCODE -eq 0) {
             gh release upload $tag "GooEngine-Windows-x64.zip" --clobber
             if ($LASTEXITCODE -ne 0) { Write-Host "::warning::release asset upload failed" }
           } else {
-            gh release create $tag "GooEngine-Windows-x64.zip" --title "Goo Engine - Windows x64 build" --notes $notes
+            gh release create $tag "GooEngine-Windows-x64.zip" `
+              --title "Goo Engine - Windows x64 build" --notes $notes
             if ($LASTEXITCODE -ne 0) { Write-Host "::warning::release creation failed" }
           }
 
@@ -269,15 +327,15 @@ jobs:
         shell: pwsh
         continue-on-error: true
         run: |
-          New-Item -ItemType Directory -Force -Path (Join-Path $env:GITHUB_WORKSPACE "ci-logs") | Out-Null
           $out = Join-Path $env:GITHUB_WORKSPACE "ci-logs\build-failure.txt"
+          New-Item -ItemType Directory -Force -Path (Split-Path $out) | Out-Null
           "Goo Engine Windows build failure" | Set-Content $out
           "run: $env:GITHUB_SERVER_URL/$env:GITHUB_REPOSITORY/actions/runs/$env:GITHUB_RUN_ID" | Add-Content $out
           "commit: $env:GITHUB_SHA" | Add-Content $out
           "" | Add-Content $out
           Get-ChildItem $env:LOG_DIR -Filter *.log -ErrorAction SilentlyContinue | ForEach-Object {
-            "===== $($_.Name) (tail 200) =====" | Add-Content $out
-            Get-Content $_.FullName -Tail 200 | ForEach-Object {
+            "===== $($_.Name) (tail 250) =====" | Add-Content $out
+            Get-Content $_.FullName -Tail 250 | ForEach-Object {
               $line = "$_"
               if ($line.Length -gt 2000) { $line = $line.Substring(0, 2000) }
               $line | Add-Content $out
