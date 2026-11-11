@@ -1,94 +1,404 @@
 Goo Engine Windows build failure
-run: https://github.com/The-Unwanted/goo-engine/actions/runs/43074345686
-commit: 128a20461d243c361fea2d018adf95b359071400
+run: https://github.com/The-Unwanted/goo-engine/actions/runs/43076860518
+commit: ddcafddc2ec1d1f847d40b71096084bdf7651f95
+
+===== build.log (tail 250) =====
+[1/5892] Building C object intern\guardedalloc\CMakeFiles\bf_intern_guardedalloc.dir\intern\mallocn.c.obj
+[2/5892] Building CXX object intern\guardedalloc\CMakeFiles\bf_intern_guardedalloc.dir\intern\leak_detector.cc.obj
+[3/5892] Building CXX object intern\guardedalloc\CMakeFiles\bf_intern_guardedalloc.dir\intern\memory_usage.cc.obj
+[4/5892] Building C object intern\guardedalloc\CMakeFiles\bf_intern_guardedalloc.dir\intern\mallocn_lockfree_impl.c.obj
+[5/5892] Building C object intern\guardedalloc\CMakeFiles\bf_intern_guardedalloc.dir\intern\mallocn_guarded_impl.c.obj
+[6/5892] Linking CXX static library lib\bf_intern_guardedalloc.lib
+[7/5892] Building CXX object source\blender\makesdna\intern\CMakeFiles\makesdna.dir\dna_utils.cc.obj
+[8/5892] Building C object source\blender\makesdna\intern\CMakeFiles\makesdna.dir\__\__\blenlib\intern\BLI_assert.c.obj
+[9/5892] Building C object source\blender\makesdna\intern\CMakeFiles\makesdna.dir\__\__\blenlib\intern\BLI_ghash.c.obj
+[10/5892] Building C object source\blender\makesdna\intern\CMakeFiles\makesdna.dir\__\__\blenlib\intern\BLI_ghash_utils.c.obj
+[11/5892] Building C object source\blender\makesdna\intern\CMakeFiles\makesdna.dir\__\__\blenlib\intern\BLI_memarena.c.obj
+[12/5892] Building C object source\blender\makesdna\intern\CMakeFiles\makesdna.dir\__\__\blenlib\intern\BLI_linklist.c.obj
+[13/5892] Building C object source\blender\makesdna\intern\CMakeFiles\makesdna.dir\__\__\blenlib\intern\endian_switch.c.obj
+[14/5892] Building C object source\blender\makesdna\intern\CMakeFiles\makesdna.dir\__\__\blenlib\intern\BLI_mempool.c.obj
+[15/5892] Building CXX object source\blender\makesdna\intern\CMakeFiles\makesdna.dir\__\__\blenlib\intern\listbase.cc.obj
+[16/5892] Building C object source\blender\makesdna\intern\CMakeFiles\makesdna.dir\__\__\blenlib\intern\hash_mm2a.c.obj
+[17/5892] Building C object source\blender\makesdna\intern\CMakeFiles\makesdna.dir\__\__\blenlib\intern\string.c.obj
+[18/5892] Building C object source\blender\makesdna\intern\CMakeFiles\makesdna.dir\__\__\blenlib\intern\gsqueue.c.obj
+[19/5892] Building C object source\blender\makesdna\intern\CMakeFiles\makesdna.dir\__\__\blenlib\intern\time.c.obj
+[20/5892] Building CXX object source\blender\makesdna\intern\CMakeFiles\makesdna.dir\__\__\__\__\intern\guardedalloc\intern\leak_detector.cc.obj
+[21/5892] Building C object source\blender\makesdna\intern\CMakeFiles\makesdna.dir\__\__\__\__\intern\guardedalloc\intern\mallocn.c.obj
+[22/5892] Building CXX object source\blender\makesdna\intern\CMakeFiles\makesdna.dir\makesdna.cc.obj
+[23/5892] Building C object source\blender\makesdna\intern\CMakeFiles\makesdna.dir\__\__\__\__\intern\guardedalloc\intern\mallocn_guarded_impl.c.obj
+[24/5892] Building C object source\blender\makesdna\intern\CMakeFiles\makesdna.dir\__\__\__\__\intern\guardedalloc\intern\mallocn_lockfree_impl.c.obj
+[25/5892] Building CXX object source\blender\datatoc\CMakeFiles\datatoc.dir\datatoc.cc.obj
+[26/5892] Building CXX object source\blender\datatoc\CMakeFiles\datatoc_icon.dir\datatoc_icon.cc.obj
+[27/5892] Building CXX object source\blender\makesdna\intern\CMakeFiles\makesdna.dir\__\__\__\__\intern\guardedalloc\intern\memory_usage.cc.obj
+[28/5892] Building CXX object source\blender\datatoc\CMakeFiles\datatoc_icon.dir\__\blenlib\intern\winstuff_dir.cc.obj
+[29/5892] Building CXX object source\blender\datatoc\CMakeFiles\datatoc_icon.dir\__\__\__\intern\utfconv\utfconv.cc.obj
+[30/5892] Building C object source\blender\makesdna\intern\CMakeFiles\bf_dna_blenlib.dir\__\__\blenlib\intern\BLI_assert.c.obj
+[31/5892] Building CXX object source\blender\makesdna\intern\CMakeFiles\makesdna.dir\__\__\blenlib\intern\threads.cc.obj
+[32/5892] Building C object source\blender\makesdna\intern\CMakeFiles\bf_dna_blenlib.dir\__\__\blenlib\intern\BLI_ghash.c.obj
+[33/5892] Building C object source\blender\makesdna\intern\CMakeFiles\bf_dna_blenlib.dir\__\__\blenlib\intern\BLI_ghash_utils.c.obj
+[34/5892] Building C object source\blender\makesdna\intern\CMakeFiles\bf_dna_blenlib.dir\__\__\blenlib\intern\BLI_linklist.c.obj
+[35/5892] Building C object source\blender\makesdna\intern\CMakeFiles\bf_dna_blenlib.dir\__\__\blenlib\intern\BLI_memarena.c.obj
+[36/5892] Linking CXX executable bin\datatoc.exe
+[37/5892] Building C object source\blender\makesdna\intern\CMakeFiles\bf_dna_blenlib.dir\__\__\blenlib\intern\endian_switch.c.obj
+[38/5892] Generating gpu_shader_display_transform_vert.glsl.c
+[39/5892] Generating gpu_shader_display_transform_frag.glsl.c
+[40/5892] Generating ocio_shader_shared.hh.c
+[41/5892] Building C object source\blender\makesdna\intern\CMakeFiles\bf_dna_blenlib.dir\__\__\blenlib\intern\BLI_mempool.c.obj
+[42/5892] Generating engines/eevee/shaders/ambient_occlusion_lib.glsl.c
+[43/5892] Generating internal/evaluator/shaders/glsl_compute_kernel.glsl.c
+[44/5892] Generating engines/eevee/shaders/background_vert.glsl.c
+[45/5892] Generating engines/eevee/shaders/common_uniforms_lib.glsl.c
+[46/5892] Generating engines/eevee/shaders/common_utiltex_lib.glsl.c
+[47/5892] Generating engines/eevee/shaders/lights_lib.glsl.c
+[48/5892] Generating engines/eevee/shaders/lightprobe_lib.glsl.c
+[49/5892] Generating engines/eevee/shaders/lightprobe_filter_glossy_frag.glsl.c
+[50/5892] Generating engines/eevee/shaders/lightprobe_filter_diffuse_frag.glsl.c
+[51/5892] Generating engines/eevee/shaders/lightprobe_filter_visibility_frag.glsl.c
+[52/5892] Generating engines/eevee/shaders/lightprobe_geom.glsl.c
+[53/5892] Generating engines/eevee/shaders/lightprobe_vert.glsl.c
+[54/5892] Generating engines/eevee/shaders/lightprobe_vert_no_geom.glsl.c
+[55/5892] Generating engines/eevee/shaders/lightprobe_cube_display_frag.glsl.c
+[56/5892] Generating engines/eevee/shaders/lightprobe_grid_display_frag.glsl.c
+[57/5892] Generating engines/eevee/shaders/lightprobe_cube_display_vert.glsl.c
+[58/5892] Generating engines/eevee/shaders/lightprobe_grid_display_vert.glsl.c
+[59/5892] Generating engines/eevee/shaders/lightprobe_grid_fill_frag.glsl.c
+[60/5892] Generating engines/eevee/shaders/lightprobe_planar_display_vert.glsl.c
+[61/5892] Generating engines/eevee/shaders/lightprobe_planar_display_frag.glsl.c
+[62/5892] Generating engines/eevee/shaders/lookdev_world_frag.glsl.c
+[63/5892] Generating engines/eevee/shaders/closure_eval_lib.glsl.c
+[64/5892] Generating engines/eevee/shaders/closure_eval_diffuse_lib.glsl.c
+[65/5892] Generating engines/eevee/shaders/closure_eval_glossy_lib.glsl.c
+[66/5892] Generating engines/eevee/shaders/closure_eval_refraction_lib.glsl.c
+[67/5892] Generating engines/eevee/shaders/closure_eval_surface_lib.glsl.c
+[68/5892] Generating engines/eevee/shaders/closure_eval_volume_lib.glsl.c
+[69/5892] Generating engines/eevee/shaders/closure_eval_translucent_lib.glsl.c
+[70/5892] Generating engines/eevee/shaders/eevee_empty.glsl.c
+[71/5892] Generating engines/eevee/shaders/closure_type_lib.glsl.c
+[72/5892] Linking CXX executable bin\makesdna.exe
+[73/5892] Generating engines/eevee/shaders/eevee_empty_volume.glsl.c
+[74/5892] Generating engines/eevee/shaders/effect_bloom_frag.glsl.c
+[75/5892] Generating engines/eevee/shaders/effect_dof_bokeh_frag.glsl.c
+[76/5892] Generating engines/eevee/shaders/effect_dof_dilate_tiles_frag.glsl.c
+[77/5892] Generating engines/eevee/shaders/effect_dof_downsample_frag.glsl.c
+[78/5892] Generating dna.c, dna_type_offsets.h, dna_verify.c
+[79/5892] Generating engines/eevee/shaders/effect_dof_filter_frag.glsl.c
+[80/5892] Linking CXX executable bin\datatoc_icon.exe
+[81/5892] Generating engines/eevee/shaders/effect_dof_flatten_tiles_frag.glsl.c
+[82/5892] Generating engines/eevee/shaders/effect_dof_gather_frag.glsl.c
+[83/5892] Generating ../../../../release/datafiles/bfont.pfb.c
+[84/5892] Generating ../../../../release/datafiles/preview_grease_pencil.blend.c
+[85/5892] Generating ../../../../release/datafiles/preview_grease_pencil_legacy.blend.c
+[86/5892] Generating ../../../../release/datafiles/alert_icons.png.c
+[87/5892] Generating ../../../../release/datafiles/preview.blend.c
+[88/5892] Generating ../../../../release/datafiles/splash.png.c
+[89/5892] Generating ../../../../release/datafiles/blender_logo.png.c
+[90/5892] Generating ../../../../release/datafiles/prvicons.png.c
+[91/5892] Generating ../../../../release/datafiles/brushicons/blob.png.c
+[92/5892] Generating ../../../../release/datafiles/brushicons/blur.png.c
+[93/5892] Generating ../../../../release/datafiles/brushicons/clay.png.c
+[94/5892] Generating ../../../../release/datafiles/brushicons/claystrips.png.c
+[95/5892] Generating ../../../../release/datafiles/brushicons/clone.png.c
+[96/5892] Generating ../../../../release/datafiles/brushicons/crease.png.c
+[97/5892] Generating ../../../../release/datafiles/brushicons/draw.png.c
+[98/5892] Generating ../../../../release/datafiles/brushicons/fill.png.c
+[99/5892] Generating ../../../../release/datafiles/brushicons/flatten.png.c
+[100/5892] Generating ../../../../release/datafiles/brushicons/grab.png.c
+[101/5892] Generating ../../../../release/datafiles/blender_icons16.png, ../../../../release/datafiles/blender_icons16.png.c
+[102/5892] Generating ../../../../release/datafiles/brushicons/inflate.png.c
+[103/5892] Generating ../../../../release/datafiles/brushicons/layer.png.c
+[104/5892] Generating ../../../../release/datafiles/brushicons/mask.png.c
+[105/5892] Generating cycles_kernel_oneapi_jit.dll, cycles_kernel_oneapi_jit.lib
+FAILED: [code=1] intern/cycles/kernel/cycles_kernel_oneapi_jit.dll intern/cycles/kernel/cycles_kernel_oneapi_jit.lib C:/bg/build/intern/cycles/kernel/cycles_kernel_oneapi_jit.dll C:/bg/build/intern/cycles/kernel/cycles_kernel_oneapi_jit.lib 
+C:\Windows\system32\cmd.exe /C "cd /D C:\bg\build\intern\cycles\kernel && "C:\Program Files\CMake\bin\cmake.exe" -E env LIB=C:/bglib/win64_vc15/dpcpp/bin/../lib;C:/bglib/win64_vc15/dpcpp/bin/../compiler/lib/intel64_win PATH=C:/bglib/win64_vc15/dpcpp/lib/ocloc;C:/bglib/win64_vc15/dpcpp/bin C:/bglib/win64_vc15/dpcpp/bin/clang++.exe D:/a/goo-engine/goo-engine/intern/cycles/kernel/device/oneapi/kernel.cpp -fsycl -fsycl-unnamed-lambda -fdelayed-template-parsing -mllvm -inlinedefault-threshold=250 -mllvm -inlinehint-threshold=350 -fsycl-device-code-split=per_kernel -fsycl-max-parallel-link-jobs=1 -shared -DWITH_ONEAPI -O2 -fno-fast-math -ffp-contract=fast -fassociative-math -freciprocal-math -fno-signed-zeros -ffinite-math-only -D__KERNEL_LOCAL_ATOMIC_SORT__ -o"C:/bg/build/intern/cycles/kernel/cycles_kernel_oneapi_jit.dll" -I"D:/a/goo-engine/goo-engine/intern/cycles/kernel/.." -fsycl-targets=spir64 -Xsycl-target-backend=spir64 "-options '-ze-opt-regular-grf-kernel integrator_intersect -ze-opt-large-grf-kernel shade -ze-opt-no-local-to-generic'" -DWITH_NANOVDB -DWITH_EMBREE -DWITH_EMBREE_GPU -DEMBREE_MAJOR_VERSION=4 -I"C:/bglib/win64_vc15/embree/include" -ladvapi32.lib C:/bglib/win64_vc15/embree/lib/embree4.lib C:/bglib/win64_vc15/embree/lib/embree4_sycl.lib C:/bglib/win64_vc15/tbb/lib/tbb.lib -fuse-ld=link -fms-extensions -fms-compatibility -D_WINDLL -D_MBCS -DWIN32 -D_WINDOWS -D_CRT_NONSTDC_NO_DEPRECATE -D_CRT_SECURE_NO_DEPRECATE -DONEAPI_EXPORT -L"C:/Program Files/Microsoft Visual Studio/2022/Enterprise/VC/Tools/MSVC/14.44.35207/lib/x64" -L"C:/Program Files (x86)/Windows Kits/10/Lib/10.0.26100.0/um/x64" -L"C:/Program Files (x86)/Windows Kits/10/Lib/10.0.26100.0/ucrt/x64" -DNDEBUG"
+In file included from D:/a/goo-engine/goo-engine/intern/cycles/kernel/device/oneapi/kernel.cpp:8:
+In file included from C:\Program Files\Microsoft Visual Studio\2022\Enterprise\VC\Tools\MSVC\14.44.35207\include\iostream:8:
+C:\Program Files\Microsoft Visual Studio\2022\Enterprise\VC\Tools\MSVC\14.44.35207\include\yvals_core.h:908:1: error: static assertion failed: error STL1000: Unexpected compiler version, expected Clang 19.0.0 or newer.
+_EMIT_STL_ERROR(STL1000, "Unexpected compiler version, expected Clang 19.0.0 or newer.");
+^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+C:\Program Files\Microsoft Visual Studio\2022\Enterprise\VC\Tools\MSVC\14.44.35207\include\yvals_core.h:534:44: note: expanded from macro '_EMIT_STL_ERROR'
+#define _EMIT_STL_ERROR(NUMBER, MESSAGE)   static_assert(false, "error " #NUMBER ": " MESSAGE)
+                                           ^             ~~~~~
+In file included from D:/a/goo-engine/goo-engine/intern/cycles/kernel/device/oneapi/kernel.cpp:8:
+In file included from C:\Program Files\Microsoft Visual Studio\2022\Enterprise\VC\Tools\MSVC\14.44.35207\include\iostream:10:
+In file included from C:\Program Files\Microsoft Visual Studio\2022\Enterprise\VC\Tools\MSVC\14.44.35207\include\istream:10:
+In file included from C:\Program Files\Microsoft Visual Studio\2022\Enterprise\VC\Tools\MSVC\14.44.35207\include\__msvc_ostream.hpp:10:
+In file included from C:\Program Files\Microsoft Visual Studio\2022\Enterprise\VC\Tools\MSVC\14.44.35207\include\ios:10:
+In file included from C:\Program Files\Microsoft Visual Studio\2022\Enterprise\VC\Tools\MSVC\14.44.35207\include\xlocnum:16:
+In file included from C:\Program Files\Microsoft Visual Studio\2022\Enterprise\VC\Tools\MSVC\14.44.35207\include\streambuf:10:
+In file included from C:\Program Files\Microsoft Visual Studio\2022\Enterprise\VC\Tools\MSVC\14.44.35207\include\xiosbase:11:
+In file included from C:\Program Files\Microsoft Visual Studio\2022\Enterprise\VC\Tools\MSVC\14.44.35207\include\system_error:13:
+In file included from C:\Program Files\Microsoft Visual Studio\2022\Enterprise\VC\Tools\MSVC\14.44.35207\include\stdexcept:11:
+In file included from C:\Program Files\Microsoft Visual Studio\2022\Enterprise\VC\Tools\MSVC\14.44.35207\include\xstring:16:
+In file included from C:\Program Files\Microsoft Visual Studio\2022\Enterprise\VC\Tools\MSVC\14.44.35207\include\xpolymorphic_allocator.h:10:
+C:\Program Files\Microsoft Visual Studio\2022\Enterprise\VC\Tools\MSVC\14.44.35207\include\tuple:939:9: error: static assertion failed: get<T>(tuple<Types...>&) requires T to occur exactly once in Types. (N4971 [tuple.elem]/5)
+        static_assert(false, "get<T>(tuple<Types...>&) "
+        ^             ~~~~~
+C:\Program Files\Microsoft Visual Studio\2022\Enterprise\VC\Tools\MSVC\14.44.35207\include\tuple:951:9: error: static assertion failed: get<T>(const tuple<Types...>&) requires T to occur exactly once in Types. (N4971 [tuple.elem]/5)
+        static_assert(false, "get<T>(const tuple<Types...>&) "
+        ^             ~~~~~
+C:\Program Files\Microsoft Visual Studio\2022\Enterprise\VC\Tools\MSVC\14.44.35207\include\tuple:963:9: error: static assertion failed: get<T>(tuple<Types...>&&) requires T to occur exactly once in Types. (N4971 [tuple.elem]/5)
+        static_assert(false, "get<T>(tuple<Types...>&&) "
+        ^             ~~~~~
+C:\Program Files\Microsoft Visual Studio\2022\Enterprise\VC\Tools\MSVC\14.44.35207\include\tuple:975:9: error: static assertion failed: get<T>(const tuple<Types...>&&) requires T to occur exactly once in Types. (N4971 [tuple.elem]/5)
+        static_assert(false, "get<T>(const tuple<Types...>&&) "
+        ^             ~~~~~
+5 errors generated.
+[106/5892] Generating ../../../../release/datafiles/brushicons/mix.png.c
+[107/5892] Generating ../../../../release/datafiles/brushicons/nudge.png.c
+[108/5892] Generating ../../../../release/datafiles/blender_icons32.png, ../../../../release/datafiles/blender_icons32.png.c
+ninja: build stopped: subcommand failed.
 
 ===== configure.log (tail 250) =====
-loading initial cache file D:\a\goo-engine\goo-engine\build_files\cmake\config\blender_release.cmake
--- The C compiler identification is MSVC 19.44.35229.0
--- The CXX compiler identification is MSVC 19.44.35229.0
--- Detecting C compiler ABI info
--- Detecting C compiler ABI info - done
--- Check for working C compiler: C:/Program Files/Microsoft Visual Studio/2022/Enterprise/VC/Tools/MSVC/14.44.35207/bin/Hostx64/x64/cl.exe - skipped
--- Detecting C compile features
--- Detecting C compile features - done
--- Detecting CXX compiler ABI info
--- Detecting CXX compiler ABI info - done
--- Check for working CXX compiler: C:/Program Files/Microsoft Visual Studio/2022/Enterprise/VC/Tools/MSVC/14.44.35207/bin/Hostx64/x64/cl.exe - skipped
--- Detecting CXX compile features
--- Detecting CXX compile features - done
--- Looking for malloc_stats
--- Looking for malloc_stats - not found
-CMake Warning at CMakeLists.txt:1247 (message):
-  Addons path 'D:/a/goo-engine/goo-engine/scripts/addons' is missing.  This
-  is an external repository which needs to be checked out.  Use `make update`
-  to do so.  * CONTINUING WITHOUT ADDONS *
+  "cmake --help-policy CMP0177" for policy details.  Use the cmake_policy
+  command to set the policy and suppress this warning.
+Call Stack (most recent call first):
+  source/creator/CMakeLists.txt:1797 (windows_install_shared_manifest)
+This warning is for project developers.  Use -Wno-dev to suppress it.
 
-
--- Performing Test SUPPORT_NEON_BUILD
--- Performing Test SUPPORT_NEON_BUILD - Failed
--- Performing Test SUPPORT_SSE_BUILD
--- Performing Test SUPPORT_SSE_BUILD - Success
--- Performing Test SUPPORT_SSE2_BUILD
--- Performing Test SUPPORT_SSE2_BUILD - Success
-CMake Warning (dev) at build_files/cmake/platform/platform_win32.cmake:141 (install):
+CMake Warning (dev) at build_files/cmake/macros.cmake:1492 (install):
   Policy CMP0177 is not set: install() DESTINATION paths are normalized.  Run
   "cmake --help-policy CMP0177" for policy details.  Use the cmake_policy
   command to set the policy and suppress this warning.
 Call Stack (most recent call first):
-  CMakeLists.txt:1369 (include)
+  source/creator/CMakeLists.txt:1801 (windows_install_shared_manifest)
 This warning is for project developers.  Use -Wno-dev to suppress it.
 
-CMake Warning (dev) at build_files/cmake/platform/platform_win32.cmake:149 (install):
+CMake Warning (dev) at build_files/cmake/macros.cmake:1492 (install):
   Policy CMP0177 is not set: install() DESTINATION paths are normalized.  Run
   "cmake --help-policy CMP0177" for policy details.  Use the cmake_policy
   command to set the policy and suppress this warning.
 Call Stack (most recent call first):
-  CMakeLists.txt:1369 (include)
+  source/creator/CMakeLists.txt:1797 (windows_install_shared_manifest)
 This warning is for project developers.  Use -Wno-dev to suppress it.
 
--- Using pre-compiled LIBDIR: C:\bglib\win64_vc15
--- SSE2 SIMD instructions enabled
--- Found OpenMP_C: -openmp (found version "2.0")
--- Found OpenMP_CXX: -openmp (found version "2.0")
--- Found OpenMP: TRUE (found version "2.0")
-CMake Warning (dev) at intern/cycles/cmake/external_libs.cmake:28 (find_package):
-  Policy CMP0146 is not set: The FindCUDA module is removed.  Run "cmake
-  --help-policy CMP0146" for policy details.  Use the cmake_policy command to
-  set the policy and suppress this warning.
-
+CMake Warning (dev) at build_files/cmake/macros.cmake:1492 (install):
+  Policy CMP0177 is not set: install() DESTINATION paths are normalized.  Run
+  "cmake --help-policy CMP0177" for policy details.  Use the cmake_policy
+  command to set the policy and suppress this warning.
 Call Stack (most recent call first):
-  intern/cycles/CMakeLists.txt:23 (include)
+  source/creator/CMakeLists.txt:1801 (windows_install_shared_manifest)
 This warning is for project developers.  Use -Wno-dev to suppress it.
 
-CUDA_TOOLKIT_ROOT_DIR not found or specified
--- Could NOT find CUDA (missing: CUDA_TOOLKIT_ROOT_DIR CUDA_NVCC_EXECUTABLE CUDA_INCLUDE_DIRS CUDA_CUDART_LIBRARY) 
--- CUDA compiler not found, disabling WITH_CYCLES_CUDA_BINARIES
--- Could NOT find HIP (missing: HIP_HIPCC_EXECUTABLE) (Required is at least version "5.5.0")
--- HIP compiler not found, disabling WITH_CYCLES_HIP_BINARIES
--- Could NOT find HIPRT (missing: HIPRT_INCLUDE_DIR HIPRT_BITCODE) 
--- HIP RT not found, disabling WITH_CYCLES_DEVICE_HIPRT
--- Found SYCL: C:/bglib/win64_vc15/dpcpp/lib/sycl6.lib (found version "6.1.0")
--- Found LevelZero: C:/bglib/win64_vc15/level-zero/lib/ze_loader.lib
--- Found Level Zero: C:/bglib/win64_vc15/level-zero/lib/ze_loader.lib
--- oneAPI ocloc not found in C:/bglib/win64_vc15/dpcpp/lib/ocloc. A different ocloc directory can be set using OCLOC_INSTALL_DIR cmake variable.
--- ocloc not found, disabling WITH_CYCLES_ONEAPI_BINARIES
--- Could NOT find OptiX (missing: OPTIX_INCLUDE_DIR) (Required is at least version "7.3.0")
--- OptiX not found, disabling WITH_CYCLES_DEVICE_OPTIX
-CMake Error at intern/cycles/cmake/macros.cmake:54 (if):
-  Syntax error in cmake code at
-
-    D:/a/goo-engine/goo-engine/intern/cycles/cmake/macros.cmake:54
-
-  when parsing string
-
-    cycles_scene;cycles_util;optimized;C:\bglib\win64_vc15/embree/lib/embree4.lib;debug;C:\bglib\win64_vc15/embree/lib/embree4_d.lib;optimized;C:\bglib\win64_vc15/embree/lib/embree4_sycl.lib;debug;C:\bglib\win64_vc15/embree/lib/embree4_sycl_d.lib;optimized;C:/bglib/win64_vc15/dpcpp/lib/sycl6.lib;debug;C:/bglib/win64_vc15/dpcpp/lib/sycl6d.lib
-
-  Invalid character escape '\b'.
+CMake Warning (dev) at build_files/cmake/macros.cmake:1492 (install):
+  Policy CMP0177 is not set: install() DESTINATION paths are normalized.  Run
+  "cmake --help-policy CMP0177" for policy details.  Use the cmake_policy
+  command to set the policy and suppress this warning.
 Call Stack (most recent call first):
-  intern/cycles/bvh/CMakeLists.txt:74 (cycles_add_library)
+  source/creator/CMakeLists.txt:1797 (windows_install_shared_manifest)
+This warning is for project developers.  Use -Wno-dev to suppress it.
+
+CMake Warning (dev) at build_files/cmake/macros.cmake:1492 (install):
+  Policy CMP0177 is not set: install() DESTINATION paths are normalized.  Run
+  "cmake --help-policy CMP0177" for policy details.  Use the cmake_policy
+  command to set the policy and suppress this warning.
+Call Stack (most recent call first):
+  source/creator/CMakeLists.txt:1801 (windows_install_shared_manifest)
+This warning is for project developers.  Use -Wno-dev to suppress it.
+
+CMake Warning (dev) at build_files/cmake/macros.cmake:1492 (install):
+  Policy CMP0177 is not set: install() DESTINATION paths are normalized.  Run
+  "cmake --help-policy CMP0177" for policy details.  Use the cmake_policy
+  command to set the policy and suppress this warning.
+Call Stack (most recent call first):
+  source/creator/CMakeLists.txt:1797 (windows_install_shared_manifest)
+This warning is for project developers.  Use -Wno-dev to suppress it.
+
+CMake Warning (dev) at build_files/cmake/macros.cmake:1492 (install):
+  Policy CMP0177 is not set: install() DESTINATION paths are normalized.  Run
+  "cmake --help-policy CMP0177" for policy details.  Use the cmake_policy
+  command to set the policy and suppress this warning.
+Call Stack (most recent call first):
+  source/creator/CMakeLists.txt:1801 (windows_install_shared_manifest)
+This warning is for project developers.  Use -Wno-dev to suppress it.
+
+CMake Warning (dev) at build_files/cmake/macros.cmake:1492 (install):
+  Policy CMP0177 is not set: install() DESTINATION paths are normalized.  Run
+  "cmake --help-policy CMP0177" for policy details.  Use the cmake_policy
+  command to set the policy and suppress this warning.
+Call Stack (most recent call first):
+  source/creator/CMakeLists.txt:1797 (windows_install_shared_manifest)
+This warning is for project developers.  Use -Wno-dev to suppress it.
+
+CMake Warning (dev) at build_files/cmake/macros.cmake:1492 (install):
+  Policy CMP0177 is not set: install() DESTINATION paths are normalized.  Run
+  "cmake --help-policy CMP0177" for policy details.  Use the cmake_policy
+  command to set the policy and suppress this warning.
+Call Stack (most recent call first):
+  source/creator/CMakeLists.txt:1801 (windows_install_shared_manifest)
+This warning is for project developers.  Use -Wno-dev to suppress it.
+
+CMake Warning (dev) at build_files/cmake/macros.cmake:1492 (install):
+  Policy CMP0177 is not set: install() DESTINATION paths are normalized.  Run
+  "cmake --help-policy CMP0177" for policy details.  Use the cmake_policy
+  command to set the policy and suppress this warning.
+Call Stack (most recent call first):
+  source/creator/CMakeLists.txt:1797 (windows_install_shared_manifest)
+This warning is for project developers.  Use -Wno-dev to suppress it.
+
+CMake Warning (dev) at build_files/cmake/macros.cmake:1492 (install):
+  Policy CMP0177 is not set: install() DESTINATION paths are normalized.  Run
+  "cmake --help-policy CMP0177" for policy details.  Use the cmake_policy
+  command to set the policy and suppress this warning.
+Call Stack (most recent call first):
+  source/creator/CMakeLists.txt:1801 (windows_install_shared_manifest)
+This warning is for project developers.  Use -Wno-dev to suppress it.
+
+CMake Warning (dev) at build_files/cmake/macros.cmake:1492 (install):
+  Policy CMP0177 is not set: install() DESTINATION paths are normalized.  Run
+  "cmake --help-policy CMP0177" for policy details.  Use the cmake_policy
+  command to set the policy and suppress this warning.
+Call Stack (most recent call first):
+  source/creator/CMakeLists.txt:1797 (windows_install_shared_manifest)
+This warning is for project developers.  Use -Wno-dev to suppress it.
+
+CMake Warning (dev) at build_files/cmake/macros.cmake:1492 (install):
+  Policy CMP0177 is not set: install() DESTINATION paths are normalized.  Run
+  "cmake --help-policy CMP0177" for policy details.  Use the cmake_policy
+  command to set the policy and suppress this warning.
+Call Stack (most recent call first):
+  source/creator/CMakeLists.txt:1801 (windows_install_shared_manifest)
+This warning is for project developers.  Use -Wno-dev to suppress it.
+
+CMake Warning (dev) at build_files/cmake/macros.cmake:1492 (install):
+  Policy CMP0177 is not set: install() DESTINATION paths are normalized.  Run
+  "cmake --help-policy CMP0177" for policy details.  Use the cmake_policy
+  command to set the policy and suppress this warning.
+Call Stack (most recent call first):
+  source/creator/CMakeLists.txt:1797 (windows_install_shared_manifest)
+This warning is for project developers.  Use -Wno-dev to suppress it.
+
+CMake Warning (dev) at build_files/cmake/macros.cmake:1492 (install):
+  Policy CMP0177 is not set: install() DESTINATION paths are normalized.  Run
+  "cmake --help-policy CMP0177" for policy details.  Use the cmake_policy
+  command to set the policy and suppress this warning.
+Call Stack (most recent call first):
+  source/creator/CMakeLists.txt:1801 (windows_install_shared_manifest)
+This warning is for project developers.  Use -Wno-dev to suppress it.
+
+CMake Warning (dev) at build_files/cmake/macros.cmake:1537 (install):
+  Policy CMP0177 is not set: install() DESTINATION paths are normalized.  Run
+  "cmake --help-policy CMP0177" for policy details.  Use the cmake_policy
+  command to set the policy and suppress this warning.
+Call Stack (most recent call first):
+  source/creator/CMakeLists.txt:1856 (windows_generate_shared_manifest)
+This warning is for project developers.  Use -Wno-dev to suppress it.
+
+CMake Warning (dev) at build_files/cmake/macros.cmake:1549 (install):
+  Policy CMP0177 is not set: install() DESTINATION paths are normalized.  Run
+  "cmake --help-policy CMP0177" for policy details.  Use the cmake_policy
+  command to set the policy and suppress this warning.
+Call Stack (most recent call first):
+  source/creator/CMakeLists.txt:1856 (windows_generate_shared_manifest)
+This warning is for project developers.  Use -Wno-dev to suppress it.
+
+-- Found Git: C:/Program Files/Git/bin/git.exe (found version "2.56.0.windows.4")
+-- C Compiler:   "MSVC"
+-- C++ Compiler: "MSVC"
+
+Blender Configuration
+=====================
+
+  Build Options:
+  - WITH_ALEMBIC                    ON
+  - WITH_BULLET                     ON
+  - WITH_CLANG                      ON
+  - WITH_CYCLES                     ON
+  - WITH_FFTW3                      ON
+  - WITH_FREESTYLE                  ON
+  - WITH_GMP                        ON
+  - WITH_HARU                       ON
+  - WITH_IK_ITASC                   ON
+  - WITH_IK_SOLVER                  ON
+  - WITH_INPUT_NDOF                 ON
+  - WITH_INPUT_IME                  ON
+  - WITH_INTERNATIONAL              ON
+  - WITH_OPENCOLLADA                ON
+  - WITH_OPENCOLORIO                ON
+  - WITH_OPENIMAGEDENOISE           ON
+  - WITH_OPENVDB                    ON
+  - WITH_POTRACE                    ON
+  - WITH_PUGIXML                    ON
+  - WITH_QUADRIFLOW                 ON
+  - WITH_TBB                        ON
+  - WITH_USD                        ON
+  - WITH_MATERIALX                  ON
+  - WITH_XR_OPENXR                  ON
+
+  Compiler Options:
+  - WITH_BUILDINFO                  OFF
+  - WITH_OPENMP                     ON
+
+  System Options:
+  - WITH_INSTALL_PORTABLE           ON
+  - WITH_MEM_JEMALLOC               ON
+  - WITH_MEM_VALGRIND               OFF
+
+  GHOST Options:
+  - WITH_GHOST_DEBUG                OFF
+  - WITH_GHOST_SDL                  OFF
+
+  Image Formats:
+  - WITH_IMAGE_CINEON               ON
+  - WITH_IMAGE_OPENEXR              ON
+  - WITH_IMAGE_OPENJPEG             ON
+
+  Audio:
+  - WITH_CODEC_AVI                  ON
+  - WITH_CODEC_FFMPEG               ON
+  - WITH_CODEC_SNDFILE              ON
+  - WITH_COREAUDIO                  OFF
+  - WITH_JACK                       OFF
+  - WITH_JACK_DYNLOAD               
+  - WITH_OPENAL                     ON
+  - WITH_PULSEAUDIO                 OFF
+  - WITH_PULSEAUDIO_DYNLOAD         
+  - WITH_SDL                        ON
+  - WITH_SDL_DYNLOAD                
+  - WITH_WASAPI                     ON
+
+  Compression:
+  - WITH_LZMA                       ON
+  - WITH_LZO                        ON
+
+  Python:
+  - WITH_PYTHON_INSTALL             ON
+  - WITH_PYTHON_INSTALL_NUMPY       ON
+  - WITH_PYTHON_INSTALL_ZSTANDARD   ON
+  - WITH_PYTHON_MODULE              OFF
+  - WITH_PYTHON_SAFETY              OFF
+
+  Modifiers:
+  - WITH_MOD_FLUID                  ON
+  - WITH_MOD_OCEANSIM               ON
+  - WITH_MOD_REMESH                 ON
+
+  Rendering:
+  - WITH_HYDRA                      ON
+
+  Rendering (Cycles):
+  - WITH_CYCLES_OSL                 ON
+  - WITH_CYCLES_EMBREE              ON
+  - WITH_CYCLES_PATH_GUIDING        ON
+  - WITH_CYCLES_DEVICE_OPTIX        ON
+  - WITH_CYCLES_DEVICE_CUDA         ON
+  - WITH_CYCLES_CUDA_BINARIES       ON
+  - WITH_CYCLES_DEVICE_ONEAPI       ON
+  - WITH_CYCLES_ONEAPI_BINARIES     ON
+  - WITH_CYCLES_DEVICE_HIP          ON
+  - WITH_CYCLES_HIP_BINARIES        ON
+  - WITH_CYCLES_DEVICE_HIPRT        ON
+
+  
+-- Configuring done (25.0s)
+-- Generating done (4.5s)
+CMake Warning:
+  Manually-specified variables were not used by the project:
+
+    WITH_WINDOWS_PDB
+    WITH_WINDOWS_STRIPPED_PDB
 
 
--- Configuring incomplete, errors occurred!
+-- Build files have been written to: C:/bg/build
 
 ===== environment.log (tail 250) =====
 powershell: 7.6.9
@@ -107,259 +417,8 @@ cmake: cmake version 3.31.6
 git: git version 2.56.0.windows.4
 done
 
-===== fetch-libs.log (tail 250) =====
-Updating files:  81% (24820/30641)
-Updating files:  82% (25126/30641)
-Updating files:  82% (25328/30641)
-Updating files:  83% (25433/30641)
-Updating files:  84% (25739/30641)
-Updating files:  85% (26045/30641)
-Updating files:  86% (26352/30641)
-Updating files:  86% (26507/30641)
-Updating files:  87% (26658/30641)
-Updating files:  88% (26965/30641)
-Updating files:  88% (27166/30641)
-Updating files:  89% (27271/30641)
-Updating files:  90% (27577/30641)
-Updating files:  91% (27884/30641)
-Updating files:  91% (28008/30641)
-Updating files:  92% (28190/30641)
-Updating files:  93% (28497/30641)
-Updating files:  94% (28803/30641)
-Updating files:  94% (28847/30641)
-Updating files:  95% (29109/30641)
-Updating files:  96% (29416/30641)
-Updating files:  96% (29544/30641)
-Updating files:  97% (29722/30641)
-Updating files:  98% (30029/30641)
-Updating files:  99% (30335/30641)
-Updating files:  99% (30455/30641)
-Updating files: 100% (30641/30641)
-Updating files: 100% (30641/30641), done.
-Filtering content:   3% (30/886), 140.54 MiB | 166.55 MiB/s
-Filtering content:   4% (36/886), 140.54 MiB | 166.55 MiB/s
-Filtering content:   5% (45/886), 140.54 MiB | 166.55 MiB/s
-Filtering content:   6% (54/886), 140.54 MiB | 166.55 MiB/s
-Filtering content:   7% (63/886), 140.54 MiB | 166.55 MiB/s
-Filtering content:   8% (71/886), 140.54 MiB | 166.55 MiB/s
-Filtering content:   9% (80/886), 140.54 MiB | 166.55 MiB/s
-Filtering content:  10% (89/886), 140.54 MiB | 166.55 MiB/s
-Filtering content:  11% (98/886), 140.54 MiB | 166.55 MiB/s
-Filtering content:  11% (101/886), 140.54 MiB | 166.55 MiB/s
-Filtering content:  11% (101/886), 169.59 MiB | 51.08 MiB/s 
-Filtering content:  11% (103/886), 169.59 MiB | 51.08 MiB/s
-Filtering content:  11% (103/886), 187.22 MiB | 32.41 MiB/s
-Filtering content:  11% (104/886), 195.62 MiB | 25.93 MiB/s
-Filtering content:  12% (107/886), 195.62 MiB | 25.93 MiB/s
-Filtering content:  12% (108/886), 195.62 MiB | 25.93 MiB/s
-Filtering content:  12% (111/886), 240.31 MiB | 27.06 MiB/s
-Filtering content:  12% (115/886), 253.37 MiB | 24.59 MiB/s
-Filtering content:  13% (116/886), 259.17 MiB | 23.93 MiB/s
-Filtering content:  13% (123/886), 345.61 MiB | 30.58 MiB/s
-Filtering content:  14% (125/886), 345.61 MiB | 30.58 MiB/s
-Filtering content:  15% (133/886), 349.35 MiB | 19.31 MiB/s
-Filtering content:  16% (142/886), 349.35 MiB | 19.31 MiB/s
-Filtering content:  17% (151/886), 352.96 MiB | 22.71 MiB/s
-Filtering content:  17% (154/886), 352.96 MiB | 22.71 MiB/s
-Filtering content:  18% (160/886), 354.25 MiB | 25.92 MiB/s
-Filtering content:  18% (164/886), 354.76 MiB | 20.28 MiB/s
-Filtering content:  19% (169/886), 354.76 MiB | 20.28 MiB/s
-Filtering content:  20% (178/886), 355.43 MiB | 19.15 MiB/s
-Filtering content:  20% (184/886), 355.43 MiB | 19.15 MiB/s
-Filtering content:  21% (187/886), 355.65 MiB | 18.60 MiB/s
-Filtering content:  22% (195/886), 355.65 MiB | 18.60 MiB/s
-Filtering content:  22% (196/886), 355.65 MiB | 18.60 MiB/s
-Filtering content:  22% (201/886), 355.74 MiB | 17.21 MiB/s
-Filtering content:  22% (202/886), 387.38 MiB | 3.02 MiB/s 
-Filtering content:  22% (202/886), 425.41 MiB | 5.21 MiB/s
-Filtering content:  23% (204/886), 425.41 MiB | 5.21 MiB/s
-Filtering content:  23% (207/886), 545.84 MiB | 10.17 MiB/s
-Filtering content:  23% (208/886), 614.91 MiB | 13.59 MiB/s
-Filtering content:  23% (210/886), 623.38 MiB | 13.64 MiB/s
-Filtering content:  24% (213/886), 664.47 MiB | 15.67 MiB/s
-Filtering content:  24% (221/886), 678.14 MiB | 16.43 MiB/s
-Filtering content:  25% (222/886), 693.74 MiB | 26.06 MiB/s
-Filtering content:  25% (227/886), 704.86 MiB | 25.18 MiB/s
-Filtering content:  26% (231/886), 704.86 MiB | 25.18 MiB/s
-Filtering content:  27% (240/886), 704.86 MiB | 25.18 MiB/s
-Filtering content:  27% (247/886), 718.87 MiB | 33.33 MiB/s
-Filtering content:  28% (249/886), 718.87 MiB | 33.33 MiB/s
-Filtering content:  29% (257/886), 725.31 MiB | 26.97 MiB/s
-Filtering content:  29% (259/886), 725.31 MiB | 26.97 MiB/s
-Filtering content:  29% (264/886), 727.98 MiB | 15.73 MiB/s
-Filtering content:  30% (266/886), 729.00 MiB | 15.63 MiB/s
-Filtering content:  30% (269/886), 729.00 MiB | 15.63 MiB/s
-Filtering content:  31% (275/886), 729.64 MiB | 13.09 MiB/s
-Filtering content:  32% (284/886), 730.39 MiB | 9.79 MiB/s 
-Filtering content:  32% (287/886), 730.39 MiB | 9.79 MiB/s
-Filtering content:  33% (293/886), 730.69 MiB | 7.78 MiB/s
-Filtering content:  33% (301/886), 730.76 MiB | 5.77 MiB/s
-Filtering content:  34% (302/886), 771.45 MiB | 3.89 MiB/s
-Filtering content:  34% (304/886), 814.78 MiB | 5.44 MiB/s
-Filtering content:  34% (307/886), 913.08 MiB | 8.28 MiB/s
-Filtering content:  34% (308/886), 1022.22 MiB | 13.36 MiB/s
-Filtering content:  34% (309/886), 1.01 GiB | 12.62 MiB/s   
-Filtering content:  35% (311/886), 1.01 GiB | 12.62 MiB/s
-Filtering content:  35% (312/886), 1.07 GiB | 15.00 MiB/s
-Filtering content:  35% (314/886), 1.09 GiB | 14.18 MiB/s
-Filtering content:  35% (316/886), 1.09 GiB | 14.18 MiB/s
-Filtering content:  35% (318/886), 1.15 GiB | 15.11 MiB/s
-Filtering content:  36% (319/886), 1.15 GiB | 15.11 MiB/s
-Filtering content:  36% (320/886), 1.15 GiB | 15.11 MiB/s
-Filtering content:  36% (324/886), 1.21 GiB | 21.77 MiB/s
-Filtering content:  37% (328/886), 1.25 GiB | 20.58 MiB/s
-Filtering content:  37% (329/886), 1.29 GiB | 23.60 MiB/s
-Filtering content:  37% (333/886), 1.32 GiB | 23.15 MiB/s
-Filtering content:  38% (337/886), 1.32 GiB | 17.21 MiB/s
-Filtering content:  38% (341/886), 1.34 GiB | 19.99 MiB/s
-Filtering content:  38% (345/886), 1.36 GiB | 19.84 MiB/s
-Filtering content:  39% (346/886), 1.36 GiB | 19.84 MiB/s
-Filtering content:  39% (354/886), 1.38 GiB | 19.35 MiB/s
-Filtering content:  40% (355/886), 1.38 GiB | 19.35 MiB/s
-Filtering content:  41% (364/886), 1.39 GiB | 19.59 MiB/s
-Filtering content:  41% (366/886), 1.40 GiB | 18.20 MiB/s
-Filtering content:  42% (373/886), 1.40 GiB | 18.20 MiB/s
-Filtering content:  43% (381/886), 1.41 GiB | 16.14 MiB/s
-Filtering content:  43% (385/886), 1.41 GiB | 17.68 MiB/s
-Filtering content:  44% (390/886), 1.41 GiB | 17.68 MiB/s
-Filtering content:  45% (399/886), 1.41 GiB | 15.06 MiB/s
-Filtering content:  45% (403/886), 1.41 GiB | 15.06 MiB/s
-Filtering content:  45% (405/886), 1.43 GiB | 7.52 MiB/s 
-Filtering content:  45% (406/886), 1.48 GiB | 10.47 MiB/s
-Filtering content:  45% (407/886), 1.49 GiB | 9.65 MiB/s 
-Filtering content:  46% (408/886), 1.51 GiB | 10.17 MiB/s
-Filtering content:  46% (409/886), 1.51 GiB | 10.17 MiB/s
-Filtering content:  46% (410/886), 1.51 GiB | 10.17 MiB/s
-Filtering content:  46% (410/886), 1.58 GiB | 12.93 MiB/s
-Filtering content:  46% (414/886), 1.58 GiB | 12.93 MiB/s
-Filtering content:  46% (415/886), 1.62 GiB | 14.44 MiB/s
-Filtering content:  46% (416/886), 1.64 GiB | 14.17 MiB/s
-Filtering content:  47% (417/886), 1.64 GiB | 14.17 MiB/s
-Filtering content:  47% (421/886), 1.64 GiB | 14.17 MiB/s
-Filtering content:  47% (422/886), 1.68 GiB | 21.09 MiB/s
-Filtering content:  47% (423/886), 1.69 GiB | 18.33 MiB/s
-Filtering content:  48% (426/886), 1.69 GiB | 18.33 MiB/s
-Filtering content:  48% (426/886), 1.70 GiB | 20.44 MiB/s
-Filtering content:  48% (432/886), 1.72 GiB | 20.82 MiB/s
-Filtering content:  48% (432/886), 1.72 GiB | 16.54 MiB/s
-Filtering content:  49% (435/886), 1.72 GiB | 16.54 MiB/s
-Filtering content:  49% (437/886), 1.72 GiB | 16.54 MiB/s
-Filtering content:  49% (439/886), 1.74 GiB | 13.24 MiB/s
-Filtering content:  49% (441/886), 1.75 GiB | 12.18 MiB/s
-Filtering content:  50% (443/886), 1.75 GiB | 12.18 MiB/s
-Filtering content:  50% (445/886), 1.75 GiB | 12.18 MiB/s
-Filtering content:  50% (450/886), 1.75 GiB | 8.75 MiB/s 
-Filtering content:  51% (452/886), 1.75 GiB | 8.75 MiB/s
-Filtering content:  52% (461/886), 1.76 GiB | 9.81 MiB/s
-Filtering content:  52% (463/886), 1.76 GiB | 9.81 MiB/s
-Filtering content:  52% (467/886), 1.77 GiB | 9.06 MiB/s
-Filtering content:  53% (470/886), 1.77 GiB | 7.71 MiB/s
-Filtering content:  53% (478/886), 1.78 GiB | 6.06 MiB/s
-Filtering content:  54% (479/886), 1.78 GiB | 5.88 MiB/s
-Filtering content:  54% (481/886), 1.78 GiB | 5.88 MiB/s
-Filtering content:  55% (488/886), 1.78 GiB | 5.04 MiB/s
-Filtering content:  56% (497/886), 1.78 GiB | 4.63 MiB/s
-Filtering content:  56% (504/886), 1.78 GiB | 4.63 MiB/s
-Filtering content:  57% (506/886), 1.81 GiB | 4.26 MiB/s
-Filtering content:  57% (507/886), 1.88 GiB | 8.33 MiB/s
-Filtering content:  57% (508/886), 1.93 GiB | 9.62 MiB/s
-Filtering content:  57% (509/886), 1.94 GiB | 10.40 MiB/s
-Filtering content:  57% (511/886), 1.97 GiB | 11.68 MiB/s
-Filtering content:  57% (512/886), 2.02 GiB | 14.07 MiB/s
-Filtering content:  57% (513/886), 2.04 GiB | 15.04 MiB/s
-Filtering content:  58% (514/886), 2.05 GiB | 15.02 MiB/s
-Filtering content:  58% (517/886), 2.05 GiB | 15.02 MiB/s
-Filtering content:  58% (521/886), 2.09 GiB | 16.16 MiB/s
-Filtering content:  59% (523/886), 2.12 GiB | 25.61 MiB/s
-Filtering content:  59% (525/886), 2.12 GiB | 25.61 MiB/s
-Filtering content:  59% (529/886), 2.16 GiB | 22.99 MiB/s
-Filtering content:  60% (532/886), 2.17 GiB | 23.25 MiB/s
-Filtering content:  60% (534/886), 2.17 GiB | 23.25 MiB/s
-Filtering content:  61% (541/886), 2.19 GiB | 20.08 MiB/s
-Filtering content:  62% (550/886), 2.21 GiB | 20.76 MiB/s
-Filtering content:  62% (553/886), 2.22 GiB | 22.63 MiB/s
-Filtering content:  63% (559/886), 2.22 GiB | 21.65 MiB/s
-Filtering content:  63% (566/886), 2.22 GiB | 21.65 MiB/s
-Filtering content:  64% (568/886), 2.23 GiB | 16.44 MiB/s
-Filtering content:  64% (570/886), 2.23 GiB | 16.44 MiB/s
-Filtering content:  64% (575/886), 2.23 GiB | 12.96 MiB/s
-Filtering content:  65% (576/886), 2.23 GiB | 12.96 MiB/s
-Filtering content:  66% (585/886), 2.23 GiB | 11.30 MiB/s
-Filtering content:  67% (594/886), 2.23 GiB | 10.69 MiB/s
-Filtering content:  67% (596/886), 2.23 GiB | 10.69 MiB/s
-Filtering content:  68% (603/886), 2.23 GiB | 10.69 MiB/s
-Filtering content:  68% (604/886), 2.23 GiB | 10.69 MiB/s
-Filtering content:  68% (605/886), 2.28 GiB | 5.28 MiB/s 
-Filtering content:  68% (606/886), 2.33 GiB | 7.26 MiB/s
-Filtering content:  68% (607/886), 2.39 GiB | 9.02 MiB/s
-Filtering content:  68% (608/886), 2.42 GiB | 9.19 MiB/s
-Filtering content:  68% (609/886), 2.44 GiB | 9.48 MiB/s
-Filtering content:  68% (610/886), 2.45 GiB | 10.25 MiB/s
-Filtering content:  68% (611/886), 2.46 GiB | 10.72 MiB/s
-Filtering content:  69% (612/886), 2.47 GiB | 10.81 MiB/s
-Filtering content:  69% (614/886), 2.47 GiB | 10.81 MiB/s
-Filtering content:  69% (617/886), 2.49 GiB | 11.12 MiB/s
-Filtering content:  69% (620/886), 2.51 GiB | 20.03 MiB/s
-Filtering content:  70% (621/886), 2.52 GiB | 17.71 MiB/s
-Filtering content:  70% (626/886), 2.52 GiB | 14.69 MiB/s
-Filtering content:  71% (630/886), 2.53 GiB | 14.34 MiB/s
-Filtering content:  72% (638/886), 2.65 GiB | 30.08 MiB/s
-Filtering content:  72% (640/886), 2.65 GiB | 27.10 MiB/s
-Filtering content:  73% (647/886), 2.66 GiB | 27.01 MiB/s
-Filtering content:  74% (656/886), 2.66 GiB | 27.01 MiB/s
-Filtering content:  74% (656/886), 2.66 GiB | 27.49 MiB/s
-Filtering content:  75% (665/886), 2.66 GiB | 27.49 MiB/s
-Filtering content:  76% (674/886), 2.66 GiB | 28.75 MiB/s
-Filtering content:  76% (677/886), 2.66 GiB | 28.75 MiB/s
-Filtering content:  77% (683/886), 2.66 GiB | 27.38 MiB/s
-Filtering content:  77% (690/886), 2.66 GiB | 26.39 MiB/s
-Filtering content:  78% (692/886), 2.66 GiB | 26.39 MiB/s
-Filtering content:  79% (700/886), 2.66 GiB | 25.46 MiB/s
-Filtering content:  79% (704/886), 2.66 GiB | 24.43 MiB/s
-Filtering content:  79% (708/886), 2.67 GiB | 2.67 MiB/s 
-Filtering content:  80% (709/886), 2.69 GiB | 4.31 MiB/s
-Filtering content:  80% (712/886), 2.69 GiB | 4.31 MiB/s
-Filtering content:  80% (714/886), 2.70 GiB | 5.87 MiB/s
-Filtering content:  81% (718/886), 2.70 GiB | 5.87 MiB/s
-Filtering content:  81% (723/886), 2.71 GiB | 6.60 MiB/s
-Filtering content:  82% (727/886), 2.71 GiB | 6.50 MiB/s
-Filtering content:  82% (729/886), 2.71 GiB | 6.50 MiB/s
-Filtering content:  83% (736/886), 2.72 GiB | 6.82 MiB/s
-Filtering content:  84% (745/886), 2.72 GiB | 7.14 MiB/s
-Filtering content:  84% (749/886), 2.72 GiB | 7.14 MiB/s
-Filtering content:  85% (754/886), 2.72 GiB | 7.38 MiB/s
-Filtering content:  86% (762/886), 2.72 GiB | 7.38 MiB/s
-Filtering content:  86% (769/886), 2.72 GiB | 9.00 MiB/s
-Filtering content:  87% (771/886), 2.72 GiB | 9.00 MiB/s
-Filtering content:  87% (776/886), 2.72 GiB | 7.68 MiB/s
-Filtering content:  88% (780/886), 2.72 GiB | 7.68 MiB/s
-Filtering content:  89% (789/886), 2.72 GiB | 5.81 MiB/s
-Filtering content:  89% (797/886), 2.73 GiB | 3.79 MiB/s
-Filtering content:  90% (798/886), 2.73 GiB | 3.79 MiB/s
-Filtering content:  90% (806/886), 2.73 GiB | 2.52 MiB/s
-Filtering content:  91% (807/886), 2.74 GiB | 2.70 MiB/s
-Filtering content:  91% (808/886), 2.75 GiB | 4.13 MiB/s
-Filtering content:  91% (810/886), 2.78 GiB | 5.26 MiB/s
-Filtering content:  91% (812/886), 2.81 GiB | 8.23 MiB/s
-Filtering content:  91% (815/886), 2.82 GiB | 8.96 MiB/s
-Filtering content:  92% (816/886), 2.83 GiB | 9.69 MiB/s
-Filtering content:  92% (818/886), 2.84 GiB | 10.31 MiB/s
-Filtering content:  93% (824/886), 2.85 GiB | 10.93 MiB/s
-Filtering content:  93% (825/886), 2.85 GiB | 10.93 MiB/s
-Filtering content:  94% (833/886), 2.86 GiB | 14.19 MiB/s
-Filtering content:  94% (841/886), 2.87 GiB | 16.54 MiB/s
-Filtering content:  95% (842/886), 2.87 GiB | 16.54 MiB/s
-Filtering content:  96% (851/886), 2.95 GiB | 27.84 MiB/s
-Filtering content:  97% (860/886), 2.95 GiB | 23.63 MiB/s
-Filtering content:  97% (862/886), 2.95 GiB | 22.52 MiB/s
-Filtering content:  98% (869/886), 2.95 GiB | 22.52 MiB/s
-Filtering content:  98% (871/886), 2.95 GiB | 22.52 MiB/s
-Filtering content:  99% (878/886), 2.95 GiB | 20.83 MiB/s
-Filtering content:  99% (879/886), 2.95 GiB | 20.83 MiB/s
-Filtering content: 100% (886/886), 2.95 GiB | 19.96 MiB/s
-Filtering content: 100% (886/886), 2.95 GiB | 14.39 MiB/s, done.
-
 ===== verify-libs.log (tail 250) =====
+.git
 alembic
 blosc
 boost
