@@ -272,11 +272,18 @@ jobs:
         shell: pwsh
         run: |
           $log = Join-Path $env:LOG_DIR "configure.log"
-          & cmake -S $env:GITHUB_WORKSPACE -B $env:BUILD_DIR -G Ninja `
+          # CMake must not receive backslashes: Blender mixes these paths into
+          # if() strings where "\b" is parsed as an escape sequence.
+          $libDir = $env:LIB_DIR -replace '\\', '/'
+          $distDir = $env:DIST_DIR -replace '\\', '/'
+          $buildDir = $env:BUILD_DIR -replace '\\', '/'
+          Write-Host "::notice::configure LIBDIR=$libDir DIST=$distDir BUILD=$buildDir"
+
+          & cmake -S $env:GITHUB_WORKSPACE -B $buildDir -G Ninja `
             -C "$env:GITHUB_WORKSPACE\build_files\cmake\config\blender_release.cmake" `
             -DCMAKE_BUILD_TYPE=Release `
-            -DLIBDIR="$env:LIB_DIR" `
-            -DCMAKE_INSTALL_PREFIX="$env:DIST_DIR" `
+            -DLIBDIR="$libDir" `
+            -DCMAKE_INSTALL_PREFIX="$distDir" `
             -DWITH_INSTALL_PORTABLE=ON `
             -DWITH_WINDOWS_PDB=OFF `
             -DWITH_WINDOWS_STRIPPED_PDB=OFF `
