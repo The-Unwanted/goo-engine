@@ -2,6 +2,8 @@
  *
  * SPDX-License-Identifier: Apache-2.0 */
 
+#include <cmath>
+
 #include "scene/image.h"
 #include "device/device.h"
 #include "scene/colorspace.h"
@@ -43,6 +45,17 @@ bool image_data_isfinite(half /*value*/)
 bool image_data_isfinite(uint16_t /*value*/)
 {
   return true;
+}
+/* Floating point storage really does need the check, and an exact float/double
+ * overload is required: without it a float argument converts equally well to
+ * uchar, half and uint16_t, which newer MSVC treats as an ambiguous call. */
+bool image_data_isfinite(float value)
+{
+  return std::isfinite(value);
+}
+bool image_data_isfinite(double value)
+{
+  return std::isfinite(value);
 }
 
 const char *name_from_type(ImageDataType type)
