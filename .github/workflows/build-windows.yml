@@ -210,28 +210,54 @@ jobs:
         shell: pwsh
         run: |
           $log = Join-Path $env:LOG_DIR "verify-libs.log"
-          $probes = @(
-            "python\bin\python.exe",
-            "python\include\Python.h",
+          $subdirs = Get-ChildItem $env:LIB_DIR -Directory -ErrorAction SilentlyContinue |
+            Select-Object -ExpandProperty Name | Sort-Object
+          $bytes = (Get-ChildItem $env:LIB_DIR -Recurse -File -ErrorAction SilentlyContinue |
+            Measure-Object -Property Length -Sum).Sum
+          $gb = $bytes / 1GB
+          Write-Host ("::notice::library dirs: {0}, size {1:N2} GB" -f $subdirs.Count, $gb)
+          $subdirs | Set-Content $log
+
+          # Paths the 4.1 build system expects (see platform_win32.cmake).
+          $required = @(
+            "python\311\bin\python.exe",
+            "python\311\include\Python.h",
+            "python\311\libs\python311.lib",
             "ffmpeg\lib\avcodec.lib",
-            "openexr\lib\Iex-3_1.lib",
-            "tbb\lib\tbb.lib"
+            "openexr\lib\Iex.lib",
+            "zlib\lib\libz_st.lib"
           )
           $missing = @()
-          foreach ($probe in $probes) {
-            if (-not (Test-Path (Join-Path $env:LIB_DIR $probe))) { $missing += $probe }
+          foreach ($probe in $required) {
+            $path = Join-Path $env:LIB_DIR $probe
+            if (-not (Test-Path $path)) { $missing += $probe }
           }
-          Get-ChildItem $env:LIB_DIR -Directory -ErrorAction SilentlyContinue |
-            Select-Object -ExpandProperty Name | Sort-Object |
-            ForEach-Object { Write-Host "::notice::lib subdir $_" } | Out-Null
-          Get-ChildItem $env:LIB_DIR -Directory -ErrorAction SilentlyContinue |
-            Select-Object -ExpandProperty Name | Sort-Object | Set-Content $log
+
+          $pythonExe = Join-Path $env:LIB_DIR "python\311\bin\python.exe"
+          if (Test-Path $pythonExe) {
+            $pySize = (Get-Item $pythonExe).Length
+            Write-Host ("::notice::lib python.exe {0:N1} MB" -f ($pySize / 1MB))
+            if ($pySize -lt 100000) {
+              Write-Host "::error::lib python.exe looks like an unresolved LFS pointer"
+              $missing += "python311 (lfs pointer)"
+            }
+            & $pythonExe --version 2>&1 | ForEach-Object { Write-Host "::notice::lib python $_" }
+          }
+
+          if ($gb -lt 2) {
+            Write-Host "::error::library directory is only $([math]::Round($gb,2)) GB, download looks incomplete"
+            $missing += "library size"
+          }
+          if ($subdirs.Count -lt 45) {
+            Write-Host "::error::only $($subdirs.Count) library sub folders found"
+            $missing += "sub folder count"
+          }
 
           if ($missing.Count -gt 0) {
-            Write-Host "::error::library directory incomplete, missing: $($missing -join ', ')"
+            Write-Host "::error::library directory incomplete: $($missing -join ', ')"
             exit 1
           }
-          Write-Host "::notice::library probes OK"
+          Write-Host "::notice::library verification OK"
 
       - name: Configure (CMake + Ninja)
         shell: pwsh
