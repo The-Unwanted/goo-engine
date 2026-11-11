@@ -235,13 +235,13 @@ jobs:
 
           $pythonExe = Join-Path $env:LIB_DIR "python\311\bin\python.exe"
           if (Test-Path $pythonExe) {
-            $pySize = (Get-Item $pythonExe).Length
-            Write-Host ("::notice::lib python.exe {0:N1} MB" -f ($pySize / 1MB))
-            if ($pySize -lt 100000) {
-              Write-Host "::error::lib python.exe looks like an unresolved LFS pointer"
-              $missing += "python311 (lfs pointer)"
+            # python.exe is a thin launcher; the real check is that it runs.
+            $pyVersion = & $pythonExe --version 2>&1
+            Write-Host "::notice::lib python: $pyVersion"
+            if ($pyVersion -notmatch "3\.11") { $missing += "python 3.11 runtime" }
+            if (-not (Test-Path (Join-Path $env:LIB_DIR "python\311\bin\python311.dll"))) {
+              $missing += "python311.dll"
             }
-            & $pythonExe --version 2>&1 | ForEach-Object { Write-Host "::notice::lib python $_" }
           }
 
           if ($gb -lt 2) {
@@ -258,6 +258,15 @@ jobs:
             exit 1
           }
           Write-Host "::notice::library verification OK"
+          "ok" | Set-Content (Join-Path $env:GITHUB_WORKSPACE "libs-ready.marker")
+
+      - name: Save library cache
+        if: always() && steps.libcache.outputs.cache-hit != 'true' && hashFiles('libs-ready.marker') != ''
+        continue-on-error: true
+        uses: actions/cache/save@v4
+        with:
+          path: C:\bglib\win64_vc15
+          key: goo-libs-win64-vc15-4.1-git-v2
 
       - name: Configure (CMake + Ninja)
         shell: pwsh
