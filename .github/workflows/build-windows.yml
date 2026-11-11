@@ -281,6 +281,10 @@ jobs:
         shell: pwsh
         run: |
           $log = Join-Path $env:LOG_DIR "configure.log"
+          # Blender 4.1 sources predate the current MSVC STL; force-include the
+          # headers that are no longer pulled in transitively (see the header).
+          $env:CL = "/FI$env:GITHUB_WORKSPACE\build_files\compat\msvc_force_include.h"
+          Write-Host "::notice::CL=$env:CL"
           # CMake must not receive backslashes: Blender mixes these paths into
           # if() strings where "\b" is parsed as an escape sequence.
           $libDir = $env:LIB_DIR -replace '\\', '/'
@@ -319,6 +323,7 @@ jobs:
         shell: pwsh
         run: |
           $log = Join-Path $env:LOG_DIR "build.log"
+          $env:CL = "/FI$env:GITHUB_WORKSPACE\build_files\compat\msvc_force_include.h"
           $sw = [Diagnostics.Stopwatch]::StartNew()
           & cmake --build $env:BUILD_DIR --target install --parallel 4 *>&1 | Tee-Object -FilePath $log
           $code = $LASTEXITCODE
