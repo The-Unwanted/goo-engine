@@ -141,36 +141,70 @@ jobs:
         uses: actions/cache@v4
         with:
           path: C:\bglib\win64_vc15
-          key: goo-libs-win64-vc15-4.1-v1
+          key: goo-libs-win64-vc15-4.1-git-v2
 
-      - name: Fetch precompiled libraries (SVN)
+      - name: Fetch precompiled libraries (Git LFS)
         if: steps.libcache.outputs.cache-hit != 'true'
         shell: pwsh
         run: |
-          $log = Join-Path $env:LOG_DIR "svn-checkout.log"
+          $log = Join-Path $env:LOG_DIR "fetch-libs.log"
           New-Item -ItemType Directory -Force -Path (Split-Path $env:LIB_DIR) | Out-Null
+          $env:GIT_LFS_SKIP_SMUDGE = "0"
 
-          for ($attempt = 1; $attempt -le 3; $attempt++) {
-            Write-Host "::notice::SVN checkout attempt $attempt of 3"
-            & svn checkout --non-interactive --no-auth-cache $env:SVN_LIB_URL $env:LIB_DIR *>&1 |
-              Tee-Object -FilePath $log -Append
-            if ($LASTEXITCODE -eq 0) { break }
+          # Blender publishes the precompiled libraries as a Git LFS repository
+          # per platform (SVN was retired in 2024 and now rate-limits with HTTP 429).
+          $repo = "https://projects.blender.org/blender/lib-windows_x64.git"
+          $branch = "blender-v4.1-release"
 
-            Write-Host "::warning::SVN checkout failed with exit code $LASTEXITCODE"
-            if (Test-Path $env:LIB_DIR) { & svn cleanup $env:LIB_DIR *>&1 | Out-Null }
-            if ($attempt -eq 3) {
-              Get-Content $log -Tail 40 | ForEach-Object {
-                $line = "$_".TrimEnd()
-                if ($line.Length -gt 900) { $line = $line.Substring(0, 900) }
-                if ($line) { Write-Host "::error::$line" }
+          & git lfs version *>&1 | Tee-Object -FilePath $log -Append
+          if ($LASTEXITCODE -ne 0) {
+            Write-Host "::notice::git-lfs missing, installing"
+            choco install -y git-lfs --no-progress *>&1 | Tee-Object -FilePath $log -Append
+            & git lfs install *>&1 | Tee-Object -FilePath $log -Append
+          }
+
+          if (Test-Path $env:LIB_DIR) { Remove-Item $env:LIB_DIR -Recurse -Force -ErrorAction SilentlyContinue }
+
+          Write-Host "::notice::cloning $repo ($branch) - about 3.5 GB of LFS objects"
+          & git -c lfs.concurrenttransfers=4 clone --depth 1 --branch $branch $repo $env:LIB_DIR *>&1 |
+            Tee-Object -FilePath $log -Append
+          $cloneCode = $LASTEXITCODE
+          Write-Host "::notice::clone exit code $cloneCode"
+
+          if ($cloneCode -eq 0) {
+            # Make sure every LFS pointer was actually materialised.
+            Push-Location $env:LIB_DIR
+            & git lfs pull *>&1 | Tee-Object -FilePath $log -Append
+            $pointers = Get-ChildItem $env:LIB_DIR -Recurse -File -ErrorAction SilentlyContinue |
+              Where-Object { $_.Length -lt 200 } |
+              Select-String -Pattern "^version https://git-lfs" -List -ErrorAction SilentlyContinue
+            Pop-Location
+            if ($pointers) { Write-Host "::warning::$($pointers.Count) files are still LFS pointers" }
+          }
+
+          if ($cloneCode -ne 0 -or -not (Test-Path (Join-Path $env:LIB_DIR "python"))) {
+            Write-Host "::warning::Git LFS fetch failed, falling back to SVN"
+            if (Test-Path $env:LIB_DIR) { Remove-Item $env:LIB_DIR -Recurse -Force -ErrorAction SilentlyContinue }
+            for ($attempt = 1; $attempt -le 3; $attempt++) {
+              Write-Host "::notice::SVN checkout attempt $attempt of 3"
+              & svn checkout --non-interactive --no-auth-cache $env:SVN_LIB_URL $env:LIB_DIR *>&1 |
+                Tee-Object -FilePath $log -Append
+              if ($LASTEXITCODE -eq 0) { break }
+              if (Test-Path $env:LIB_DIR) { & svn cleanup $env:LIB_DIR *>&1 | Out-Null }
+              if ($attempt -eq 3) {
+                Get-Content $log -Tail 40 | ForEach-Object {
+                  $line = "$_".TrimEnd()
+                  if ($line.Length -gt 900) { $line = $line.Substring(0, 900) }
+                  if ($line) { Write-Host "::error::$line" }
+                }
+                exit 1
               }
-              exit 1
+              Start-Sleep -Seconds 30
             }
-            Start-Sleep -Seconds 20
           }
 
           $size = (Get-ChildItem $env:LIB_DIR -Recurse -File | Measure-Object -Property Length -Sum).Sum / 1GB
-          Write-Host ("::notice::libraries fetched: {0:N2} GB" -f $size)
+          Write-Host ("::notice::libraries ready: {0:N2} GB" -f $size)
 
       - name: Verify libraries
         shell: pwsh
