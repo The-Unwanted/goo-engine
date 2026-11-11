@@ -1,257 +1,257 @@
 Goo Engine Windows build failure
-run: https://github.com/The-Unwanted/goo-engine/actions/runs/43087640298
-commit: 2b481288c1362599b65859512c8bf9f657672df0
+run: https://github.com/The-Unwanted/goo-engine/actions/runs/43092120800
+commit: 2b2ad28197b584558692c783864b9682716b0980
 
 ===== build.log (tail 250) =====
-[2265/5886] Building CXX object intern\audaspace\CMakeFiles\bf_intern_audaspace.dir\intern\AUD_PyInit.cpp.obj
-[2266/5886] Building CXX object intern\audaspace\CMakeFiles\bf_intern_audaspace.dir\intern\AUD_Set.cpp.obj
-[2267/5886] Building CXX object source\blender\compositor\CMakeFiles\bf_compositor.dir\Unity\unity_1_cxx.cxx.obj
-[2268/5886] Building CXX object intern\dualcon\CMakeFiles\bf_intern_dualcon.dir\intern\manifold_table.cpp.obj
-[2269/5886] Building CXX object intern\dualcon\CMakeFiles\bf_intern_dualcon.dir\intern\marching_cubes_table.cpp.obj
-[2270/5886] Building CXX object intern\dualcon\CMakeFiles\bf_intern_dualcon.dir\intern\Projections.cpp.obj
-[2271/5886] Building CXX object intern\dualcon\CMakeFiles\bf_intern_dualcon.dir\intern\dualcon_c_api.cpp.obj
-[2272/5886] Building CXX object source\blender\compositor\CMakeFiles\bf_compositor.dir\Unity\unity_0_cxx.cxx.obj
-[2273/5886] Building CXX object intern\dualcon\CMakeFiles\bf_intern_dualcon.dir\intern\octree.cpp.obj
-[2274/5886] Building CXX object intern\libmv\CMakeFiles\bf_intern_libmv.dir\libmv\multiview\panography_kernel.cc.obj
-[2275/5886] Building CXX object intern\libmv\CMakeFiles\bf_intern_libmv.dir\libmv\multiview\panography.cc.obj
-[2276/5886] Building CXX object intern\iksolver\CMakeFiles\bf_intern_iksolver.dir\intern\IK_QJacobian.cpp.obj
-[2277/5886] Building CXX object intern\iksolver\CMakeFiles\bf_intern_iksolver.dir\intern\IK_QJacobianSolver.cpp.obj
-[2278/5886] Building CXX object intern\libmv\CMakeFiles\bf_intern_libmv.dir\libmv\multiview\triangulation.cc.obj
-[2279/5886] Building CXX object intern\iksolver\CMakeFiles\bf_intern_iksolver.dir\intern\IK_QTask.cpp.obj
-[2280/5886] Building CXX object intern\iksolver\CMakeFiles\bf_intern_iksolver.dir\intern\IK_Solver.cpp.obj
-[2281/5886] Building CXX object intern\libmv\CMakeFiles\bf_intern_libmv.dir\libmv\multiview\projection.cc.obj
-[2282/5886] Building CXX object intern\iksolver\CMakeFiles\bf_intern_iksolver.dir\intern\IK_QSegment.cpp.obj
-[2283/5886] Building CXX object intern\libmv\CMakeFiles\bf_intern_libmv.dir\libmv\numeric\numeric.cc.obj
-[2284/5886] Building CXX object intern\libmv\CMakeFiles\bf_intern_libmv.dir\libmv\numeric\poly.cc.obj
-[2285/5886] Building CXX object intern\itasc\CMakeFiles\bf_intern_itasc.dir\Cache.cpp.obj
-[2286/5886] Building CXX object intern\itasc\CMakeFiles\bf_intern_itasc.dir\Armature.cpp.obj
-[2287/5886] Building CXX object intern\libmv\CMakeFiles\bf_intern_libmv.dir\libmv\simple_pipeline\camera_intrinsics.cc.obj
-[2288/5886] Building CXX object intern\itasc\CMakeFiles\bf_intern_itasc.dir\ControlledObject.cpp.obj
-[2289/5886] Building CXX object intern\itasc\CMakeFiles\bf_intern_itasc.dir\ConstraintSet.cpp.obj
-[2290/5886] Building CXX object intern\libmv\CMakeFiles\bf_intern_libmv.dir\libmv\simple_pipeline\detect.cc.obj
-[2291/5886] Building CXX object intern\itasc\CMakeFiles\bf_intern_itasc.dir\Distance.cpp.obj
-[2292/5886] Building CXX object intern\libmv\CMakeFiles\bf_intern_libmv.dir\libmv\simple_pipeline\bundle.cc.obj
-[2293/5886] Building CXX object intern\itasc\CMakeFiles\bf_intern_itasc.dir\CopyPose.cpp.obj
-[2294/5886] Building CXX object intern\itasc\CMakeFiles\bf_intern_itasc.dir\FixedObject.cpp.obj
-[2295/5886] Building CXX object intern\itasc\CMakeFiles\bf_intern_itasc.dir\MovingFrame.cpp.obj
-[2296/5886] Building CXX object intern\itasc\CMakeFiles\bf_intern_itasc.dir\UncontrolledObject.cpp.obj
-[2297/5886] Building CXX object intern\libmv\CMakeFiles\bf_intern_libmv.dir\libmv\simple_pipeline\initialize_reconstruction.cc.obj
-[2298/5886] Building CXX object intern\libmv\CMakeFiles\bf_intern_libmv.dir\libmv\simple_pipeline\distortion_models.cc.obj
-[2299/5886] Building CXX object intern\itasc\CMakeFiles\bf_intern_itasc.dir\WDLSSolver.cpp.obj
-[2300/5886] Building CXX object intern\itasc\CMakeFiles\bf_intern_itasc.dir\WSDLSSolver.cpp.obj
-[2301/5886] Building CXX object intern\itasc\CMakeFiles\bf_intern_itasc.dir\Scene.cpp.obj
-[2302/5886] Building CXX object intern\itasc\CMakeFiles\bf_intern_itasc.dir\WorldObject.cpp.obj
-[2303/5886] Building CXX object intern\itasc\CMakeFiles\bf_intern_itasc.dir\eigen_types.cpp.obj
-[2304/5886] Building CXX object intern\itasc\CMakeFiles\bf_intern_itasc.dir\kdl\chain.cpp.obj
-[2305/5886] Building CXX object intern\itasc\CMakeFiles\bf_intern_itasc.dir\kdl\chainfksolverpos_recursive.cpp.obj
-[2306/5886] Building CXX object intern\itasc\CMakeFiles\bf_intern_itasc.dir\kdl\frameacc.cpp.obj
-[2307/5886] Building CXX object intern\itasc\CMakeFiles\bf_intern_itasc.dir\kdl\chainjnttojacsolver.cpp.obj
-[2308/5886] Building CXX object intern\itasc\CMakeFiles\bf_intern_itasc.dir\kdl\frames.cpp.obj
-[2309/5886] Building CXX object intern\itasc\CMakeFiles\bf_intern_itasc.dir\kdl\framevel.cpp.obj
-[2310/5886] Building CXX object intern\itasc\CMakeFiles\bf_intern_itasc.dir\kdl\frames_io.cpp.obj
-[2311/5886] Building CXX object intern\itasc\CMakeFiles\bf_intern_itasc.dir\kdl\jacobian.cpp.obj
-[2312/5886] Building CXX object intern\itasc\CMakeFiles\bf_intern_itasc.dir\kdl\inertia.cpp.obj
-[2313/5886] Building CXX object intern\itasc\CMakeFiles\bf_intern_itasc.dir\kdl\jntarray.cpp.obj
-[2314/5886] Building CXX object intern\itasc\CMakeFiles\bf_intern_itasc.dir\kdl\jntarrayacc.cpp.obj
-[2315/5886] Building CXX object intern\itasc\CMakeFiles\bf_intern_itasc.dir\kdl\jntarrayvel.cpp.obj
-[2316/5886] Building CXX object intern\libmv\CMakeFiles\bf_intern_libmv.dir\libmv\simple_pipeline\keyframe_selection.cc.obj
-[2317/5886] Building CXX object intern\itasc\CMakeFiles\bf_intern_itasc.dir\kdl\joint.cpp.obj
-[2318/5886] Building CXX object intern\itasc\CMakeFiles\bf_intern_itasc.dir\kdl\kinfam_io.cpp.obj
-[2319/5886] Building CXX object intern\itasc\CMakeFiles\bf_intern_itasc.dir\kdl\segment.cpp.obj
-[2320/5886] Building CXX object intern\itasc\CMakeFiles\bf_intern_itasc.dir\kdl\tree.cpp.obj
-[2321/5886] Building CXX object intern\itasc\CMakeFiles\bf_intern_itasc.dir\kdl\treefksolverpos_recursive.cpp.obj
-[2322/5886] Building CXX object intern\libmv\CMakeFiles\bf_intern_libmv.dir\libmv\simple_pipeline\modal_solver.cc.obj
-[2323/5886] Building CXX object intern\itasc\CMakeFiles\bf_intern_itasc.dir\kdl\treejnttojacsolver.cpp.obj
-[2324/5886] Building CXX object intern\itasc\CMakeFiles\bf_intern_itasc.dir\kdl\utilities\error_stack.cpp.obj
-[2325/5886] Building CXX object intern\itasc\CMakeFiles\bf_intern_itasc.dir\kdl\utilities\utility.cpp.obj
-[2326/5886] Building CXX object intern\libmv\CMakeFiles\bf_intern_libmv.dir\libmv\simple_pipeline\packed_intrinsics.cc.obj
-[2327/5886] Building CXX object intern\itasc\CMakeFiles\bf_intern_itasc.dir\kdl\utilities\utility_io.cpp.obj
-[2328/5886] Building CXX object intern\cycles\bvh\CMakeFiles\cycles_bvh.dir\bvh.cpp.obj
-[2329/5886] Building CXX object intern\cycles\bvh\CMakeFiles\cycles_bvh.dir\binning.cpp.obj
-[2330/5886] Building CXX object intern\libmv\CMakeFiles\bf_intern_libmv.dir\libmv\simple_pipeline\intersect.cc.obj
-[2331/5886] Building CXX object intern\libmv\CMakeFiles\bf_intern_libmv.dir\libmv\simple_pipeline\pipeline.cc.obj
-[2332/5886] Building CXX object intern\cycles\bvh\CMakeFiles\cycles_bvh.dir\bvh2.cpp.obj
-[2333/5886] Building CXX object intern\cycles\bvh\CMakeFiles\cycles_bvh.dir\build.cpp.obj
-[2334/5886] Building CXX object intern\libmv\CMakeFiles\bf_intern_libmv.dir\libmv\simple_pipeline\reconstruction.cc.obj
-[2335/5886] Building CXX object intern\libmv\CMakeFiles\bf_intern_libmv.dir\libmv\simple_pipeline\reconstruction_scale.cc.obj
-[2336/5886] Building CXX object intern\cycles\bvh\CMakeFiles\cycles_bvh.dir\hiprt.cpp.obj
-[2337/5886] Building CXX object intern\cycles\bvh\CMakeFiles\cycles_bvh.dir\embree.cpp.obj
-[2338/5886] Building CXX object intern\cycles\bvh\CMakeFiles\cycles_bvh.dir\multi.cpp.obj
-[2339/5886] Building CXX object intern\cycles\bvh\CMakeFiles\cycles_bvh.dir\optix.cpp.obj
-[2340/5886] Building CXX object intern\cycles\bvh\CMakeFiles\cycles_bvh.dir\node.cpp.obj
-[2341/5886] Building CXX object intern\libmv\CMakeFiles\bf_intern_libmv.dir\libmv\simple_pipeline\tracks.cc.obj
-[2342/5886] Building CXX object intern\cycles\bvh\CMakeFiles\cycles_bvh.dir\sort.cpp.obj
-[2343/5886] Building CXX object intern\libmv\CMakeFiles\bf_intern_libmv.dir\libmv\tracking\brute_region_tracker.cc.obj
-[2344/5886] Building CXX object intern\cycles\bvh\CMakeFiles\cycles_bvh.dir\split.cpp.obj
-[2345/5886] Building CXX object intern\cycles\bvh\CMakeFiles\cycles_bvh.dir\unaligned.cpp.obj
-[2346/5886] Building CXX object intern\cycles\graph\CMakeFiles\cycles_graph.dir\node.cpp.obj
-[2347/5886] Building CXX object intern\libmv\CMakeFiles\bf_intern_libmv.dir\libmv\tracking\hybrid_region_tracker.cc.obj
-[2348/5886] Building CXX object intern\cycles\graph\CMakeFiles\cycles_graph.dir\node_type.cpp.obj
-[2349/5886] Building CXX object intern\cycles\integrator\CMakeFiles\cycles_integrator.dir\adaptive_sampling.cpp.obj
-[2350/5886] Building CXX object intern\cycles\graph\CMakeFiles\cycles_graph.dir\node_xml.cpp.obj
-[2351/5886] Building CXX object intern\libmv\CMakeFiles\bf_intern_libmv.dir\libmv\tracking\klt_region_tracker.cc.obj
-[2352/5886] Building CXX object intern\cycles\integrator\CMakeFiles\cycles_integrator.dir\denoiser.cpp.obj
-[2353/5886] Building CXX object intern\libmv\CMakeFiles\bf_intern_libmv.dir\libmv\tracking\pyramid_region_tracker.cc.obj
-[2354/5886] Building CXX object intern\cycles\integrator\CMakeFiles\cycles_integrator.dir\denoiser_gpu.cpp.obj
-[2355/5886] Building CXX object intern\libmv\CMakeFiles\bf_intern_libmv.dir\libmv\tracking\retrack_region_tracker.cc.obj
-[2356/5886] Building CXX object intern\cycles\integrator\CMakeFiles\cycles_integrator.dir\denoiser_oidn.cpp.obj
-[2357/5886] Building CXX object intern\cycles\integrator\CMakeFiles\cycles_integrator.dir\denoiser_optix.cpp.obj
-[2358/5886] Building CXX object intern\cycles\integrator\CMakeFiles\cycles_integrator.dir\denoiser_oidn_gpu.cpp.obj
-[2359/5886] Building CXX object intern\cycles\integrator\CMakeFiles\cycles_integrator.dir\tile.cpp.obj
-[2360/5886] Building CXX object intern\cycles\integrator\CMakeFiles\cycles_integrator.dir\path_trace.cpp.obj
-[2361/5886] Building CXX object intern\cycles\integrator\CMakeFiles\cycles_integrator.dir\pass_accessor.cpp.obj
-[2362/5886] Building CXX object intern\cycles\integrator\CMakeFiles\cycles_integrator.dir\pass_accessor_gpu.cpp.obj
-[2363/5886] Building CXX object intern\cycles\integrator\CMakeFiles\cycles_integrator.dir\pass_accessor_cpu.cpp.obj
-[2364/5886] Building CXX object intern\cycles\integrator\CMakeFiles\cycles_integrator.dir\path_trace_display.cpp.obj
-[2365/5886] Building CXX object intern\cycles\integrator\CMakeFiles\cycles_integrator.dir\path_trace_tile.cpp.obj
-[2366/5886] Building CXX object intern\cycles\integrator\CMakeFiles\cycles_integrator.dir\path_trace_work.cpp.obj
-[2367/5886] Building CXX object intern\cycles\integrator\CMakeFiles\cycles_integrator.dir\path_trace_work_cpu.cpp.obj
-[2368/5886] Building CXX object intern\cycles\integrator\CMakeFiles\cycles_integrator.dir\path_trace_work_gpu.cpp.obj
-[2369/5886] Building CXX object intern\cycles\integrator\CMakeFiles\cycles_integrator.dir\render_scheduler.cpp.obj
-[2370/5886] Building CXX object intern\cycles\integrator\CMakeFiles\cycles_integrator.dir\shader_eval.cpp.obj
-[2371/5886] Building CXX object intern\cycles\integrator\CMakeFiles\cycles_integrator.dir\work_balancer.cpp.obj
-[2372/5886] Building CXX object intern\libmv\CMakeFiles\bf_intern_libmv.dir\libmv\tracking\track_region.cc.obj
-[2373/5886] Building CXX object intern\cycles\integrator\CMakeFiles\cycles_integrator.dir\work_tile_scheduler.cpp.obj
-[2374/5886] Building CXX object intern\cycles\kernel\osl\CMakeFiles\cycles_kernel_osl.dir\closures.cpp.obj
-[2375/5886] Building CXX object intern\cycles\kernel\osl\CMakeFiles\cycles_kernel_osl.dir\globals.cpp.obj
-[2376/5886] Building CXX object intern\libmv\CMakeFiles\bf_intern_libmv.dir\libmv\simple_pipeline\resect.cc.obj
-[2377/5886] Building CXX object intern\cycles\device\CMakeFiles\cycles_device.dir\device.cpp.obj
-[2378/5886] Building CXX object intern\cycles\scene\CMakeFiles\cycles_scene.dir\alembic.cpp.obj
-[2379/5886] Building CXX object intern\cycles\device\CMakeFiles\cycles_device.dir\denoise.cpp.obj
-[2380/5886] Building CXX object intern\libmv\CMakeFiles\bf_intern_libmv.dir\libmv\tracking\trklt_region_tracker.cc.obj
-[2381/5886] Building CXX object intern\cycles\device\CMakeFiles\cycles_device.dir\graphics_interop.cpp.obj
-[2382/5886] Building CXX object intern\cycles\device\CMakeFiles\cycles_device.dir\kernel.cpp.obj
-[2383/5886] Building CXX object intern\cycles\device\CMakeFiles\cycles_device.dir\memory.cpp.obj
-[2384/5886] Building CXX object intern\cycles\device\CMakeFiles\cycles_device.dir\queue.cpp.obj
-[2385/5886] Building CXX object intern\cycles\scene\CMakeFiles\cycles_scene.dir\alembic_read.cpp.obj
-[2386/5886] Building CXX object intern\cycles\device\CMakeFiles\cycles_device.dir\cpu\device.cpp.obj
-[2387/5886] Building CXX object intern\cycles\scene\CMakeFiles\cycles_scene.dir\attribute.cpp.obj
-[2388/5886] Building CXX object intern\cycles\device\CMakeFiles\cycles_device.dir\cpu\device_impl.cpp.obj
-[2389/5886] Building CXX object intern\cycles\device\CMakeFiles\cycles_device.dir\cpu\kernel.cpp.obj
-[2390/5886] Building CXX object intern\cycles\device\CMakeFiles\cycles_device.dir\cpu\kernel_thread_globals.cpp.obj
-[2391/5886] Building CXX object intern\cycles\scene\CMakeFiles\cycles_scene.dir\background.cpp.obj
-[2392/5886] Building CXX object intern\cycles\device\CMakeFiles\cycles_device.dir\cuda\device.cpp.obj
-[2393/5886] Building CXX object intern\cycles\scene\CMakeFiles\cycles_scene.dir\bake.cpp.obj
-[2394/5886] Building CXX object intern\cycles\device\CMakeFiles\cycles_device.dir\cuda\device_impl.cpp.obj
-[2395/5886] Building CXX object intern\cycles\device\CMakeFiles\cycles_device.dir\cuda\graphics_interop.cpp.obj
-[2396/5886] Building CXX object intern\cycles\device\CMakeFiles\cycles_device.dir\cuda\kernel.cpp.obj
-[2397/5886] Building CXX object intern\cycles\device\CMakeFiles\cycles_device.dir\cuda\queue.cpp.obj
-[2398/5886] Building CXX object intern\cycles\device\CMakeFiles\cycles_device.dir\hip\device.cpp.obj
-[2399/5886] Building CXX object intern\cycles\device\CMakeFiles\cycles_device.dir\cuda\util.cpp.obj
-[2400/5886] Building CXX object intern\cycles\scene\CMakeFiles\cycles_scene.dir\camera.cpp.obj
-[2401/5886] Building CXX object intern\cycles\device\CMakeFiles\cycles_device.dir\hip\graphics_interop.cpp.obj
-[2402/5886] Building CXX object intern\cycles\device\CMakeFiles\cycles_device.dir\hip\device_impl.cpp.obj
-[2403/5886] Building CXX object intern\cycles\scene\CMakeFiles\cycles_scene.dir\colorspace.cpp.obj
-[2404/5886] Building CXX object intern\cycles\device\CMakeFiles\cycles_device.dir\hip\queue.cpp.obj
-[2405/5886] Building CXX object intern\cycles\device\CMakeFiles\cycles_device.dir\hip\kernel.cpp.obj
-[2406/5886] Building CXX object intern\cycles\device\CMakeFiles\cycles_device.dir\hiprt\device_impl.cpp.obj
-[2407/5886] Building CXX object intern\cycles\device\CMakeFiles\cycles_device.dir\hiprt\queue.cpp.obj
-[2408/5886] Building CXX object intern\cycles\scene\CMakeFiles\cycles_scene.dir\constant_fold.cpp.obj
-[2409/5886] Building CXX object intern\cycles\device\CMakeFiles\cycles_device.dir\hip\util.cpp.obj
-[2410/5886] Building CXX object intern\cycles\device\CMakeFiles\cycles_device.dir\dummy\device.cpp.obj
-[2411/5886] Building CXX object intern\cycles\device\CMakeFiles\cycles_device.dir\optix\device.cpp.obj
-[2412/5886] Building CXX object intern\cycles\device\CMakeFiles\cycles_device.dir\optix\device_impl.cpp.obj
-[2413/5886] Building CXX object intern\cycles\device\CMakeFiles\cycles_device.dir\optix\queue.cpp.obj
-[2414/5886] Building CXX object intern\cycles\scene\CMakeFiles\cycles_scene.dir\devicescene.cpp.obj
-[2415/5886] Building CXX object intern\cycles\device\CMakeFiles\cycles_device.dir\multi\device.cpp.obj
-[2416/5886] Building CXX object intern\cycles\kernel\CMakeFiles\cycles_kernel.dir\device\cpu\kernel_sse2.cpp.obj
-[2417/5886] Building CXX object intern\cycles\scene\CMakeFiles\cycles_scene.dir\film.cpp.obj
-[2418/5886] Building CXX object intern\cycles\kernel\osl\CMakeFiles\cycles_kernel_osl.dir\services.cpp.obj
-[2419/5886] Building CXX object intern\cycles\scene\CMakeFiles\cycles_scene.dir\geometry.cpp.obj
-[2420/5886] Building CXX object intern\cycles\scene\CMakeFiles\cycles_scene.dir\geometry_attributes.cpp.obj
-[2421/5886] Building CXX object intern\cycles\scene\CMakeFiles\cycles_scene.dir\geometry_bvh.cpp.obj
-[2422/5886] Building CXX object intern\cycles\scene\CMakeFiles\cycles_scene.dir\geometry_mesh.cpp.obj
-[2423/5886] Building CXX object intern\cycles\scene\CMakeFiles\cycles_scene.dir\hair.cpp.obj
-[2424/5886] Building CXX object intern\cycles\scene\CMakeFiles\cycles_scene.dir\image_oiio.cpp.obj
-[2425/5886] Building CXX object intern\cycles\scene\CMakeFiles\cycles_scene.dir\image_sky.cpp.obj
-[2426/5886] Building CXX object intern\cycles\scene\CMakeFiles\cycles_scene.dir\image.cpp.obj
-[2427/5886] Building CXX object intern\cycles\scene\CMakeFiles\cycles_scene.dir\integrator.cpp.obj
-[2428/5886] Building CXX object intern\cycles\scene\CMakeFiles\cycles_scene.dir\light.cpp.obj
-[2429/5886] Building CXX object intern\cycles\scene\CMakeFiles\cycles_scene.dir\light_tree.cpp.obj
-[2430/5886] Building CXX object intern\cycles\scene\CMakeFiles\cycles_scene.dir\mesh.cpp.obj
-[2431/5886] Building CXX object intern\cycles\scene\CMakeFiles\cycles_scene.dir\image_vdb.cpp.obj
-[2432/5886] Building CXX object intern\cycles\scene\CMakeFiles\cycles_scene.dir\mesh_displace.cpp.obj
-[2433/5886] Building CXX object intern\cycles\scene\CMakeFiles\cycles_scene.dir\mesh_subdivision.cpp.obj
-[2434/5886] Building CXX object intern\cycles\scene\CMakeFiles\cycles_scene.dir\procedural.cpp.obj
-[2435/5886] Building CXX object intern\cycles\scene\CMakeFiles\cycles_scene.dir\pointcloud.cpp.obj
-[2436/5886] Building CXX object intern\cycles\scene\CMakeFiles\cycles_scene.dir\object.cpp.obj
-[2437/5886] Building CXX object intern\cycles\scene\CMakeFiles\cycles_scene.dir\particles.cpp.obj
-[2438/5886] Building CXX object intern\cycles\scene\CMakeFiles\cycles_scene.dir\osl.cpp.obj
-[2439/5886] Building CXX object intern\cycles\scene\CMakeFiles\cycles_scene.dir\pass.cpp.obj
-[2440/5886] Building CXX object intern\cycles\scene\CMakeFiles\cycles_scene.dir\curves.cpp.obj
-[2441/5886] Building CXX object intern\cycles\scene\CMakeFiles\cycles_scene.dir\scene.cpp.obj
-[2442/5886] Building CXX object intern\cycles\scene\CMakeFiles\cycles_scene.dir\shader.cpp.obj
-[2443/5886] Building CXX object intern\cycles\scene\CMakeFiles\cycles_scene.dir\shader_graph.cpp.obj
-[2444/5886] Building CXX object intern\cycles\scene\CMakeFiles\cycles_scene.dir\shader_nodes.cpp.obj
-[2445/5886] Building CXX object intern\cycles\scene\CMakeFiles\cycles_scene.dir\stats.cpp.obj
-[2446/5886] Building CXX object intern\cycles\scene\CMakeFiles\cycles_scene.dir\svm.cpp.obj
-[2447/5886] Building CXX object intern\cycles\scene\CMakeFiles\cycles_scene.dir\tabulated_sobol.cpp.obj
-[2448/5886] Building CXX object intern\cycles\scene\CMakeFiles\cycles_scene.dir\tables.cpp.obj
-[2449/5886] Building CXX object intern\cycles\session\CMakeFiles\cycles_session.dir\buffers.cpp.obj
-[2450/5886] Building CXX object intern\cycles\session\CMakeFiles\cycles_session.dir\denoising.cpp.obj
-[2451/5886] Building CXX object intern\cycles\session\CMakeFiles\cycles_session.dir\merge.cpp.obj
-[2452/5886] Building CXX object intern\cycles\session\CMakeFiles\cycles_session.dir\session.cpp.obj
-[2453/5886] Building CXX object intern\cycles\session\CMakeFiles\cycles_session.dir\tile.cpp.obj
-[2454/5886] Building CXX object intern\cycles\subd\CMakeFiles\cycles_subd.dir\dice.cpp.obj
-[2455/5886] Building CXX object intern\cycles\subd\CMakeFiles\cycles_subd.dir\patch.cpp.obj
-[2456/5886] Building CXX object intern\cycles\subd\CMakeFiles\cycles_subd.dir\split.cpp.obj
-[2457/5886] Building CXX object intern\cycles\subd\CMakeFiles\cycles_subd.dir\patch_table.cpp.obj
-[2458/5886] Building CXX object intern\cycles\util\CMakeFiles\cycles_util.dir\aligned_malloc.cpp.obj
-[2459/5886] Building CXX object intern\cycles\util\CMakeFiles\cycles_util.dir\debug.cpp.obj
-[2460/5886] Building CXX object intern\cycles\util\CMakeFiles\cycles_util.dir\ies.cpp.obj
-[2461/5886] Building CXX object intern\cycles\kernel\CMakeFiles\cycles_kernel.dir\device\cpu\kernel_sse41.cpp.obj
-[2462/5886] Building CXX object intern\cycles\util\CMakeFiles\cycles_util.dir\log.cpp.obj
-[2463/5886] Building CXX object intern\cycles\util\CMakeFiles\cycles_util.dir\math_cdf.cpp.obj
-[2464/5886] Building CXX object intern\cycles\util\CMakeFiles\cycles_util.dir\md5.cpp.obj
-[2465/5886] Building CXX object intern\cycles\util\CMakeFiles\cycles_util.dir\murmurhash.cpp.obj
-[2466/5886] Building CXX object intern\cycles\scene\CMakeFiles\cycles_scene.dir\volume.cpp.obj
-[2467/5886] Building CXX object intern\cycles\util\CMakeFiles\cycles_util.dir\profiling.cpp.obj
-FAILED: [code=2] intern/cycles/util/CMakeFiles/cycles_util.dir/profiling.cpp.obj 
-C:\PROGRA~1\MICROS~2\2022\ENTERP~1\VC\Tools\MSVC\1444~1.352\bin\Hostx64\x64\cl.exe  /nologo /TP -DBLENDER_WIN_APPID=\"blender.4.1\" -DBLENDER_WIN_APPID_FRIENDLY_NAME="\"Blender 4.1\"" -DBOOST_ALL_NO_LIB -DCCL_NAMESPACE_BEGIN="namespace ccl {" -DCCL_NAMESPACE_END=} -DCYCLES_GFLAGS_NAMESPACE=gflags -DEMBREE_MAJOR_VERSION=4 -DGOOGLE_GLOG_DLL_DECL="" -DNDEBUG -DNOMINMAX -DOSL_STATIC_BUILD -DOSL_STATIC_LIBRARY -DPATH_GUIDING_LEVEL=5 -DTBB_SUPPRESS_DEPRECATED_MESSAGES=1 -DWIN32 -DWITH_ALEMBIC -DWITH_BLENDER_GUARDEDALLOC -DWITH_CUDA -DWITH_CUDA_DYNLOAD -DWITH_CYCLES_LOGGING -DWITH_EMBREE -DWITH_HIP -DWITH_HIP_DYNLOAD -DWITH_KERNEL_AVX2 -DWITH_KERNEL_SSE2 -DWITH_KERNEL_SSE41 -DWITH_NANOVDB -DWITH_OCIO -DWITH_OPENIMAGEDENOISE -DWITH_OPENSUBDIV -DWITH_OPENVDB -DWITH_OPENVDB_BLOSC -DWITH_OSL -DWITH_PATH_GUIDING -DWITH_SYSTEM_PUGIXML -DWITH_TBB_MALLOC -DWITH_USD -D_ALLOW_KEYWORD_MACROS -D_CONSOLE -D_CRT_NONSTDC_NO_DEPRECATE -D_CRT_SECURE_NO_DEPRECATE -D_LIB -D_SCL_SECURE_NO_DEPRECATE -D_USE_MATH_DEFINES -D_WIN32_WINNT=0x603 -D__LITTLE_ENDIAN__ -D__MMX__ -D__SSE2__ -D__SSE__ -ID:\a\goo-engine\goo-engine\intern\cycles\..\..\extern\cuew\include -ID:\a\goo-engine\goo-engine\intern\cycles\..\..\extern\hipew\include -ID:\a\goo-engine\goo-engine\intern\cycles\..\atomic -ID:\a\goo-engine\goo-engine\intern\cycles\util\.. -external:IC:\bglib\win64_vc15\pthreads\include -external:IC:\bglib\win64_vc15\boost\include -external:IC:\bglib\win64_vc15\OpenImageIO\include -external:IC:\bglib\win64_vc15\imath\include -external:IC:\bglib\win64_vc15\imath\include\Imath -external:IC:\bglib\win64_vc15\openexr\include -external:IC:\bglib\win64_vc15\openexr\include\OpenEXR -external:IC:\bglib\win64_vc15\pugixml\include -external:IC:\bglib\win64_vc15\osl\include -external:IC:\bglib\win64_vc15\embree\include -external:IC:\bglib\win64_vc15\openimagedenoise\include -external:ID:\a\goo-engine\goo-engine\extern\glog\src\windows -external:ID:\a\goo-engine\goo-engine\extern\gflags\src -external:IC:\bglib\win64_
-D:\a\goo-engine\goo-engine\intern\cycles\util\profiling.cpp(22): error C3083: 'system_clock': the symbol to the left of a '::' must be a type
-D:\a\goo-engine\goo-engine\intern\cycles\util\profiling.cpp(22): error C2039: 'now': is not a member of 'std::chrono'
-C:\Program Files\Microsoft Visual Studio\2022\Enterprise\VC\Tools\MSVC\14.44.35207\include\__msvc_chrono.hpp(286): note: see declaration of 'std::chrono'
-D:\a\goo-engine\goo-engine\intern\cycles\util\profiling.cpp(22): error C3861: 'now': identifier not found
-D:\a\goo-engine\goo-engine\intern\cycles\util\profiling.cpp(51): error C2677: binary '+': no global operator found which takes type 'std::chrono::duration<unsigned __int64,std::milli>' (or there is no acceptable conversion)
-C:\Program Files\Microsoft Visual Studio\2022\Enterprise\VC\Tools\MSVC\14.44.35207\include\xutility(1984): note: could be 'std::reverse_iterator<_BidIt> std::operator +(reverse_iterator<_BidIt>::difference_type,const std::reverse_iterator<_BidIt> &) noexcept(<expr>)'
-D:\a\goo-engine\goo-engine\intern\cycles\util\profiling.cpp(51): note: 'std::reverse_iterator<_BidIt> std::operator +(reverse_iterator<_BidIt>::difference_type,const std::reverse_iterator<_BidIt> &) noexcept(<expr>)': could not deduce template argument for 'const std::reverse_iterator<_BidIt> &' from 'std::chrono::duration<unsigned __int64,std::milli>'
-C:\Program Files\Microsoft Visual Studio\2022\Enterprise\VC\Tools\MSVC\14.44.35207\include\xutility(4535): note: or       'std::move_iterator<_Iter> std::operator +(move_iterator<_Iter>::difference_type,const std::move_iterator<_Iter> &) noexcept(<expr>)'
-D:\a\goo-engine\goo-engine\intern\cycles\util\profiling.cpp(51): note: 'std::move_iterator<_Iter> std::operator +(move_iterator<_Iter>::difference_type,const std::move_iterator<_Iter> &) noexcept(<expr>)': could not deduce template argument for 'const std::move_iterator<_Iter> &' from 'std::chrono::duration<unsigned __int64,std::milli>'
-C:\Program Files\Microsoft Visual Studio\2022\Enterprise\VC\Tools\MSVC\14.44.35207\include\__msvc_chrono.hpp(288): note: or       'common_type<std::chrono::duration<_Rep,_Period>,std::chrono::duration<_Rep2,_Period2>>::type std::chrono::operator +(const std::chrono::duration<_Rep,_Period> &,const std::chrono::duration<_Rep2,_Period2> &) noexcept(<expr>)'
-D:\a\goo-engine\goo-engine\intern\cycles\util\profiling.cpp(51): note: 'common_type<std::chrono::duration<_Rep,_Period>,std::chrono::duration<_Rep2,_Period2>>::type std::chrono::operator +(const std::chrono::duration<_Rep,_Period> &,const std::chrono::duration<_Rep2,_Period2> &) noexcept(<expr>)': could not deduce template argument for 'const std::chrono::duration<_Rep,_Period> &' from '<error type>'
-C:\Program Files\Microsoft Visual Studio\2022\Enterprise\VC\Tools\MSVC\14.44.35207\include\__msvc_chrono.hpp(530): note: or       'std::chrono::time_point<_Clock,common_type<_Duration,std::chrono::duration<_Rep2,_Period2>>::type> std::chrono::operator +(const std::chrono::time_point<_Clock,_Duration> &,const std::chrono::duration<_Rep2,_Period2> &) noexcept(<expr>)'
-D:\a\goo-engine\goo-engine\intern\cycles\util\profiling.cpp(51): note: 'std::chrono::time_point<_Clock,common_type<_Duration,std::chrono::duration<_Rep2,_Period2>>::type> std::chrono::operator +(const std::chrono::time_point<_Clock,_Duration> &,const std::chrono::duration<_Rep2,_Period2> &) noexcept(<expr>)': could not deduce template argument for 'const std::chrono::time_point<_Clock,_Duration> &' from '<error type>'
-C:\Program Files\Microsoft Visual Studio\2022\Enterprise\VC\Tools\MSVC\14.44.35207\include\__msvc_chrono.hpp(538): note: or       'std::chrono::time_point<_Clock,common_type<std::chrono::duration<_Rep,_Period>,_Duration>::type> std::chrono::operator +(const std::chrono::duration<_Rep,_Period> &,const std::chrono::time_point<_Clock,_Duration> &) noexcept(<expr>)'
-D:\a\goo-engine\goo-engine\intern\cycles\util\profiling.cpp(51): note: 'std::chrono::time_point<_Clock,common_type<std::chrono::duration<_Rep,_Period>,_Duration>::type> std::chrono::operator +(const std::chrono::duration<_Rep,_Period> &,const std::chrono::time_point<_Clock,_Duration> &) noexcept(<expr>)': could not deduce template argument for 'const std::chrono::duration<_Rep,_Period> &' from '<error type>'
-C:\Program Files\Microsoft Visual Studio\2022\Enterprise\VC\Tools\MSVC\14.44.35207\include\xstring(3147): note: or       'std::basic_string<_Elem,_Traits,_Alloc> std::operator +(const std::basic_string<_Elem,_Traits,_Alloc> &,const std::basic_string<_Elem,_Traits,_Alloc> &)'
-D:\a\goo-engine\goo-engine\intern\cycles\util\profiling.cpp(51): note: 'std::basic_string<_Elem,_Traits,_Alloc> std::operator +(const std::basic_string<_Elem,_Traits,_Alloc> &,const std::basic_string<_Elem,_Traits,_Alloc> &)': could not deduce template argument for 'const std::basic_string<_Elem,_Traits,_Alloc> &' from '<error type>'
-C:\Program Files\Microsoft Visual Studio\2022\Enterprise\VC\Tools\MSVC\14.44.35207\include\xstring(3159): note: or       'std::basic_string<_Elem,_Traits,_Alloc> std::operator +(const _Elem *const ,const std::basic_string<_Elem,_Traits,_Alloc> &)'
-D:\a\goo-engine\goo-engine\intern\cycles\util\profiling.cpp(51): note: 'std::basic_string<_Elem,_Traits,_Alloc> std::operator +(const _Elem *const ,const std::basic_string<_Elem,_Traits,_Alloc> &)': could not deduce template argument for 'const _Elem *const ' from '<error type>'
-C:\Program Files\Microsoft Visual Studio\2022\Enterprise\VC\Tools\MSVC\14.44.35207\include\xstring(3172): note: or       'std::basic_string<_Elem,_Traits,_Alloc> std::operator +(const _Elem,const std::basic_string<_Elem,_Traits,_Alloc> &)'
-D:\a\goo-engine\goo-engine\intern\cycles\util\profiling.cpp(51): note: 'std::basic_string<_Elem,_Traits,_Alloc> std::operator +(const _Elem,const std::basic_string<_Elem,_Traits,_Alloc> &)': could not deduce template argument for 'const std::basic_string<_Elem,_Traits,_Alloc> &' from 'std::chrono::duration<unsigned __int64,std::milli>'
-C:\Program Files\Microsoft Visual Studio\2022\Enterprise\VC\Tools\MSVC\14.44.35207\include\xstring(3183): note: or       'std::basic_string<_Elem,_Traits,_Alloc> std::operator +(const std::basic_string<_Elem,_Traits,_Alloc> &,const _Elem *const )'
-D:\a\goo-engine\goo-engine\intern\cycles\util\profiling.cpp(51): note: 'std::basic_string<_Elem,_Traits,_Alloc> std::operator +(const std::basic_string<_Elem,_Traits,_Alloc> &,const _Elem *const )': could not deduce template argument for 'const std::basic_string<_Elem,_Traits,_Alloc> &' from '<error type>'
-C:\Program Files\Microsoft Visual Studio\2022\Enterprise\VC\Tools\MSVC\14.44.35207\include\xstring(3196): note: or       'std::basic_string<_Elem,_Traits,_Alloc> std::operator +(const std::basic_string<_Elem,_Traits,_Alloc> &,const _Elem)'
-D:\a\goo-engine\goo-engine\intern\cycles\util\profiling.cpp(51): note: 'std::basic_string<_Elem,_Traits,_Alloc> std::operator +(const std::basic_string<_Elem,_Traits,_Alloc> &,const _Elem)': could not deduce template argument for 'const std::basic_string<_Elem,_Traits,_Alloc> &' from '<error type>'
-C:\Program Files\Microsoft Visual Studio\2022\Enterprise\VC\Tools\MSVC\14.44.35207\include\xstring(3207): note: or       'std::basic_string<_Elem,_Traits,_Alloc> std::operator +(const std::basic_string<_Elem,_Traits,_Alloc> &,std::basic_string<_Elem,_Traits,_Alloc> &&)'
-D:\a\goo-engine\goo-engine\intern\cycles\util\profiling.cpp(51): note: 'std::basic_string<_Elem,_Traits,_Alloc> std::operator +(const std::basic_string<_Elem,_Traits,_Alloc> &,std::basic_string<_Elem,_Traits,_Alloc> &&)': could not deduce template argument for 'const std::basic_string<_Elem,_Traits,_Alloc> &' from '<error type>'
-C:\Program Files\Microsoft Visual Studio\2022\Enterprise\VC\Tools\MSVC\14.44.35207\include\xstring(3213): note: or       'std::basic_string<_Elem,_Traits,_Alloc> std::operator +(std::basic_string<_Elem,_Traits,_Alloc> &&,const std::basic_string<_Elem,_Traits,_Alloc> &)'
-D:\a\goo-engine\goo-engine\intern\cycles\util\profiling.cpp(51): note: 'std::basic_string<_Elem,_Traits,_Alloc> std::operator +(std::basic_string<_Elem,_Traits,_Alloc> &&,const std::basic_string<_Elem,_Traits,_Alloc> &)': could not deduce template argument for 'std::basic_string<_Elem,_Traits,_Alloc> &&' from '<error type>'
-C:\Program Files\Microsoft Visual Studio\2022\Enterprise\VC\Tools\MSVC\14.44.35207\include\xstring(3219): note: or       'std::basic_string<_Elem,_Traits,_Alloc> std::operator +(std::basic_string<_Elem,_Traits,_Alloc> &&,std::basic_string<_Elem,_Traits,_Alloc> &&)'
-D:\a\goo-engine\goo-engine\intern\cycles\util\profiling.cpp(51): note: 'std::basic_string<_Elem,_Traits,_Alloc> std::operator +(std::basic_string<_Elem,_Traits,_Alloc> &&,std::basic_string<_Elem,_Traits,_Alloc> &&)': could not deduce template argument for 'std::basic_string<_Elem,_Traits,_Alloc> &&' from '<error type>'
-C:\Program Files\Microsoft Visual Studio\2022\Enterprise\VC\Tools\MSVC\14.44.35207\include\xstring(3232): note: or       'std::basic_string<_Elem,_Traits,_Alloc> std::operator +(const _Elem *const ,std::basic_string<_Elem,_Traits,_Alloc> &&)'
-D:\a\goo-engine\goo-engine\intern\cycles\util\profiling.cpp(51): note: 'std::basic_string<_Elem,_Traits,_Alloc> std::operator +(const _Elem *const ,std::basic_string<_Elem,_Traits,_Alloc> &&)': could not deduce template argument for 'const _Elem *const ' from '<error type>'
-C:\Program Files\Microsoft Visual Studio\2022\Enterprise\VC\Tools\MSVC\14.44.35207\include\xstring(3238): note: or       'std::basic_string<_Elem,_Traits,_Alloc> std::operator +(const _Elem,std::basic_string<_Elem,_Traits,_Alloc> &&)'
-D:\a\goo-engine\goo-engine\intern\cycles\util\profiling.cpp(51): note: 'std::basic_string<_Elem,_Traits,_Alloc> std::operator +(const _Elem,std::basic_string<_Elem,_Traits,_Alloc> &&)': could not deduce template argument for 'std::basic_string<_Elem,_Traits,_Alloc> &&' from 'std::chrono::duration<unsigned __int64,std::milli>'
-C:\Program Files\Microsoft Visual Studio\2022\Enterprise\VC\Tools\MSVC\14.44.35207\include\xstring(3244): note: or       'std::basic_string<_Elem,_Traits,_Alloc> std::operator +(std::basic_string<_Elem,_Traits,_Alloc> &&,const _Elem *const )'
-D:\a\goo-engine\goo-engine\intern\cycles\util\profiling.cpp(51): note: 'std::basic_string<_Elem,_Traits,_Alloc> std::operator +(std::basic_string<_Elem,_Traits,_Alloc> &&,const _Elem *const )': could not deduce template argument for 'std::basic_string<_Elem,_Traits,_Alloc> &&' from '<error type>'
-C:\Program Files\Microsoft Visual Studio\2022\Enterprise\VC\Tools\MSVC\14.44.35207\include\xstring(3250): note: or       'std::basic_string<_Elem,_Traits,_Alloc> std::operator +(std::basic_string<_Elem,_Traits,_Alloc> &&,const _Elem)'
-D:\a\goo-engine\goo-engine\intern\cycles\util\profiling.cpp(51): note: 'std::basic_string<_Elem,_Traits,_Alloc> std::operator +(std::basic_string<_Elem,_Traits,_Alloc> &&,const _Elem)': could not deduce template argument for 'std::basic_string<_Elem,_Traits,_Alloc> &&' from '<error type>'
-D:\a\goo-engine\goo-engine\intern\cycles\util\profiling.cpp(51): error C2672: 'std::this_thread::sleep_until': no matching overloaded function found
-C:\Program Files\Microsoft Visual Studio\2022\Enterprise\VC\Tools\MSVC\14.44.35207\include\thread(208): note: could be 'void std::this_thread::sleep_until(const std::chrono::time_point<_Clock,_Duration> &)'
-[2468/5886] Building CXX object intern\cycles\util\CMakeFiles\cycles_util.dir\path.cpp.obj
-[2469/5886] Building CXX object intern\cycles\kernel\CMakeFiles\cycles_kernel.dir\device\cpu\kernel.cpp.obj
-[2470/5886] Building CXX object intern\cycles\kernel\CMakeFiles\cycles_kernel.dir\device\cpu\kernel_avx2.cpp.obj
+[1988/5886] Building CXX object source\blender\makesrna\intern\CMakeFiles\bf_rna.dir\rna_gpencil_legacy_gen.cc.obj
+[1989/5886] Building CXX object source\blender\makesrna\intern\CMakeFiles\bf_rna.dir\rna_key_gen.cc.obj
+[1990/5886] Building CXX object source\blender\makesrna\intern\CMakeFiles\bf_rna.dir\rna_image_gen.cc.obj
+[1991/5886] Building CXX object source\blender\makesrna\intern\CMakeFiles\bf_rna.dir\rna_gpencil_legacy_modifier_gen.cc.obj
+[1992/5886] Building CXX object source\blender\makesrna\intern\CMakeFiles\bf_rna.dir\rna_light_gen.cc.obj
+[1993/5886] Building CXX object source\blender\makesrna\intern\CMakeFiles\bf_rna.dir\rna_lattice_gen.cc.obj
+[1994/5886] Building CXX object source\blender\makesrna\intern\CMakeFiles\bf_rna.dir\rna_layer_gen.cc.obj
+[1995/5886] Building CXX object source\blender\makesrna\intern\CMakeFiles\bf_rna.dir\rna_lightprobe_gen.cc.obj
+[1996/5886] Building CXX object source\blender\makesrna\intern\CMakeFiles\bf_rna.dir\rna_linestyle_gen.cc.obj
+[1997/5886] Building CXX object source\blender\makesrna\intern\CMakeFiles\bf_rna.dir\rna_main_gen.cc.obj
+[1998/5886] Building CXX object source\blender\makesrna\intern\CMakeFiles\bf_rna.dir\rna_mask_gen.cc.obj
+[1999/5886] Building CXX object source\blender\makesrna\intern\CMakeFiles\bf_rna.dir\rna_material_gen.cc.obj
+[2000/5886] Building CXX object source\blender\makesrna\intern\CMakeFiles\bf_rna.dir\rna_meta_gen.cc.obj
+[2001/5886] Building CXX object source\blender\makesrna\intern\CMakeFiles\bf_rna.dir\rna_mesh_gen.cc.obj
+[2002/5886] Building CXX object source\blender\makesrna\intern\CMakeFiles\bf_rna.dir\rna_movieclip_gen.cc.obj
+[2003/5886] Building CXX object source\blender\makesrna\intern\CMakeFiles\bf_rna.dir\rna_modifier_gen.cc.obj
+[2004/5886] Building CXX object source\blender\makesrna\intern\CMakeFiles\bf_rna.dir\rna_nla_gen.cc.obj
+[2005/5886] Building CXX object source\blender\makesrna\intern\CMakeFiles\bf_rna.dir\rna_node_socket_gen.cc.obj
+[2006/5886] Building CXX object source\blender\makesrna\intern\CMakeFiles\bf_rna.dir\rna_node_tree_interface_gen.cc.obj
+[2007/5886] Building CXX object source\blender\makesrna\intern\CMakeFiles\bf_rna.dir\rna_object_gen.cc.obj
+[2008/5886] Building CXX object source\blender\makesrna\intern\CMakeFiles\bf_rna.dir\rna_object_force_gen.cc.obj
+[2009/5886] Building CXX object source\blender\makesrna\intern\CMakeFiles\bf_rna.dir\rna_nodetree_gen.cc.obj
+[2010/5886] Building CXX object source\blender\makesrna\intern\CMakeFiles\bf_rna.dir\rna_packedfile_gen.cc.obj
+[2011/5886] Building CXX object source\blender\makesrna\intern\CMakeFiles\bf_rna.dir\rna_palette_gen.cc.obj
+[2012/5886] Building CXX object source\blender\makesrna\intern\CMakeFiles\bf_rna.dir\rna_pointcloud_gen.cc.obj
+[2013/5886] Building CXX object source\blender\makesrna\intern\CMakeFiles\bf_rna.dir\rna_particle_gen.cc.obj
+[2014/5886] Building CXX object source\blender\makesrna\intern\CMakeFiles\bf_rna.dir\rna_pose_gen.cc.obj
+[2015/5886] Building CXX object source\blender\makesrna\intern\CMakeFiles\bf_rna.dir\rna_render_gen.cc.obj
+[2016/5886] Building CXX object source\blender\makesrna\intern\CMakeFiles\bf_rna.dir\rna_rigidbody_gen.cc.obj
+[2017/5886] Building CXX object source\blender\makesrna\intern\CMakeFiles\bf_rna.dir\rna_rna_gen.cc.obj
+[2018/5886] Building CXX object source\blender\makesrna\intern\CMakeFiles\bf_rna.dir\rna_screen_gen.cc.obj
+[2019/5886] Building CXX object source\blender\makesrna\intern\CMakeFiles\bf_rna.dir\rna_scene_gen.cc.obj
+[2020/5886] Building CXX object source\blender\makesrna\intern\CMakeFiles\bf_rna.dir\rna_sculpt_paint_gen.cc.obj
+[2021/5886] Building CXX object source\blender\makesrna\intern\CMakeFiles\bf_rna.dir\rna_sequencer_gen.cc.obj
+[2022/5886] Building CXX object source\blender\makesrna\intern\CMakeFiles\bf_rna.dir\rna_sound_gen.cc.obj
+[2023/5886] Building CXX object source\blender\makesrna\intern\CMakeFiles\bf_rna.dir\rna_shader_fx_gen.cc.obj
+[2024/5886] Building CXX object source\blender\makesrna\intern\CMakeFiles\bf_rna.dir\rna_speaker_gen.cc.obj
+[2025/5886] Building CXX object source\blender\makesrna\intern\CMakeFiles\bf_rna.dir\rna_test_gen.cc.obj
+[2026/5886] Building CXX object intern\libmv\CMakeFiles\bf_intern_libmv.dir\libmv\multiview\euclidean_resection.cc.obj
+[2027/5886] Building CXX object source\blender\makesrna\intern\CMakeFiles\bf_rna.dir\rna_text_gen.cc.obj
+[2028/5886] Building CXX object source\blender\makesrna\intern\CMakeFiles\bf_rna.dir\rna_space_gen.cc.obj
+[2029/5886] Building CXX object source\blender\makesrna\intern\CMakeFiles\bf_rna.dir\rna_texture_gen.cc.obj
+[2030/5886] Building CXX object source\blender\makesrna\intern\CMakeFiles\bf_rna.dir\rna_timeline_gen.cc.obj
+[2031/5886] Building CXX object source\blender\makesrna\intern\CMakeFiles\bf_rna.dir\rna_tracking_gen.cc.obj
+[2032/5886] Building CXX object source\blender\makesrna\intern\CMakeFiles\bf_rna.dir\rna_ui_gen.cc.obj
+[2033/5886] Building CXX object source\blender\makesrna\intern\CMakeFiles\bf_rna.dir\rna_vfont_gen.cc.obj
+[2034/5886] Building CXX object source\blender\makesrna\intern\CMakeFiles\bf_rna.dir\rna_volume_gen.cc.obj
+[2035/5886] Building CXX object source\blender\makesrna\intern\CMakeFiles\bf_rna.dir\rna_userdef_gen.cc.obj
+[2036/5886] Building CXX object source\blender\makesrna\intern\CMakeFiles\bf_rna.dir\rna_wm_gen.cc.obj
+[2037/5886] Building CXX object source\blender\makesrna\intern\CMakeFiles\bf_rna.dir\rna_world_gen.cc.obj
+[2038/5886] Building CXX object source\blender\makesrna\intern\CMakeFiles\bf_rna.dir\rna_wm_gizmo_gen.cc.obj
+[2039/5886] Building CXX object source\blender\makesrna\intern\CMakeFiles\bf_rna.dir\rna_workspace_gen.cc.obj
+[2040/5886] Building CXX object source\blender\makesrna\intern\CMakeFiles\bf_rna.dir\rna_usd_gen.cc.obj
+[2041/5886] Building CXX object source\blender\makesrna\intern\CMakeFiles\bf_rna.dir\rna_xr_gen.cc.obj
+[2042/5886] Building CXX object source\blender\makesrna\intern\CMakeFiles\bf_rna.dir\rna_grease_pencil_gen.cc.obj
+[2043/5886] Building CXX object intern\utfconv\CMakeFiles\bf_intern_utfconv.dir\utfconv.cc.obj
+[2044/5886] Linking CXX static library lib\bf_rna.lib
+[2045/5886] Generating operations/COM_OpenCLKernels.cl.h
+[2046/5886] Generating operations/COM_SMAAAreaTexture.h
+[2047/5886] Building CXX object intern\utfconv\CMakeFiles\bf_intern_utfconv.dir\utf_winfunc.cc.obj
+[2048/5886] Building C object extern\wcwidth\CMakeFiles\extern_wcwidth.dir\wcwidth.c.obj
+[2049/5886] Building C object source\blender\blenlib\CMakeFiles\bf_blenlib.dir\intern\BLI_array.c.obj
+[2050/5886] Building C object source\blender\blenlib\CMakeFiles\bf_blenlib.dir\intern\BLI_assert.c.obj
+[2051/5886] Building CXX object source\blender\blenlib\CMakeFiles\bf_blenlib.dir\intern\BLI_color.cc.obj
+[2052/5886] Building CXX object extern\fmtlib\CMakeFiles\extern_fmtlib.dir\src\format.cc.obj
+[2053/5886] Building C object source\blender\blenlib\CMakeFiles\bf_blenlib.dir\intern\BLI_dial_2d.c.obj
+[2054/5886] Building C object source\blender\blenlib\CMakeFiles\bf_blenlib.dir\intern\BLI_dynstr.c.obj
+[2055/5886] Building CXX object intern\eigen\CMakeFiles\bf_intern_eigen.dir\intern\svd.cc.obj
+[2056/5886] Building C object source\blender\blenlib\CMakeFiles\bf_blenlib.dir\intern\BLI_ghash.c.obj
+[2057/5886] Building C object source\blender\blenlib\CMakeFiles\bf_blenlib.dir\intern\BLI_ghash_utils.c.obj
+[2058/5886] Building C object source\blender\blenlib\CMakeFiles\bf_blenlib.dir\intern\BLI_heap_simple.c.obj
+[2059/5886] Building C object source\blender\blenlib\CMakeFiles\bf_blenlib.dir\intern\BLI_heap.c.obj
+[2060/5886] Building C object source\blender\blenlib\CMakeFiles\bf_blenlib.dir\intern\BLI_kdopbvh.c.obj
+[2061/5886] Building C object source\blender\blenlib\CMakeFiles\bf_blenlib.dir\intern\BLI_linklist.c.obj
+[2062/5886] Building CXX object source\blender\blenlib\CMakeFiles\bf_blenlib.dir\intern\BLI_filelist.cc.obj
+[2063/5886] Building C object source\blender\blenlib\CMakeFiles\bf_blenlib.dir\intern\BLI_linklist_lockfree.c.obj
+[2064/5886] Building C object source\blender\blenlib\CMakeFiles\bf_blenlib.dir\intern\BLI_memarena.c.obj
+[2065/5886] Building C object source\blender\blenlib\CMakeFiles\bf_blenlib.dir\intern\BLI_memiter.c.obj
+[2066/5886] Building C object source\blender\blenlib\CMakeFiles\bf_blenlib.dir\intern\BLI_memblock.c.obj
+[2067/5886] Building CXX object source\blender\blenlib\CMakeFiles\bf_blenlib.dir\intern\BLI_index_range.cc.obj
+[2068/5886] Building C object source\blender\blenlib\CMakeFiles\bf_blenlib.dir\intern\BLI_timer.c.obj
+[2069/5886] Building C object source\blender\blenlib\CMakeFiles\bf_blenlib.dir\intern\DLRB_tree.c.obj
+[2070/5886] Building C object source\blender\blenlib\CMakeFiles\bf_blenlib.dir\intern\BLI_mempool.c.obj
+[2071/5886] Building C object source\blender\blenlib\CMakeFiles\bf_blenlib.dir\intern\BLI_mmap.c.obj
+[2072/5886] Building C object source\blender\blenlib\CMakeFiles\bf_blenlib.dir\intern\array_utils.c.obj
+[2073/5886] Building CXX object source\blender\blenlib\CMakeFiles\bf_blenlib.dir\intern\array_store_utils.cc.obj
+[2074/5886] Building CXX object source\blender\blenlib\CMakeFiles\bf_blenlib.dir\intern\array_store.cc.obj
+[2075/5886] Building C object source\blender\blenlib\CMakeFiles\bf_blenlib.dir\intern\astar.c.obj
+[2076/5886] Building CXX object source\blender\blenlib\CMakeFiles\bf_blenlib.dir\intern\bit_ref.cc.obj
+[2077/5886] Building CXX object source\blender\blenlib\CMakeFiles\bf_blenlib.dir\intern\array_utils.cc.obj
+[2078/5886] Building C object source\blender\blenlib\CMakeFiles\bf_blenlib.dir\intern\bitmap.c.obj
+[2079/5886] Building C object source\blender\blenlib\CMakeFiles\bf_blenlib.dir\intern\bitmap_draw_2d.c.obj
+[2080/5886] Building C object source\blender\blenlib\CMakeFiles\bf_blenlib.dir\intern\boxpack_2d.c.obj
+[2081/5886] Building CXX object source\blender\blenlib\CMakeFiles\bf_blenlib.dir\intern\atomic_disjoint_set.cc.obj
+[2082/5886] Building CXX object source\blender\blenlib\CMakeFiles\bf_blenlib.dir\intern\bit_span.cc.obj
+[2083/5886] Building C object source\blender\blenlib\CMakeFiles\bf_blenlib.dir\intern\buffer.c.obj
+[2084/5886] Building C object source\blender\blenlib\CMakeFiles\bf_blenlib.dir\intern\convexhull_2d.c.obj
+[2085/5886] Building CXX object source\blender\blenlib\CMakeFiles\bf_blenlib.dir\intern\cache_mutex.cc.obj
+[2086/5886] Building CXX object source\blender\blenlib\CMakeFiles\bf_blenlib.dir\intern\compute_context.cc.obj
+[2087/5886] Building CXX object source\blender\blenlib\CMakeFiles\bf_blenlib.dir\intern\cpp_type.cc.obj
+[2088/5886] Building CXX object source\blender\blenlib\CMakeFiles\bf_blenlib.dir\intern\dot_export.cc.obj
+[2089/5886] Building CXX object source\blender\blenlib\CMakeFiles\bf_blenlib.dir\intern\delaunay_2d.cc.obj
+[2090/5886] Building CXX object source\blender\blenlib\CMakeFiles\bf_blenlib.dir\intern\dynlib.cc.obj
+[2091/5886] Building C object source\blender\blenlib\CMakeFiles\bf_blenlib.dir\intern\easing.c.obj
+[2092/5886] Building C object source\blender\blenlib\CMakeFiles\bf_blenlib.dir\intern\endian_switch.c.obj
+[2093/5886] Building C object source\blender\blenlib\CMakeFiles\bf_blenlib.dir\intern\expr_pylike_eval.c.obj
+[2094/5886] Building CXX object source\blender\blenlib\CMakeFiles\bf_blenlib.dir\intern\cpp_types.cc.obj
+[2095/5886] Building C object source\blender\blenlib\CMakeFiles\bf_blenlib.dir\intern\filereader_file.c.obj
+[2096/5886] Building C object source\blender\blenlib\CMakeFiles\bf_blenlib.dir\intern\filereader_gzip.c.obj
+[2097/5886] Building C object source\blender\blenlib\CMakeFiles\bf_blenlib.dir\intern\filereader_memory.c.obj
+[2098/5886] Building C object source\blender\blenlib\CMakeFiles\bf_blenlib.dir\intern\filereader_zstd.c.obj
+[2099/5886] Building C object source\blender\blenlib\CMakeFiles\bf_blenlib.dir\intern\fnmatch.c.obj
+[2100/5886] Building CXX object source\blender\blenlib\CMakeFiles\bf_blenlib.dir\intern\fileops.cc.obj
+[2101/5886] Building CXX object source\blender\blenlib\CMakeFiles\bf_blenlib.dir\intern\fileops_c.cc.obj
+[2102/5886] Building CXX object source\blender\blenlib\CMakeFiles\bf_blenlib.dir\intern\generic_virtual_vector_array.cc.obj
+[2103/5886] Building CXX object source\blender\blenlib\CMakeFiles\bf_blenlib.dir\intern\generic_vector_array.cc.obj
+[2104/5886] Building CXX object source\blender\blenlib\CMakeFiles\bf_blenlib.dir\intern\generic_virtual_array.cc.obj
+[2105/5886] Building C object source\blender\blenlib\CMakeFiles\bf_blenlib.dir\intern\hash_md5.c.obj
+[2106/5886] Building C object source\blender\blenlib\CMakeFiles\bf_blenlib.dir\intern\gsqueue.c.obj
+[2107/5886] Building C object source\blender\blenlib\CMakeFiles\bf_blenlib.dir\intern\hash_mm2a.c.obj
+[2108/5886] Building C object source\blender\blenlib\CMakeFiles\bf_blenlib.dir\intern\hash_mm3.c.obj
+[2109/5886] Building CXX object source\blender\blenlib\CMakeFiles\bf_blenlib.dir\intern\hash_tables.cc.obj
+[2110/5886] Building CXX object source\blender\blenlib\CMakeFiles\bf_blenlib.dir\intern\implicit_sharing.cc.obj
+[2111/5886] Building C object source\blender\blenlib\CMakeFiles\bf_blenlib.dir\intern\jitter_2d.c.obj
+[2112/5886] Building CXX object source\blender\blenlib\CMakeFiles\bf_blenlib.dir\intern\index_range.cc.obj
+[2113/5886] Building CXX object source\blender\blenlib\CMakeFiles\bf_blenlib.dir\intern\index_mask.cc.obj
+[2114/5886] Building C object source\blender\blenlib\CMakeFiles\bf_blenlib.dir\intern\kdtree_1d.c.obj
+[2115/5886] Building C object source\blender\blenlib\CMakeFiles\bf_blenlib.dir\intern\kdtree_2d.c.obj
+[2116/5886] Building C object source\blender\blenlib\CMakeFiles\bf_blenlib.dir\intern\kdtree_3d.c.obj
+[2117/5886] Building C object source\blender\blenlib\CMakeFiles\bf_blenlib.dir\intern\kdtree_4d.c.obj
+[2118/5886] Building C object source\blender\blenlib\CMakeFiles\bf_blenlib.dir\intern\lasso_2d.c.obj
+[2119/5886] Building CXX object source\blender\blenlib\CMakeFiles\bf_blenlib.dir\intern\lazy_threading.cc.obj
+[2120/5886] Building CXX object source\blender\blenlib\CMakeFiles\bf_blenlib.dir\intern\length_parameterize.cc.obj
+[2121/5886] Building CXX object source\blender\blenlib\CMakeFiles\bf_blenlib.dir\intern\listbase.cc.obj
+[2122/5886] Building C object source\blender\blenlib\CMakeFiles\bf_blenlib.dir\intern\math_base.c.obj
+[2123/5886] Building CXX object source\blender\blenlib\CMakeFiles\bf_blenlib.dir\intern\math_basis_types.cc.obj
+[2124/5886] Building CXX object source\blender\blenlib\CMakeFiles\bf_blenlib.dir\intern\math_boolean.cc.obj
+[2125/5886] Building C object source\blender\blenlib\CMakeFiles\bf_blenlib.dir\intern\math_color.c.obj
+[2126/5886] Building CXX object source\blender\blenlib\CMakeFiles\bf_blenlib.dir\intern\math_geom.cc.obj
+[2127/5886] Building CXX object source\blender\blenlib\CMakeFiles\bf_blenlib.dir\intern\math_interp.cc.obj
+[2128/5886] Building C object source\blender\blenlib\CMakeFiles\bf_blenlib.dir\intern\math_matrix.c.obj
+[2129/5886] Building C object source\blender\blenlib\CMakeFiles\bf_blenlib.dir\intern\math_rotation.c.obj
+[2130/5886] Building CXX object source\blender\blenlib\CMakeFiles\bf_blenlib.dir\intern\math_rotation.cc.obj
+[2131/5886] Building C object source\blender\blenlib\CMakeFiles\bf_blenlib.dir\intern\math_solvers.c.obj
+[2132/5886] Building C object source\blender\blenlib\CMakeFiles\bf_blenlib.dir\intern\math_statistics.c.obj
+[2133/5886] Building C object source\blender\blenlib\CMakeFiles\bf_blenlib.dir\intern\math_time.c.obj
+[2134/5886] Building C object source\blender\blenlib\CMakeFiles\bf_blenlib.dir\intern\math_vector.c.obj
+[2135/5886] Building C object source\blender\blenlib\CMakeFiles\bf_blenlib.dir\intern\memory_utils.c.obj
+[2136/5886] Building CXX object intern\libmv\CMakeFiles\bf_intern_libmv.dir\libmv\multiview\fundamental.cc.obj
+[2137/5886] Building CXX object source\blender\blenlib\CMakeFiles\bf_blenlib.dir\intern\math_vec.cc.obj
+[2138/5886] Building CXX object source\blender\blenlib\CMakeFiles\bf_blenlib.dir\intern\math_matrix.cc.obj
+[2139/5886] Building CXX object source\blender\compositor\CMakeFiles\bf_compositor.dir\cmake_pch.cxx.obj
+[2140/5886] Building C object source\blender\blenlib\CMakeFiles\bf_blenlib.dir\intern\noise.c.obj
+[2141/5886] Building CXX object source\blender\blenlib\CMakeFiles\bf_blenlib.dir\intern\mesh_boolean.cc.obj
+[2142/5886] Linking CXX static library lib\bf_intern_utfconv.lib
+[2143/5886] Building CXX object source\blender\blenlib\CMakeFiles\bf_blenlib.dir\intern\mesh_intersect.cc.obj
+[2144/5886] Building CXX object source\blender\blenlib\CMakeFiles\bf_blenlib.dir\intern\offset_indices.cc.obj
+[2145/5886] Building CXX object source\blender\blenlib\CMakeFiles\bf_blenlib.dir\intern\noise.cc.obj
+[2146/5886] Linking CXX static library lib\bf_intern_eigen.lib
+[2147/5886] Linking CXX static library lib\extern_fmtlib.lib
+[2148/5886] Building C object source\blender\blenlib\CMakeFiles\bf_blenlib.dir\intern\polyfill_2d.c.obj
+[2149/5886] Linking C static library lib\extern_wcwidth.lib
+[2150/5886] Building CXX object source\blender\blenlib\CMakeFiles\bf_blenlib.dir\intern\ordered_edge.cc.obj
+[2151/5886] Building C object source\blender\blenlib\CMakeFiles\bf_blenlib.dir\intern\quadric.c.obj
+[2152/5886] Building C object source\blender\blenlib\CMakeFiles\bf_blenlib.dir\intern\polyfill_2d_beautify.c.obj
+[2153/5886] Building C object source\blender\blenlib\CMakeFiles\bf_blenlib.dir\intern\rct.c.obj
+[2154/5886] Building CXX object source\blender\blenlib\CMakeFiles\bf_blenlib.dir\intern\path_util.cc.obj
+[2155/5886] Building C object source\blender\blenlib\CMakeFiles\bf_blenlib.dir\intern\scanfill.c.obj
+[2156/5886] Building CXX object source\blender\blenlib\CMakeFiles\bf_blenlib.dir\intern\resource_scope.cc.obj
+[2157/5886] Building C object source\blender\blenlib\CMakeFiles\bf_blenlib.dir\intern\scanfill_utils.c.obj
+[2158/5886] Building CXX object source\blender\blenlib\CMakeFiles\bf_blenlib.dir\intern\rand.cc.obj
+[2159/5886] Building C object source\blender\blenlib\CMakeFiles\bf_blenlib.dir\intern\session_uuid.c.obj
+[2160/5886] Building C object source\blender\blenlib\CMakeFiles\bf_blenlib.dir\intern\sort.c.obj
+[2161/5886] Building C object source\blender\blenlib\CMakeFiles\bf_blenlib.dir\intern\smaa_textures.c.obj
+[2162/5886] Building C object source\blender\blenlib\CMakeFiles\bf_blenlib.dir\intern\sort_utils.c.obj
+[2163/5886] Building C object source\blender\blenlib\CMakeFiles\bf_blenlib.dir\intern\stack.c.obj
+[2164/5886] Building C object source\blender\blenlib\CMakeFiles\bf_blenlib.dir\intern\string.c.obj
+[2165/5886] Building C object source\blender\blenlib\CMakeFiles\bf_blenlib.dir\intern\string_cursor_utf8.c.obj
+[2166/5886] Building CXX object source\blender\blenlib\CMakeFiles\bf_blenlib.dir\intern\storage.cc.obj
+[2167/5886] Building CXX object source\blender\blenlib\CMakeFiles\bf_blenlib.dir\intern\string_ref.cc.obj
+[2168/5886] Building CXX object source\blender\blenlib\CMakeFiles\bf_blenlib.dir\intern\string_utf8.cc.obj
+[2169/5886] Building CXX object source\blender\blenlib\CMakeFiles\bf_blenlib.dir\intern\string_search.cc.obj
+[2170/5886] Building CXX object source\blender\blenlib\CMakeFiles\bf_blenlib.dir\intern\string_utils.cc.obj
+[2171/5886] Building C object source\blender\blenlib\CMakeFiles\bf_blenlib.dir\intern\system.c.obj
+[2172/5886] Building CXX object source\blender\blenlib\CMakeFiles\bf_blenlib.dir\intern\serialize.cc.obj
+[2173/5886] Building CXX object source\blender\blenlib\CMakeFiles\bf_blenlib.dir\intern\task_graph.cc.obj
+[2174/5886] Building C object source\blender\blenlib\CMakeFiles\bf_blenlib.dir\intern\task_iterator.c.obj
+[2175/5886] Building CXX object source\blender\blenlib\CMakeFiles\bf_blenlib.dir\intern\task_pool.cc.obj
+[2176/5886] Building C object source\blender\blenlib\CMakeFiles\bf_blenlib.dir\intern\tempfile.c.obj
+[2177/5886] Building CXX object source\blender\blenlib\CMakeFiles\bf_blenlib.dir\intern\task_scheduler.cc.obj
+[2178/5886] Building C object source\blender\blenlib\CMakeFiles\bf_blenlib.dir\intern\time.c.obj
+[2179/5886] Building CXX object source\blender\blenlib\CMakeFiles\bf_blenlib.dir\intern\task_range.cc.obj
+[2180/5886] Building C object source\blender\blenlib\CMakeFiles\bf_blenlib.dir\intern\timecode.c.obj
+[2181/5886] Building CXX object source\blender\blenlib\CMakeFiles\bf_blenlib.dir\intern\threads.cc.obj
+[2182/5886] Building C object source\blender\blenlib\CMakeFiles\bf_blenlib.dir\intern\uvproject.c.obj
+[2183/5886] Building CXX object source\blender\blenlib\CMakeFiles\bf_blenlib.dir\intern\uuid.cc.obj
+[2184/5886] Building CXX object source\blender\blenlib\CMakeFiles\bf_blenlib.dir\intern\timeit.cc.obj
+[2185/5886] Building C object source\blender\blenlib\CMakeFiles\bf_blenlib.dir\intern\voxel.c.obj
+[2186/5886] Building CXX object source\blender\blenlib\CMakeFiles\bf_blenlib.dir\intern\vector.cc.obj
+[2187/5886] Building CXX object source\blender\blenlib\CMakeFiles\bf_blenlib.dir\intern\winstuff_dir.cc.obj
+[2188/5886] Building CXX object source\blender\blenlib\CMakeFiles\bf_blenlib.dir\intern\virtual_array.cc.obj
+[2189/5886] Building CXX object source\blender\blenlib\CMakeFiles\bf_blenlib.dir\intern\winstuff.cc.obj
+[2190/5886] Building C object source\blender\blenlib\CMakeFiles\bf_blenlib.dir\intern\BLI_args.c.obj
+[2191/5886] Building C object source\blender\blenlib\CMakeFiles\bf_blenlib.dir\intern\system_win32.c.obj
+[2192/5886] Building CXX object source\blender\blentranslation\msgfmt\CMakeFiles\msgfmt.dir\msgfmt.cc.obj
+[2193/5886] Building C object intern\clog\CMakeFiles\bf_intern_clog.dir\clog.c.obj
+[2194/5886] Building CXX object source\blender\blenlib\CMakeFiles\bf_blenlib.dir\intern\winstuff_registration.cc.obj
+[2195/5886] Building CXX object intern\ghost\CMakeFiles\bf_intern_ghost.dir\intern\GHOST_Buttons.cc.obj
+[2196/5886] Building CXX object intern\ghost\CMakeFiles\bf_intern_ghost.dir\intern\GHOST_CallbackEventConsumer.cc.obj
+[2197/5886] Building CXX object intern\ghost\CMakeFiles\bf_intern_ghost.dir\intern\GHOST_C-api.cc.obj
+[2198/5886] Building CXX object intern\ghost\CMakeFiles\bf_intern_ghost.dir\intern\GHOST_Context.cc.obj
+[2199/5886] Building CXX object intern\ghost\CMakeFiles\bf_intern_ghost.dir\intern\GHOST_ContextNone.cc.obj
+[2200/5886] Building CXX object intern\ghost\CMakeFiles\bf_intern_ghost.dir\intern\GHOST_EventManager.cc.obj
+[2201/5886] Building CXX object intern\ghost\CMakeFiles\bf_intern_ghost.dir\intern\GHOST_DisplayManager.cc.obj
+[2202/5886] Building CXX object intern\ghost\CMakeFiles\bf_intern_ghost.dir\intern\GHOST_ISystemPaths.cc.obj
+[2203/5886] Building CXX object intern\ghost\CMakeFiles\bf_intern_ghost.dir\intern\GHOST_ModifierKeys.cc.obj
+[2204/5886] Building CXX object intern\ghost\CMakeFiles\bf_intern_ghost.dir\intern\GHOST_ISystem.cc.obj
+[2205/5886] Building CXX object intern\ghost\CMakeFiles\bf_intern_ghost.dir\intern\GHOST_PathUtils.cc.obj
+[2206/5886] Building CXX object intern\ghost\CMakeFiles\bf_intern_ghost.dir\intern\GHOST_Path-api.cc.obj
+[2207/5886] Building CXX object intern\ghost\CMakeFiles\bf_intern_ghost.dir\intern\GHOST_Rect.cc.obj
+[2208/5886] Building CXX object intern\ghost\CMakeFiles\bf_intern_ghost.dir\intern\GHOST_TimerManager.cc.obj
+[2209/5886] Building CXX object intern\libmv\CMakeFiles\bf_intern_libmv.dir\libmv\multiview\homography.cc.obj
+[2210/5886] Building CXX object intern\ghost\CMakeFiles\bf_intern_ghost.dir\intern\GHOST_System.cc.obj
+[2211/5886] Building CXX object source\blender\compositor\CMakeFiles\bf_compositor.dir\Unity\unity_24_cxx.cxx.obj
+[2212/5886] Building CXX object intern\ghost\CMakeFiles\bf_intern_ghost.dir\intern\GHOST_Window.cc.obj
+[2213/5886] Building CXX object intern\ghost\CMakeFiles\bf_intern_ghost.dir\intern\GHOST_WindowManager.cc.obj
+[2214/5886] Building CXX object source\blender\compositor\CMakeFiles\bf_compositor.dir\Unity\unity_23_cxx.cxx.obj
+[2215/5886] Building CXX object intern\ghost\CMakeFiles\bf_intern_ghost.dir\intern\GHOST_NDOFManager.cc.obj
+[2216/5886] Building CXX object intern\ghost\CMakeFiles\bf_intern_ghost.dir\intern\GHOST_ContextVK.cc.obj
+[2217/5886] Building CXX object source\blender\compositor\CMakeFiles\bf_compositor.dir\Unity\unity_22_cxx.cxx.obj
+[2218/5886] Building CXX object source\blender\compositor\CMakeFiles\bf_compositor.dir\Unity\unity_21_cxx.cxx.obj
+[2219/5886] Building CXX object intern\ghost\CMakeFiles\bf_intern_ghost.dir\intern\GHOST_DisplayManagerWin32.cc.obj
+[2220/5886] Building CXX object intern\ghost\CMakeFiles\bf_intern_ghost.dir\intern\GHOST_ContextD3D.cc.obj
+[2221/5886] Building CXX object source\blender\compositor\CMakeFiles\bf_compositor.dir\Unity\unity_20_cxx.cxx.obj
+[2222/5886] Building CXX object intern\ghost\CMakeFiles\bf_intern_ghost.dir\intern\GHOST_DropTargetWin32.cc.obj
+[2223/5886] Building CXX object source\blender\compositor\CMakeFiles\bf_compositor.dir\Unity\unity_19_cxx.cxx.obj
+[2224/5886] Building CXX object source\blender\compositor\CMakeFiles\bf_compositor.dir\Unity\unity_18_cxx.cxx.obj
+[2225/5886] Building CXX object intern\ghost\CMakeFiles\bf_intern_ghost.dir\intern\GHOST_TrackpadWin32.cc.obj
+[2226/5886] Building CXX object source\blender\compositor\CMakeFiles\bf_compositor.dir\Unity\unity_17_cxx.cxx.obj
+[2227/5886] Building CXX object intern\ghost\CMakeFiles\bf_intern_ghost.dir\intern\GHOST_SystemWin32.cc.obj
+[2228/5886] Building CXX object intern\ghost\CMakeFiles\bf_intern_ghost.dir\intern\GHOST_Wintab.cc.obj
+FAILED: [code=2] intern/ghost/CMakeFiles/bf_intern_ghost.dir/intern/GHOST_Wintab.cc.obj 
+C:\PROGRA~1\MICROS~2\2022\ENTERP~1\VC\Tools\MSVC\1444~1.352\bin\Hostx64\x64\cl.exe  /nologo /TP -DBLENDER_WIN_APPID=\"blender.4.1\" -DBLENDER_WIN_APPID_FRIENDLY_NAME="\"Blender 4.1\"" -DNDEBUG -DWIN32 -DWITH_INPUT_IME -DWITH_INPUT_NDOF -DWITH_OPENGL_BACKEND -DWITH_TBB_MALLOC -DWITH_VULKAN_BACKEND -DWITH_XR_OPENXR -DXR_USE_GRAPHICS_API_D3D11 -DXR_USE_GRAPHICS_API_OPENGL -DXR_USE_PLATFORM_WIN32 -D_ALLOW_KEYWORD_MACROS -D_CONSOLE -D_CRT_NONSTDC_NO_DEPRECATE -D_CRT_SECURE_NO_DEPRECATE -D_LIB -D_SCL_SECURE_NO_DEPRECATE -D_WIN32_WINNT=0x603 -D__LITTLE_ENDIAN__ -D__MMX__ -D__SSE2__ -D__SSE__ -ID:\a\goo-engine\goo-engine\intern\ghost -ID:\a\goo-engine\goo-engine\source\blender\imbuf -ID:\a\goo-engine\goo-engine\intern\utfconv -ID:\a\goo-engine\goo-engine\source\blender\blenlib -ID:\a\goo-engine\goo-engine\source\blender\makesdna -IC:\bg\build\source\blender\makesdna\intern -ID:\a\goo-engine\goo-engine\intern\clog -external:IC:\bglib\win64_vc15\pthreads\include -external:IC:\bglib\win64_vc15\epoxy\include -external:IC:\bglib\win64_vc15\vulkan\include -external:IC:\bglib\win64_vc15\wintab\include -external:ID:\a\goo-engine\goo-engine\extern\json\include -external:ID:\a\goo-engine\goo-engine\extern\tinygltf -external:ID:\a\goo-engine\goo-engine\extern\Eigen3 -external:IC:\bglib\win64_vc15\xr_openxr_sdk\include -external:W0 /W3 /w34062 /w34100 /w34115 /w34189 /w35038 /wd4018 /wd4146 /wd4065 /wd4127 /wd4181 /wd4200 /wd4244 /wd4267 /wd4305 /wd4800 /wd4828 /wd4996 /wd4661 /wd4848 /we4013 /we4133 /we4431 /we4033 /DWIN32 /D_WINDOWS /W3  /EHsc /nologo /J /Gd /MP /EHsc /bigobj /Zc:inline /permissive- -openmp /Zc:__cplusplus     /O2 /Ob2 /DNDEBUG /MD /Zi -std:c++17 /utf-8 /experimental:external /external:I C:/bglib/win64_vc15 /external:W0 /showIncludes /Fointern\ghost\CMakeFiles\bf_intern_ghost.dir\intern\GHOST_Wintab.cc.obj /Fdintern\ghost\CMakeFiles\bf_intern_ghost.dir\bf_intern_ghost.pdb /FS -c D:\a\goo-engine\goo-engine\intern\ghost\intern\GHOST_Wintab.cc
+D:\a\goo-engine\goo-engine\intern\ghost\intern\GHOST_Wintab.cc(358): error C2065: 'M_PI_2': undeclared identifier
+D:\a\goo-engine\goo-engine\intern\ghost\intern\GHOST_Wintab.cc(359): error C2065: 'M_PI': undeclared identifier
+D:\a\goo-engine\goo-engine\intern\ghost\intern\GHOST_Wintab.cc(366): error C2065: 'M_PI_2': undeclared identifier
+[2229/5886] Building CXX object source\blender\compositor\CMakeFiles\bf_compositor.dir\Unity\unity_16_cxx.cxx.obj
+[2230/5886] Building CXX object intern\ghost\CMakeFiles\bf_intern_ghost.dir\intern\GHOST_WindowWin32.cc.obj
+[2231/5886] Building CXX object intern\ghost\CMakeFiles\bf_intern_ghost.dir\intern\GHOST_ContextWGL.cc.obj
 ninja: build stopped: subcommand failed.
 
 ===== configure.log (tail 250) =====
@@ -503,7 +503,7 @@ Call Stack (most recent call first):
 This warning is for project developers.  Use -Wno-dev to suppress it.
 
 -- Configuring done (5.6s)
--- Generating done (5.3s)
+-- Generating done (5.5s)
 -- Build files have been written to: C:/bg/build
 
 ===== environment.log (tail 250) =====
