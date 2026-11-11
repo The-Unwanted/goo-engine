@@ -288,7 +288,9 @@ jobs:
             -DWITH_WINDOWS_PDB=OFF `
             -DWITH_WINDOWS_STRIPPED_PDB=OFF `
             -DWITH_GTESTS=OFF `
-            -DWITH_BUILDINFO=OFF *>&1 | Tee-Object -FilePath $log
+            -DWITH_BUILDINFO=OFF `
+            -DWITH_CYCLES_DEVICE_ONEAPI=OFF `
+            -DWITH_CYCLES_ONEAPI_BINARIES=OFF *>&1 | Tee-Object -FilePath $log
 
           if ($LASTEXITCODE -ne 0) {
             Get-Content $log -Tail 40 | ForEach-Object {
