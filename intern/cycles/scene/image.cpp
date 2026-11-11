@@ -28,16 +28,19 @@ CCL_NAMESPACE_BEGIN
 
 namespace {
 
-/* Some helpers to silence warning in templated function. */
-bool isfinite(uchar /*value*/)
+/* Some helpers to silence warning in templated function.
+ * Named distinctly from the C/C++ isfinite() so newer MSVC headers (which add
+ * float/double overloads to the global namespace) cannot make the call
+ * ambiguous - this broke release builds with MSVC 19.3x and newer. */
+bool image_data_isfinite(uchar /*value*/)
 {
   return true;
 }
-bool isfinite(half /*value*/)
+bool image_data_isfinite(half /*value*/)
 {
   return true;
 }
-bool isfinite(uint16_t /*value*/)
+bool image_data_isfinite(uint16_t /*value*/)
 {
   return true;
 }
@@ -635,8 +638,8 @@ bool ImageManager::file_load_image(Image *img, int texture_limit)
     if (is_rgba) {
       for (size_t i = 0; i < num_pixels; i += 4) {
         StorageType *pixel = &pixels[i * 4];
-        if (!isfinite(pixel[0]) || !isfinite(pixel[1]) || !isfinite(pixel[2]) ||
-            !isfinite(pixel[3]))
+        if (!image_data_isfinite(pixel[0]) || !image_data_isfinite(pixel[1]) ||
+            !image_data_isfinite(pixel[2]) || !image_data_isfinite(pixel[3]))
         {
           pixel[0] = 0;
           pixel[1] = 0;
@@ -648,7 +651,7 @@ bool ImageManager::file_load_image(Image *img, int texture_limit)
     else {
       for (size_t i = 0; i < num_pixels; ++i) {
         StorageType *pixel = &pixels[i];
-        if (!isfinite(pixel[0])) {
+        if (!image_data_isfinite(pixel[0])) {
           pixel[0] = 0;
         }
       }
